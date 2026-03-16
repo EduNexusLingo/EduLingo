@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduNexus · Under Construction</title>
+    <title>EduLingo - Construye una Vida que Valga la Pena Contar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,144 +15,748 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
-            background: linear-gradient(145deg, #f9faff 0%, #f0f3fd 100%);
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 0;
-            padding: 20px;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #58CC02;
         }
 
-        .container {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(8px);
-            padding: 3rem 2rem;
-            border-radius: 48px;
-            box-shadow: 0 20px 40px -10px rgba(0,20,80,0.15),
-                        0 0 0 1px rgba(255,255,255,0.5) inset;
+        .logo img {
+            height: 40px;
+            width: auto;
         }
 
-        /* Logo como imagen */
-        .logo-img {
-            max-width: 100%;
-            height: auto;
-            max-height: 200px; /* Ajusta según el tamaño real de tu logo */
-            margin-bottom: 2rem;
-            display: inline-block;
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
         }
 
-        /* Mensaje principal */
-        .message {
-            margin: 2.5rem 0 2rem 0;
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        .under-construction {
-            font-size: clamp(2rem, 8vw, 3.2rem);
+        nav a:hover {
+            color: #58CC02;
+        }
+
+        .btn-contact {
+            background-color: #58CC02;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
             font-weight: 600;
-            color: #10233e;
+            transition: background-color 0.3s;
+        }
+
+        .btn-contact:hover {
+            background-color: #48a802;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('img/EduNexusLingo.jpg') center/cover;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
         }
 
-        .under-construction span {
-            background: #f0b71c;
-            color: #1e2f50;
-            padding: 0.2rem 1rem;
-            border-radius: 60px;
-            font-size: 0.9em;
-            white-space: nowrap;
+        .hero-content {
+            max-width: 600px;
         }
 
-        .icon-construction {
-            font-size: 1.5em;
-            filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.1));
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
-        .description {
-            font-size: 1.3rem;
-            color: #3d4f72;
-            margin-top: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 0.5px;
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
         }
 
-        .dots {
-            margin: 2rem 0;
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
         }
 
-        .dot {
-            display: inline-block;
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #58CC02;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #48a802;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #1a1a1a;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .carousel-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
             width: 12px;
             height: 12px;
-            background: #2b4b8f;
             border-radius: 50%;
-            margin: 0 6px;
-            opacity: 0.4;
-            animation: pulse 1.5s infinite;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        .dot:nth-child(2) { animation-delay: 0.3s; }
-        .dot:nth-child(3) { animation-delay: 0.6s; }
-
-        @keyframes pulse {
-            0%,100% { transform: scale(1); opacity: 0.4; }
-            50% { transform: scale(1.3); opacity: 1; }
+        .carousel-dot.active {
+            background-color: #58CC02;
         }
 
-        footer {
-            margin-top: 2.5rem;
-            font-size: 0.95rem;
-            color: #5a6e92;
-        }
-
-        hr {
-            width: 80px;
-            margin: 1.5rem auto 1rem auto;
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
             border: none;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #9bb1d1, transparent);
+            padding: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-button.prev {
+            left: 20px;
+        }
+
+        .carousel-button.next {
+            right: 20px;
+        }
+
+        /* Métodos Section */
+        .metodos {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .metodos h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metodos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .metodo-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .metodo-card:hover {
+            border-color: #58CC02;
+            box-shadow: 0 10px 30px rgba(88, 204, 2, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .metodo-card img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .metodo-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .metodo-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Precios Section */
+        .precios {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .precios h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .precios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .precio-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .precio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(88, 204, 2, 0.2);
+        }
+
+        .precio-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .precio {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #58CC02;
+            margin-bottom: 1rem;
+        }
+
+        .precio-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .precio-card li {
+            padding: 0.5rem 0;
+            color: #666;
+        }
+
+        .precio-card li:before {
+            content: "✓ ";
+            color: #58CC02;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Logos Carousel */
+        .logos-section {
+            padding: 3rem 2rem;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .logos-section h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .logos-carousel {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 20s linear infinite;
+            width: fit-content;
+        }
+
+        .logo-item {
+            flex-shrink: 0;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0%);
+        }
+
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Formulario */
+        .contacto {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .contacto h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #58CC02;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-submit:hover {
+            background-color: #48a802;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact a {
+            color: #58CC02;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .metodos-grid,
+            .precios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-section h2,
+            .metodos h2,
+            .precios h2,
+            .contacto h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Logo como imagen (asegúrate de que logo.png esté en la misma carpeta) -->
-	  <div class="logo">
-            <span class="under-construction">Edu Nexus Lingo</span>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="img/EduNexusLingo.jpg" alt="EduLingo Logo">
+            <span>EduLingo</span>
         </div>
-        <img src="logo.png" alt="EduNexus Logo" class="logo-img">
+        <nav>
+            <a href="#metodos">El Método</a>
+            <a href="#carousel">Destinos</a>
+            <a href="#precios">Precios</a>
+            <a href="#contacto" class="btn-contact">Contactar</a>
+        </nav>
+    </header>
 
-        <!-- Mensaje de construcción -->
-        <div class="message">
-            <div class="under-construction">
-                <span class="icon-construction">🚧</span>
-                under construction
-                <span class="icon-construction">🚧</span>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Construye una Vida que Valga la Pena Contar</h1>
+            <p>Cursos online, viajes académicos y preparación oficial. Tu historia comienza con EduLingo.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">✨ Descubre tu plan ideal</button>
+                <button class="btn btn-secondary">Conocer más</button>
             </div>
-            <div class="description">
-                Estamos preparando algo increíble para ti.
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section id="carousel" class="carousel-section">
+        <h2>Vive Experiencias Increíbles</h2>
+        <div class="carousel">
+            <div class="carousel-inner" id="carouselInner">
+                <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
+				<div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
+            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">❮</button>
+            <button class="carousel-button next" onclick="nextSlide()">❯</button>
+            <div class="carousel-controls" id="carouselControls"></div>
+        </div>
+    </section>
+
+    <!-- Métodos Section -->
+    <section id="metodos" class="metodos">
+        <h2>Tu Camino, Tú Decides</h2>
+        <div class="metodos-grid">
+            <div class="metodo-card">
+                <img src="img/Online1.png" alt="Online">
+                <h3>Inglés Online Flexible</h3>
+                <p>Clases 24/7 con profesores nativos. Plataforma interactiva con IA para practicar speaking.</p>
+            </div>
+            <div class="metodo-card">
+                <img src="img/Global Connection & Networking.png" alt="Viajes">
+                <h3>Vive el Idioma en el Extranjero</h3>
+                <p>Estudia en las mejores escuelas de Malta, Irlanda o Inglaterra.</p>
+            </div>
+            <div class="metodo-card">
+                <img src="img/Certifications & Credentials.png" alt="Certificaciones">
+                <h3>Certifícate y Triunfa</h3>
+                <p>Prepárate para los exámenes oficiales de Cambridge English.</p>
+            </div>
+            <div class="metodo-card">
+                <img src="img/Help Desk.png" alt="Soporte">
+                <h3>Acompañamiento Total</h3>
+                <p>Te ayudamos a comparar, elegir y reservar. Precios más bajos garantizados.</p>
             </div>
         </div>
+    </section>
 
-        <!-- Pequeño detalle animado -->
-        <div class="dots">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
+    <!-- Precios Section -->
+    <section id="precios" class="precios">
+        <h2>Empieza Hoy</h2>
+        <div class="precios-grid">
+            <div class="precio-card">
+                <h3>Online Premium</h3>
+                <div class="precio">59€/mes</div>
+                <ul>
+                    <li>Clases en grupo ilimitadas</li>
+                    <li>IA speaking practice</li>
+                    <li>Certificado oficial</li>
+                    <li>Prueba 7 días gratis</li>
+                </ul>
+                <button class="btn btn-primary">Comenzar ahora</button>
+            </div>
+            <div class="precio-card">
+                <h3>Experiencia Malta</h3>
+                <div class="precio">2.280€</div>
+                <ul>
+                    <li>Curso en escuela top</li>
+                    <li>Actividades incluidas</li>
+                    <li>Descuento en vuelo</li>
+                    <li>Alojamiento incluido</li>
+                </ul>
+                <button class="btn btn-primary">Reservar ahora</button>
+            </div>
+            <div class="precio-card">
+                <h3>Exam Prep Cambridge</h3>
+                <div class="precio">Consultar</div>
+                <ul>
+                    <li>Preparación intensiva</li>
+                    <li>Materiales oficiales</li>
+                    <li>Simulacros de examen</li>
+                    <li>Garantía de aprobado</li>
+                </ul>
+                <button class="btn btn-primary">Más información</button>
+            </div>
         </div>
+    </section>
 
-        <hr>
-        <footer>
-            Edu Nexus Lingo· Próximamente
-        </footer>
-    </div>
+    <!-- Logos Carousel -->
+    <section class="logos-section">
+        <h3>Nuestros Colegios Asociados</h3>
+        <div class="logos-carousel" id="logosCarousel">
+            <div class="logo-item"><img src="img/ACS_Logo (1).svg" alt="Logo 1"></div>
+            <div class="logo-item"><img src="CA_Logo_Stacked.svg" alt="Stacked"></div>
+            <div class="logo-item"><img src="cambridge_university2.svg" alt="Cambridge"></div>
+            <div class="logo-item"><img src="CPA_Australia (1).svg" alt="Australia"></div>
+            <div class="logo-item"><img src="esl-british-council-accreditation.svg" alt="British Council"></div>
+            <div class="logo-item"><img src="img/Cambridge_Press_Assessment_Landscape_Logo_RGB-280x55.png" alt="Cambridge"></div>
+			 <div class="logo-item"><img src="esl-english-uk-partner-agency-accreditation.svg" alt="Cambridge"></div>
+            <!-- Duplicar para efecto continuo -->
+            <div class="logo-item"><img src="img/#1 Logo.png" alt="Logo 1"></div>
+            <div class="logo-item"><img src="img/#2 Logo.png" alt="Logo 2"></div>
+            <div class="logo-item"><img src="img/#3 Logo.png" alt="Logo 3"></div>
+            <div class="logo-item"><img src="img/#4 Logo.png" alt="Logo 4"></div>
+            <div class="logo-item"><img src="img/#5 Logo.png" alt="Logo 5"></div>
+            <div class="logo-item"><img src="img/Cambridge_Press_Assessment_Landscape_Logo_RGB-280x55.png" alt="Cambridge"></div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="contacto">
+        <h2>Hoy empieza tu Aventura </h2>
+        <div class="form-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="interes">¿Qué te gustaría saber?</label>
+                    <select id="interes" name="interes" required>
+                        <option value="">Selecciona una opción</option>
+                        <option value="online">Cursos Online</option>
+                        <option value="malta">Experiencia en Malta</option>
+                        <option value="irlanda">Experiencia en Irlanda</option>
+                        <option value="cambridge">Preparación Cambridge</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit">Enviar →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-contact">
+                <p>Contacta con nosotros</p>
+                <a href="mailto:lingo@EduNexus.eu">📧 lingo@EduNexus.eu</a>
+                <a href="https://wa.me/353831036031">📱 +353 83 103 6031</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 EduLingo. Todos los derechos reservados.</p>
+                <p>Disponible en Malta, Irlanda, Inglaterra, Escocia, Chipre, EE.UU., Canadá, Argentina y España</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function initCarousel() {
+            const controls = document.getElementById('carouselControls');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(i);
+                controls.appendChild(dot);
+            }
+        }
+
+        function updateCarousel() {
+            const inner = document.getElementById('carouselInner');
+            inner.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
+            this.reset();
+        });
+
+        // Initialize carousel
+        initCarousel();
+    </script>
 </body>
 </html>
