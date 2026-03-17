@@ -19,6 +19,45 @@
             background-color: #ffffff;
             color: #1a1a1a;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Diamantes animados de fondo */
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #58CC02, #1CB0F6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(0);
+                opacity: 0;
+            }
         }
 
         /* Header */
@@ -46,7 +85,7 @@
         }
 
         .logo img {
-            height: 40px;
+            height: 50px;
             width: auto;
         }
 
@@ -74,11 +113,13 @@
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .btn-contact:hover {
             background-color: #48a802;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(88, 204, 2, 0.3);
         }
 
         @media (max-width: 768px) {
@@ -91,17 +132,38 @@
         .hero {
             margin-top: 80px;
             height: 600px;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                        url('img/EduNexusLingo.jpg') center/cover;
+            background: linear-gradient(135deg, rgba(88, 204, 2, 0.2), rgba(28, 176, 246, 0.2)), 
+                        url('img/Amigos.jpg') center/cover;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             padding: 2rem;
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(88, 204, 2, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .hero-content {
             max-width: 600px;
+            position: relative;
+            z-index: 2;
         }
 
         .hero h1 {
@@ -109,11 +171,13 @@
             font-weight: 800;
             margin-bottom: 1rem;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .hero-buttons {
@@ -138,7 +202,8 @@
 
         .btn-primary:hover {
             background-color: #48a802;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(88, 204, 2, 0.3);
         }
 
         .btn-secondary {
@@ -150,9 +215,79 @@
         .btn-secondary:hover {
             background-color: white;
             color: #1a1a1a;
+            transform: translateY(-3px);
         }
 
-        /* Carousel */
+        /* Sección "Imagina tu Vida" */
+        .imagina-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imagina-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .imagina-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .imagina-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imagina-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(88, 204, 2, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .imagina-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+        }
+
+        .imagina-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #1a1a1a;
+        }
+
+        .imagina-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Carousel de Imágenes */
         .carousel-section {
             padding: 4rem 2rem;
             background-color: #f5f5f5;
@@ -170,6 +305,7 @@
             margin: 0 auto;
             overflow: hidden;
             border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .carousel-inner {
@@ -199,11 +335,12 @@
             border-radius: 50%;
             background-color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .carousel-dot.active {
             background-color: #58CC02;
+            transform: scale(1.3);
         }
 
         .carousel-button {
@@ -216,12 +353,12 @@
             padding: 1rem;
             font-size: 1.5rem;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             z-index: 10;
         }
 
         .carousel-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(88, 204, 2, 0.8);
         }
 
         .carousel-button.prev {
@@ -232,61 +369,65 @@
             right: 20px;
         }
 
-        /* Métodos Section */
-        .metodos {
-            padding: 4rem 2rem;
-            background-color: #ffffff;
+        /* School Icons Carousel */
+        .school-icons-section {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
+            overflow: hidden;
         }
 
-        .metodos h2 {
+        .school-icons-section h3 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .metodos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .metodo-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .metodo-card:hover {
-            border-color: #58CC02;
-            box-shadow: 0 10px 30px rgba(88, 204, 2, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .metodo-card img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 1rem;
-        }
-
-        .metodo-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
             color: #1a1a1a;
         }
 
-        .metodo-card p {
-            color: #666;
-            font-size: 0.95rem;
+        .school-icons-carousel {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll-icons 20s linear infinite;
+            width: fit-content;
+        }
+
+        .school-icon-item {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .school-icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(88, 204, 2, 0.2);
+        }
+
+        .school-icon-item img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll-icons {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* Precios Section */
         .precios {
             padding: 4rem 2rem;
-            background-color: #f5f5f5;
+            background-color: #ffffff;
         }
 
         .precios h2 {
@@ -310,11 +451,13 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .precio-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(88, 204, 2, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+            border-color: #58CC02;
         }
 
         .precio-card h3 {
@@ -350,7 +493,7 @@
         /* Logos Carousel */
         .logos-section {
             padding: 3rem 2rem;
-            background-color: #ffffff;
+            background-color: #f5f5f5;
             overflow: hidden;
         }
 
@@ -375,11 +518,12 @@
             align-items: center;
             justify-content: center;
             filter: grayscale(100%);
-            transition: filter 0.3s;
+            transition: all 0.3s;
         }
 
         .logo-item:hover {
             filter: grayscale(0%);
+            transform: scale(1.1);
         }
 
         .logo-item img {
@@ -400,7 +544,7 @@
         /* Formulario */
         .contacto {
             padding: 4rem 2rem;
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #f0f9ff, #f0fdf4);
         }
 
         .contacto h2 {
@@ -415,7 +559,7 @@
             background-color: white;
             padding: 2rem;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .form-group {
@@ -434,11 +578,11 @@
         .form-group textarea {
             width: 100%;
             padding: 0.75rem;
-            border: 1px solid #ddd;
+            border: 2px solid #ddd;
             border-radius: 8px;
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
 
         .form-group input:focus,
@@ -446,6 +590,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: #58CC02;
+            box-shadow: 0 0 10px rgba(88, 204, 2, 0.2);
         }
 
         .form-submit {
@@ -458,16 +603,18 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .form-submit:hover {
             background-color: #48a802;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(88, 204, 2, 0.3);
         }
 
         /* Footer */
         footer {
-            background-color: #1a1a1a;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -486,16 +633,258 @@
             color: #58CC02;
             text-decoration: none;
             margin: 0 1rem;
+            transition: all 0.3s;
         }
 
         .footer-contact a:hover {
             text-decoration: underline;
+            transform: scale(1.05);
         }
 
         .footer-bottom {
             border-top: 1px solid #333;
             padding-top: 2rem;
             color: #999;
+        }
+
+        /* Tu Camino Section */
+        .tu-camino-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tu-camino-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tu-camino-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .tu-camino-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tu-camino-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-left: 4px solid #58CC02;
+        }
+
+        .tu-camino-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+        }
+
+        .tu-camino-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tu-camino-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .tu-camino-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Galería de Destinos */
+        .galeria-destinos {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .galeria-destinos h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .destinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .destino-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .destino-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .destino-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .destino-card h3 {
+            padding: 1rem;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .destino-card p {
+            padding: 0 1rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(88, 204, 2, 0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(88, 204, 2, 0.6);
+        }
+
+        .chat-popup {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-popup.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .chat-message {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .chat-message.bot {
+            background-color: #f0f0f0;
+            color: #1a1a1a;
+        }
+
+        .chat-message.user {
+            background-color: #58CC02;
+            color: white;
+            text-align: right;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .chat-send {
+            padding: 0.5rem 1rem;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background-color: #48a802;
         }
 
         /* Responsive */
@@ -512,13 +901,11 @@
                 width: 100%;
             }
 
-            .metodos-grid,
             .precios-grid {
                 grid-template-columns: 1fr;
             }
 
             .carousel-section h2,
-            .metodos h2,
             .precios h2,
             .contacto h2 {
                 font-size: 1.8rem;
@@ -527,14 +914,17 @@
     </style>
 </head>
 <body>
+    <!-- Diamantes animados -->
+    <div class="sparkles" id="sparkles"></div>
+
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="img/EduNexusLingo.jpg" alt="EduLingo Logo">
+            <img src="img/logo-oficial.png" alt="EduLingo Logo">
             <span>EduLingo</span>
         </div>
         <nav>
-            <a href="#metodos">El Método</a>
+            <a href="#imagina">Imagina tu Vida</a>
             <a href="#carousel">Destinos</a>
             <a href="#precios">Precios</a>
             <a href="#contacto" class="btn-contact">Contactar</a>
@@ -553,16 +943,44 @@
         </div>
     </section>
 
+    <!-- Imagina tu Vida Section -->
+    <section id="imagina" class="imagina-section">
+        <h2>Imagina tu Vida en...</h2>
+        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem; color: #666;">
+            No solo aprendes inglés, vives una experiencia que te cambia para siempre
+        </p>
+        <div class="imagina-grid">
+            <div class="imagina-card">
+                <h3>🇲🇹 Malta</h3>
+                <p>Playas cristalinas, escuelas de clase mundial y una comunidad internacional vibrante.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🇮🇪 Irlanda</h3>
+                <p>Pubs acogedores, paisajes verdes y la calidez de la gente irlandesa te esperan.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🇬🇧 Londres</h3>
+                <p>La capital británica con su historia, cultura y oportunidades sin límites.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edimburgo</h3>
+                <p>Castillos medievales, arquitectura histórica y una atmósfera mágica te envuelve.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Carousel Section -->
     <section id="carousel" class="carousel-section">
         <h2>Vive Experiencias Increíbles</h2>
         <div class="carousel">
             <div class="carousel-inner" id="carouselInner">
-                <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+			    <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Perro.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/mujer.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
-				<div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
             </div>
             <button class="carousel-button prev" onclick="prevSlide()">❮</button>
             <button class="carousel-button next" onclick="nextSlide()">❯</button>
@@ -570,30 +988,43 @@
         </div>
     </section>
 
-    <!-- Métodos Section -->
-    <section id="metodos" class="metodos">
-        <h2>Tu Camino, Tú Decides</h2>
-        <div class="metodos-grid">
-            <div class="metodo-card">
-                <img src="img/Online1.png" alt="Online">
-                <h3>Inglés Online Flexible</h3>
-                <p>Clases 24/7 con profesores nativos. Plataforma interactiva con IA para practicar speaking.</p>
-            </div>
-            <div class="metodo-card">
-                <img src="img/Global Connection & Networking.png" alt="Viajes">
-                <h3>Vive el Idioma en el Extranjero</h3>
-                <p>Estudia en las mejores escuelas de Malta, Irlanda o Inglaterra.</p>
-            </div>
-            <div class="metodo-card">
-                <img src="img/Certifications & Credentials.png" alt="Certificaciones">
-                <h3>Certifícate y Triunfa</h3>
-                <p>Prepárate para los exámenes oficiales de Cambridge English.</p>
-            </div>
-            <div class="metodo-card">
-                <img src="img/Help Desk.png" alt="Soporte">
-                <h3>Acompañamiento Total</h3>
-                <p>Te ayudamos a comparar, elegir y reservar. Precios más bajos garantizados.</p>
-            </div>
+    <!-- School Icons Carousel -->
+    <section class="school-icons-section">
+        <h3>Nuestros Proveedores de Confianza</h3>
+        <div class="school-icons-carousel" id="schoolIconsCarousel">
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
+            <!-- Duplicar para efecto continuo -->
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
         </div>
     </section>
 
@@ -639,28 +1070,136 @@
 
     <!-- Logos Carousel -->
     <section class="logos-section">
-        <h3>Nuestros Colegios Asociados</h3>
+        <h3>Nuestros Colegios Asociados en Irlanda</h3>
         <div class="logos-carousel" id="logosCarousel">
-            <div class="logo-item"><img src="img/ACS_Logo (1).svg" alt="Logo 1"></div>
-            <div class="logo-item"><img src="CA_Logo_Stacked.svg" alt="Stacked"></div>
-            <div class="logo-item"><img src="cambridge_university2.svg" alt="Cambridge"></div>
-            <div class="logo-item"><img src="CPA_Australia (1).svg" alt="Australia"></div>
-            <div class="logo-item"><img src="esl-british-council-accreditation.svg" alt="British Council"></div>
-            <div class="logo-item"><img src="img/Cambridge_Press_Assessment_Landscape_Logo_RGB-280x55.png" alt="Cambridge"></div>
-			 <div class="logo-item"><img src="esl-english-uk-partner-agency-accreditation.svg" alt="Cambridge"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/1.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
+					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  						
             <!-- Duplicar para efecto continuo -->
-            <div class="logo-item"><img src="img/#1 Logo.png" alt="Logo 1"></div>
-            <div class="logo-item"><img src="img/#2 Logo.png" alt="Logo 2"></div>
-            <div class="logo-item"><img src="img/#3 Logo.png" alt="Logo 3"></div>
-            <div class="logo-item"><img src="img/#4 Logo.png" alt="Logo 4"></div>
-            <div class="logo-item"><img src="img/#5 Logo.png" alt="Logo 5"></div>
-            <div class="logo-item"><img src="img/Cambridge_Press_Assessment_Landscape_Logo_RGB-280x55.png" alt="Cambridge"></div>
+			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
+					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  	        
+        </div>
+    </section>
+
+    <!-- Tu Camino, Tú Decides Section -->
+    <section class="tu-camino-section">
+        <h2>Tu Camino, Tú Decides</h2>
+        <p class="tu-camino-subtitle">Nosotros te abrimos las puertas. Tú eliges tu destino.</p>
+        <div class="tu-camino-grid">
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🎓</div>
+                <h3>Cursos Personalizados</h3>
+                <p>Desde principiante hasta avanzado. Elige tu ritmo, elige tu camino.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🌍</div>
+                <h3>Destinos Globales</h3>
+                <p>Malta, Irlanda, Londres, Edimburgo, Chipre, EE.UU., Canadá, Argentina, España.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">💼</div>
+                <h3>Oportunidades Laborales</h3>
+                <p>Certificaciones reconocidas internacionalmente que abren puertas.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🤝</div>
+                <h3>Comunidad Global</h3>
+                <p>Conecta con estudiantes de todo el mundo. Haz amigos para la vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Destinos Expandida -->
+    <section class="galeria-destinos">
+        <h2>Explora Todos Nuestros Destinos</h2>
+        <div class="destinos-grid">
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);"></div>
+                <h3>🇲🇹 Malta</h3>
+                <p>Playas paradisíacas y escuelas de clase mundial</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #4ECDC4, #44A08D);"></div>
+                <h3>🇮🇪 Irlanda</h3>
+                <p>Pubs acogedores y paisajes verdes infinitos</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #667EEA, #764BA2);"></div>
+                <h3>🇬🇧 Londres</h3>
+                <p>La capital británica con historia y modernidad</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #F093FB, #F5576C);"></div>
+                <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edimburgo</h3>
+                <p>Castillos medievales y atmósfera mágica</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FA8BFF, #2BD2FF);"></div>
+                <h3>🇨🇾 Chipre</h3>
+                <p>Playas doradas y clima mediterráneo perfecto</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FFA751, #FFE259);"></div>
+                <h3>🇺🇸 Estados Unidos</h3>
+                <p>Oportunidades sin límites en el país de las oportunidades</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF0844, #FF8C00);"></div>
+                <h3>🇨🇦 Canadá</h3>
+                <p>Naturaleza espectacular y ciudades cosmopolitas</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);"></div>
+                <h3>🇦🇷 Argentina</h3>
+                <p>Tango, cultura y el español más hermoso</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
+                <h3>🇪🇸 España</h3>
+                <p>Flamenco, playas y la pasión española</p>
+            </div>
         </div>
     </section>
 
     <!-- Contacto Section -->
     <section id="contacto" class="contacto">
-        <h2>Hoy empieza tu Aventura </h2>
+        <h2>Empieza tu Aventura Hoy</h2>
         <div class="form-container">
             <form id="contactForm">
                 <div class="form-group">
@@ -690,6 +1229,21 @@
         </div>
     </section>
 
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+        <div class="chat-popup" id="chatPopup">
+            <div class="chat-header">EduLingo - Consultas</div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">¡Hola! ¿Cómo podemos ayudarte hoy?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="handleChatKeypress(event)">
+                <button class="chat-send" onclick="sendChatMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -706,6 +1260,19 @@
     </footer>
 
     <script>
+        // Crear diamantes animados
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 15 + 's';
+                sparkle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+
         // Carousel functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
@@ -755,7 +1322,46 @@
             this.reset();
         });
 
-        // Initialize carousel
+        // Chat functionality
+        function toggleChat() {
+            const popup = document.getElementById('chatPopup');
+            popup.classList.toggle('active');
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+
+            if (message) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user';
+                userMsg.textContent = message;
+                messages.appendChild(userMsg);
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chat-message bot';
+                    botMsg.textContent = '¡Gracias por tu pregunta! Un agente se pondrá en contacto pronto. 📧';
+                    messages.appendChild(botMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 500);
+
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Initialize
+        createSparkles();
         initCarousel();
     </script>
 </body>
