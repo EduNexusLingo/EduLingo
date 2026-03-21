@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLingo - Construye una Vida que Valga la Pena Contar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Diamantes animados de fondo */
+        .sparkles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #58CC02, #1CB0F6);
+            border-radius: 50%;
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .lang-flag {
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+            border: 1px solid #ddd;
+            object-fit: cover;
+        }
+
+        .lang-flag.active, .lang-flag:hover {
+            opacity: 1;
+            transform: scale(1.2);
+            border-color: #58CC02;
+        }
+
+        /* WhatsApp Icon */
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-header:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-header img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+
+        /* Flying Carousel Animation */
+        .flying-certs {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            z-index: 2000;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flying-cert-img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+        }
+
+        .star-trail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0;
+            animation: starFade 1s forwards;
+        }
+
+        @keyframes starFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #58CC02;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #58CC02;
+        }
+
+        .btn-contact {
+            background-color: #58CC02;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-contact:hover {
+            background-color: #48a802;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(88, 204, 2, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(88, 204, 2, 0.2), rgba(28, 176, 246, 0.2)), 
+                        url('img/Amigos.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 2rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(88, 204, 2, 0.1) 50%, transparent 70%);
+            animation: shine 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #58CC02;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #48a802;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(88, 204, 2, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background-color: white;
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+
+        /* Sección "Imagina tu Vida" */
+        .imagina-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imagina-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .imagina-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .imagina-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imagina-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(88, 204, 2, 0.1), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .imagina-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+        }
+
+        .imagina-card h3 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: #1a1a1a;
+        }
+
+        .imagina-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Carousel de Imágenes */
+        .carousel-section {
+            padding: 4rem 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .carousel-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .carousel-dot.active {
+            background-color: #58CC02;
+            transform: scale(1.3);
+        }
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(88, 204, 2, 0.8);
+        }
+
+        .carousel-button.prev {
+            left: 20px;
+        }
+
+        .carousel-button.next {
+            right: 20px;
+        }
+
+        /* School Icons Carousel */
+        .school-icons-section {
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
+            overflow: hidden;
+        }
+
+        .school-icons-section h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #1a1a1a;
+        }
+
+        .school-icons-carousel {
+            display: flex;
+            gap: 1.5rem;
+            animation: scroll-icons 20s linear infinite;
+            width: fit-content;
+        }
+
+        .school-icon-item {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .school-icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(88, 204, 2, 0.2);
+        }
+
+        .school-icon-item img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll-icons {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Precios Section */
+        .precios {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .precios h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .precios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .precio-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .precio-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+            border-color: #58CC02;
+        }
+
+        .precio-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .precio {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #58CC02;
+            margin-bottom: 1rem;
+        }
+
+        .precio-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .precio-card li {
+            padding: 0.5rem 0;
+            color: #666;
+        }
+
+        .precio-card li:before {
+            content: "✓ ";
+            color: #58CC02;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* Logos Carousel */
+        .logos-section {
+            padding: 3rem 2rem;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .logos-section h3 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .logos-carousel {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 20s linear infinite;
+            width: fit-content;
+        }
+
+        .logo-item {
+            flex-shrink: 0;
+            width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .logo-item img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Formulario */
+        .contacto {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0f9ff, #f0fdf4);
+        }
+
+        .contacto h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #58CC02;
+            box-shadow: 0 0 10px rgba(88, 204, 2, 0.2);
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            background-color: #48a802;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(88, 204, 2, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact a {
+            color: #58CC02;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: all 0.3s;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            color: #999;
+        }
+
+        /* Tu Camino Section */
+        .tu-camino-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tu-camino-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tu-camino-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .tu-camino-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tu-camino-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-left: 4px solid #58CC02;
+        }
+
+        .tu-camino-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.2);
+        }
+
+        .tu-camino-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tu-camino-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+
+        .tu-camino-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Galería de Destinos */
+        .galeria-destinos {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .galeria-destinos h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+        }
+
+        .destinos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .destino-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .destino-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .destino-image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .destino-card h3 {
+            padding: 1rem;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .destino-card p {
+            padding: 0 1rem 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        /* Tabla de Destinos Estilo Moderno */
+        .destinos-table-section {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .destinos-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .destino-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .destino-item:hover {
+            transform: scale(1.02);
+        }
+
+        .destino-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .destino-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .destino-overlay h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .destino-overlay p {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .destinos-grid-container {
+                grid-template-columns: 1fr;
+            }
+            .destino-overlay h3 {
+                font-size: 1.5rem;
+            }
+            .destino-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+        }
+
+        .chat-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(88, 204, 2, 0.4);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(88, 204, 2, 0.6);
+        }
+
+        .chat-popup {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            max-height: 500px;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-popup.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #58CC02, #1CB0F6);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .chat-message {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .chat-message.bot {
+            background-color: #f0f0f0;
+            color: #1a1a1a;
+        }
+
+        .chat-message.user {
+            background-color: #58CC02;
+            color: white;
+            text-align: right;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .chat-send {
+            padding: 0.5rem 1rem;
+            background-color: #58CC02;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .chat-send:hover {
+            background-color: #48a802;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .precios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-section h2,
+            .precios h2,
+            .contacto h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Diamantes animados -->
+    <div class="sparkles" id="sparkles"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="img/logo-oficial.png" alt="EduLingo Logo">
+        </div>
+        <nav>
+            <div class="lang-selector">
+                <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" onclick="changeLanguage('es')" alt="Español" title="Español">
+                <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" onclick="changeLanguage('en')" alt="English" title="English">
+                <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" onclick="changeLanguage('fr')" alt="Français" title="Français">
+                <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" onclick="changeLanguage('zh')" alt="中文" title="中文">
+                <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
+                <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
+            </div>
+            <a href="#metodo" data-i18n="nav_method">El Método</a>
+            <a href="#destinos" data-i18n="nav_destinations">Destinos</a>
+            <a href="#testimonios" data-i18n="nav_testimonials">Testimonios</a>
+            <a href="#precios" data-i18n="nav_prices">Precios</a>
+            <a href="#contacto" class="btn-contact" data-i18n="nav_contact">Contactar</a>
+            <a href="https://wa.me/353831036031" class="whatsapp-header" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                <span>WhatsApp</span>
+            </a>
+        </nav>  </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-i18n="hero_h1">Construye una Vida que Valga la Pena Contar</h1>
+            <p data-i18n="hero_p">Aprende inglés, vive experiencias inolvidables y conecta con el mundo. Tu aventura comienza aquí.</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" data-i18n="hero_btn_start">Empezar Ahora</button>
+                <button class="btn btn-secondary" data-i18n="hero_btn_info">Más Información</button>
+            </div>
+        </div>
+    </section>
+	
+	    <!-- Sección de Destinos Estilo Imagen -->
+    <section id="destinos" class="destinos-table-section">
+        <h2 data-i18n="destinos_h2" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; background: linear-gradient(135deg, #58CC02, #1CB0F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Nuestros Destinos Destacados</h2>
+        <div class="destinos-grid-container">
+            <div class="destino-item">
+                <img src="img/malta-experience-bzTgddDa5z9JB8RhwkDAfs.webp" alt="Malta">
+                <div class="destino-overlay">
+                    <h3>Malta</h3>
+                    <p data-i18n="malta_p">Vive el sol y la historia en el corazón del Mediterráneo, playas cristalinas, escuelas de clase mundial y una comunidad internacional vibrante.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/ireland-pubs-exg6C2oexUAKjvK6kmYnQ3.webp" alt="Irlanda">
+                <div class="destino-overlay">
+                    <h3>Irlanda</h3>
+                    <p data-i18n="ireland_p">Siente la magia de la Isla Esmeralda y su hospitalidad, paisajes, pubs acogedores y la calidez de la gente irlandesa te esperan.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/london-success-HGUcQo6Qdw6Pi3VwciHoGw.webp" alt="Londres">
+                <div class="destino-overlay">
+                    <h3>Londres</h3>
+                    <p data-i18n="london_p">Descubre oportunidades infinitas en la capital británica con su historia, cultura y oportunidades sin límites.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/edimburgo-adventure-fPnrzc3CWzT6UFrnAz2TUA.webp" alt="Edimburgo">
+                <div class="destino-overlay">
+                    <h3>Edimburgo</h3>
+                    <p data-i18n="edinburgh_p">Explora la majestuosidad de Escocia y sus tradiciones, castillos medievales, arquitectura histórica y una atmósfera mágica te envuelve.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Imagina tu Vida Section -->
+    <section id="imagina" class="imagina-section">
+        <h2>Imagina tu Vida en...</h2>
+        <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem; color: #666;">
+            No solo aprendes inglés, vives una experiencia que te cambia para siempre
+        </p>
+        <div class="imagina-grid">
+            <div class="imagina-card">
+                <h3>🇲🇹 Malta</h3>
+                <p>Playas cristalinas, escuelas de clase mundial y una comunidad internacional vibrante.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🇮🇪 Irlanda</h3>
+                <p>Pubs acogedores, paisajes verdes y la calidez de la gente irlandesa te esperan.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🇬🇧 Londres</h3>
+                <p>La capital británica con su historia, cultura y oportunidades sin límites.</p>
+            </div>
+            <div class="imagina-card">
+                <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edimburgo</h3>
+                <p>Castillos medievales, arquitectura histórica y una atmósfera mágica te envuelve.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carousel Section -->
+    <section id="carousel" class="carousel-section">
+        <h2>Vive Experiencias Increíbles</h2>
+        <div class="carousel">
+            <div class="carousel-inner" id="carouselInner">
+			    <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+		        <div class="carousel-item" style="background-image: url('img/NY1.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Temple.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
+				<div class="carousel-item" style="background-image: url('img/Taxi.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Empedrado.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
+				<div class="carousel-item" style="background-image: url('img/Euros.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Bandera.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
+			    <div class="carousel-item" style="background-image: url('img/NY2.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Arco.jpg')"></div>
+				
+            </div>
+            <button class="carousel-button prev" onclick="prevSlide()">❮</button>
+            <button class="carousel-button next" onclick="nextSlide()">❯</button>
+            <div class="carousel-controls" id="carouselControls"></div>
+        </div>
+    </section>
+
+    <!-- School Icons Carousel -->
+    <section class="school-icons-section">
+        <h3>Nuestros Proveedores de Confianza</h3>
+        <div class="school-icons-carousel" id="schoolIconsCarousel">
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
+		    <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
+            <!-- Duplicar para efecto continuo -->
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
+        </div>
+    </section>
+
+    <!-- Precios Section -->
+    <section id="precios" class="precios">
+        <h2>Empieza Hoy</h2>
+        <div class="precios-grid">
+            <div class="precio-card">
+                <h3>Online Premium</h3>
+                <div class="precio">59€/mes</div>
+                <ul>
+                    <li>Clases en grupo ilimitadas</li>
+                    <li>IA speaking practice</li>
+                    <li>Certificado oficial</li>
+                    <li>Prueba 7 días gratis</li>
+                </ul>
+                <button class="btn btn-primary">Comenzar ahora</button>
+            </div>
+            <div class="precio-card">
+                <h3>Experiencia Malta</h3>
+                <div class="precio">2.280€</div>
+                <ul>
+                    <li>Curso en escuela top</li>
+                    <li>Actividades incluidas</li>
+                    <li>Descuento en vuelo</li>
+                    <li>Alojamiento incluido</li>
+                </ul>
+                <button class="btn btn-primary">Reservar ahora</button>
+            </div>
+            <div class="precio-card">
+                <h3>Exam Prep Cambridge</h3>
+                <div class="precio">Consultar</div>
+                <ul>
+                    <li>Preparación intensiva</li>
+                    <li>Materiales oficiales</li>
+                    <li>Simulacros de examen</li>
+                    <li>Garantía de aprobado</li>
+                </ul>
+                <button class="btn btn-primary">Más información</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logos Carousel -->
+    <section class="logos-section">
+        <h3>Nuestros Colegios Asociados en Irlanda</h3>
+        <div class="logos-carousel" id="logosCarousel">
+            <div class="school-icon-item"><img src="img/Prov-Icons/1.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
+					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  						
+            <!-- Duplicar para efecto continuo -->
+			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
+						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
+					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  	        
+        </div>
+    </section>
+
+    <!-- Tu Camino, Tú Decides Section -->
+    <section class="tu-camino-section">
+        <h2>Tu Camino, Tú Decides</h2>
+        <p class="tu-camino-subtitle">Nosotros te abrimos las puertas. Tú eliges tu destino.</p>
+        <div class="tu-camino-grid">
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🎓</div>
+                <h3>Cursos Personalizados</h3>
+                <p>Desde principiante hasta avanzado. Elige tu ritmo, elige tu camino.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🌍</div>
+                <h3>Destinos Globales</h3>
+                <p>Malta, Irlanda, Londres, Edimburgo, Chipre, EE.UU., Canadá, Argentina, España.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">💼</div>
+                <h3>Oportunidades Laborales</h3>
+                <p>Certificaciones reconocidas internacionalmente que abren puertas.</p>
+            </div>
+            <div class="tu-camino-card">
+                <div class="tu-camino-icon">🤝</div>
+                <h3>Comunidad Global</h3>
+                <p>Conecta con estudiantes de todo el mundo. Haz amigos para la vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería de Destinos Expandida -->
+    <section class="galeria-destinos">
+        <h2>Explora Todos Nuestros Destinos</h2>
+        <div class="destinos-grid">
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);"></div>
+                <h3>🇲🇹 Malta</h3>
+                <p>Playas paradisíacas y escuelas de clase mundial</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #4ECDC4, #44A08D);"></div>
+                <h3>🇮🇪 Irlanda</h3>
+                <p>Pubs acogedores y paisajes verdes infinitos</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #667EEA, #764BA2);"></div>
+                <h3>🇬🇧 Londres</h3>
+                <p>La capital británica con historia y modernidad</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #F093FB, #F5576C);"></div>
+                <h3>🏴󠁧󠁢󠁳󠁣󠁴󠁿 Edimburgo</h3>
+                <p>Castillos medievales y atmósfera mágica</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FA8BFF, #2BD2FF);"></div>
+                <h3>🇨🇾 Chipre</h3>
+                <p>Playas doradas y clima mediterráneo perfecto</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FFA751, #FFE259);"></div>
+                <h3>🇺🇸 Estados Unidos</h3>
+                <p>Oportunidades sin límites en el país de las oportunidades</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF0844, #FF8C00);"></div>
+                <h3>🇨🇦 Canadá</h3>
+                <p>Naturaleza espectacular y ciudades cosmopolitas</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);"></div>
+                <h3>🇦🇷 Argentina</h3>
+                <p>Tango, cultura y el español más hermoso</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
+                <h3>🇪🇸 España</h3>
+                <p>Flamenco, playas y la pasión española</p>
+		    </div>
+			     <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF0844, #FF8C00);"></div>
+                <h3>🇨🇦 Canadá</h3>
+                <p>Naturaleza espectacular y ciudades cosmopolitas</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);"></div>
+                <h3>🇦🇷 Argentina</h3>
+                <p>Tango, cultura y el español más hermoso</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
+                <h3>🇪🇸 España</h3>
+                <p>Flamenco, playas y la pasión española</p>
+		    </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="contacto">
+        <h2 data-i18n="contact_h2">Empieza tu Aventura Hoy</h2>
+        <div class="form-container">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="nombre" data-i18n="form_name">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" data-i18n="form_email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono" data-i18n="form_phone">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+                <div class="form-group">
+                    <label for="interes" data-i18n="form_interest">¿Qué te gustaría saber?</label>
+                    <select id="interes" name="interes" required>
+                        <option value="" data-i18n="form_select">Selecciona una opción</option>
+                        <option value="online">Cursos Online</option>
+                        <option value="malta">Experiencia en Malta</option>
+                        <option value="irlanda">Experiencia en Irlanda</option>
+                        <option value="cambridge">Preparación Cambridge</option>
+                    </select>
+                </div>
+                <button type="submit" class="form-submit" data-i18n="form_submit">Enviar →</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+        <div class="chat-popup" id="chatPopup">
+            <div class="chat-header">EduLingo - Consultas</div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">¡Hola! ¿Cómo podemos ayudarte hoy?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="handleChatKeypress(event)">
+                <button class="chat-send" onclick="sendChatMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-contact">
+                <p data-i18n="footer_contact">Contacta con nosotros</p>
+                <a href="mailto:lingo@EduNexus.eu">📧 lingo@EduNexus.eu</a>
+                <a href="https://wa.me/353831036031">📱 +353 83 103 6031</a>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer_rights">&copy; 2026 EduLingo. Todos los derechos reservados.</p>
+                <p data-i18n="footer_locations">Disponible en Malta, Irlanda, Inglaterra, Escocia, Chipre, EE.UU., Canadá, Argentina y España</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script>
+        // Lógica de Traducción
+        let currentLang = 'es';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+
+            // Actualizar banderas
+            document.querySelectorAll('.lang-flag').forEach(flag => {
+                flag.classList.remove('active');
+                if (flag.getAttribute('onclick').includes(lang)) {
+                    flag.classList.add('active');
+                }
+            });
+
+            // Guardar preferencia
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Cargar idioma guardado
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang && translations[savedLang]) {
+                changeLanguage(savedLang);
+            }
+            startFlyingCerts();
+        });
+
+        // Animación Carrusel Volador (Cometa)
+        function startFlyingCerts() {
+            const certs = ['img/Toelf.png', 'img/Ielts.png'];
+            let currentCertIdx = 0;
+
+            function fly() {
+                const container = document.createElement('div');
+                container.className = 'flying-certs';
+                const img = document.createElement('img');
+                img.src = certs[currentCertIdx];
+                img.className = 'flying-cert-img';
+                container.appendChild(img);
+                document.body.appendChild(container);
+
+                // Trayectoria aleatoria
+                const startY = Math.random() * window.innerHeight;
+                const endY = Math.random() * window.innerHeight;
+                
+                let posX = -150;
+                let posY = startY;
+                const speedX = 5 + Math.random() * 5;
+                const stepY = (endY - startY) / (window.innerWidth / speedX);
+
+                function animate() {
+                    posX += speedX;
+                    posY += stepY;
+                    container.style.left = posX + 'px';
+                    container.style.top = posY + 'px';
+                    container.style.transform = `rotate(${posX / 10}deg)`;
+
+                    // Crear estela de estrellas
+                    if (Math.random() > 0.7) {
+                        createStar(posX + 60, posY + 30);
+                    }
+
+                    if (posX < window.innerWidth + 150) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        container.remove();
+                        currentCertIdx = (currentCertIdx + 1) % certs.length;
+                        setTimeout(fly, 5000); // Esperar 5 segundos para el siguiente
+                    }
+                }
+
+                animate();
+            }
+
+            function createStar(x, y) {
+                const star = document.createElement('div');
+                star.className = 'star-trail';
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                star.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 1000);
+            }
+
+            setTimeout(fly, 3000); // Iniciar después de 3 segundos
+        }
+
+        // Crear diamantes animados
+        function createSparkles() {
+            const sparklesContainer = document.getElementById('sparkles');
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 15 + 's';
+                sparkle.style.animationDuration = (10 + Math.random() * 10) + 's';
+                sparklesContainer.appendChild(sparkle);
+            }
+        }
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const totalSlides = slides.length;
+
+        function initCarousel() {
+            const controls = document.getElementById('carouselControls');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(i);
+                controls.appendChild(dot);
+            }
+        }
+
+        function updateCarousel() {
+            const inner = document.getElementById('carouselInner');
+            inner.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu interés! Nos pondremos en contacto pronto.');
+            this.reset();
+        });
+
+        // Chat functionality
+        function toggleChat() {
+            const popup = document.getElementById('chatPopup');
+            popup.classList.toggle('active');
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+
+            if (message) {
+                // Add user message
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user';
+                userMsg.textContent = message;
+                messages.appendChild(userMsg);
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chat-message bot';
+                    botMsg.textContent = '¡Gracias por tu pregunta! Un agente se pondrá en contacto pronto. 📧';
+                    messages.appendChild(botMsg);
+                    messages.scrollTop = messages.scrollHeight;
+                }, 500);
+
+                input.value = '';
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        }
+
+        // Initialize
+        createSparkles();
+        initCarousel();
+    </script>
+</body>
+</html>
