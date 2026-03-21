@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* (todo el CSS se mantiene igual que el original) */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Diamantes animados de fondo */
         .sparkles {
             position: fixed;
             width: 100%;
@@ -44,23 +44,12 @@
         }
 
         @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.8;
-            }
-            90% {
-                opacity: 0.8;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px) scale(0);
-                opacity: 0;
-            }
+            0% { transform: translateY(100vh) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) translateX(100px) scale(0); opacity: 0; }
         }
 
-        /* Language Selector */
         .lang-selector {
             display: flex;
             gap: 10px;
@@ -83,7 +72,6 @@
             border-color: #58CC02;
         }
 
-        /* WhatsApp Icon */
         .whatsapp-header {
             display: flex;
             align-items: center;
@@ -105,7 +93,6 @@
             margin-right: 5px;
         }
 
-        /* Flying Carousel Animation */
         .flying-certs {
             position: fixed;
             top: -100px;
@@ -138,7 +125,6 @@
             100% { transform: scale(0); opacity: 0; }
         }
 
-        /* Header */
         header {
             position: fixed;
             top: 0;
@@ -206,7 +192,6 @@
             }
         }
 
-        /* Hero Section */
         .hero {
             margin-top: 80px;
             height: 600px;
@@ -296,7 +281,6 @@
             transform: translateY(-3px);
         }
 
-        /* Sección "Imagina tu Vida" */
         .imagina-section {
             padding: 4rem 2rem;
             background: linear-gradient(135deg, #f0f9ff 0%, #f0fdf4 100%);
@@ -365,7 +349,6 @@
             font-size: 0.95rem;
         }
 
-        /* Carousel de Imágenes */
         .carousel-section {
             padding: 4rem 2rem;
             background-color: #f5f5f5;
@@ -447,7 +430,6 @@
             right: 20px;
         }
 
-        /* School Icons Carousel */
         .school-icons-section {
             padding: 3rem 2rem;
             background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
@@ -494,15 +476,10 @@
         }
 
         @keyframes scroll-icons {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* Precios Section */
         .precios {
             padding: 4rem 2rem;
             background-color: #ffffff;
@@ -568,7 +545,6 @@
             margin-right: 0.5rem;
         }
 
-        /* Logos Carousel */
         .logos-section {
             padding: 3rem 2rem;
             background-color: #f5f5f5;
@@ -611,15 +587,10 @@
         }
 
         @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* Formulario */
         .contacto {
             padding: 4rem 2rem;
             background: linear-gradient(135deg, #f0f9ff, #f0fdf4);
@@ -690,7 +661,6 @@
             box-shadow: 0 10px 25px rgba(88, 204, 2, 0.3);
         }
 
-        /* Footer */
         footer {
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             color: white;
@@ -725,7 +695,6 @@
             color: #999;
         }
 
-        /* Tu Camino Section */
         .tu-camino-section {
             padding: 4rem 2rem;
             background: linear-gradient(135deg, #f0fdf4, #f0f9ff);
@@ -789,7 +758,6 @@
             font-size: 0.95rem;
         }
 
-        /* Galería de Destinos */
         .galeria-destinos {
             padding: 4rem 2rem;
             background-color: #ffffff;
@@ -844,7 +812,6 @@
             margin: 0;
         }
 
-        /* Tabla de Destinos Estilo Moderno */
         .destinos-table-section {
             padding: 4rem 2rem;
             background-color: #ffffff;
@@ -919,7 +886,6 @@
             }
         }
 
-        /* Chat Widget */
         .chat-widget {
             position: fixed;
             bottom: 20px;
@@ -1040,29 +1006,12 @@
             background-color: #48a802;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            .precios-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .carousel-section h2,
-            .precios h2,
-            .contacto h2 {
-                font-size: 1.8rem;
-            }
+            .hero h1 { font-size: 2rem; }
+            .hero-buttons { flex-direction: column; }
+            .btn { width: 100%; }
+            .precios-grid { grid-template-columns: 1fr; }
+            .carousel-section h2, .precios h2, .contacto h2 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -1081,8 +1030,9 @@
                 <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" onclick="changeLanguage('en')" alt="English" title="English">
                 <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" onclick="changeLanguage('fr')" alt="Français" title="Français">
                 <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" onclick="changeLanguage('zh')" alt="中文" title="中文">
+                <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" onclick="changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
+                <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" onclick="changeLanguage('uk')" alt="Українська" title="Українська">
                 <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
-                <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
             </div>
             <a href="#metodo" data-i18n="nav_method">El Método</a>
             <a href="#destinos" data-i18n="nav_destinations">Destinos</a>
@@ -1093,7 +1043,8 @@
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
                 <span>WhatsApp</span>
             </a>
-        </nav>  </header>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1106,8 +1057,8 @@
             </div>
         </div>
     </section>
-	
-	    <!-- Sección de Destinos Estilo Imagen -->
+
+    <!-- Sección de Destinos Estilo Imagen -->
     <section id="destinos" class="destinos-table-section">
         <h2 data-i18n="destinos_h2" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; background: linear-gradient(135deg, #58CC02, #1CB0F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Nuestros Destinos Destacados</h2>
         <div class="destinos-grid-container">
@@ -1173,20 +1124,19 @@
         <h2>Vive Experiencias Increíbles</h2>
         <div class="carousel">
             <div class="carousel-inner" id="carouselInner">
-			    <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
-		        <div class="carousel-item" style="background-image: url('img/NY1.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/NY1.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Temple.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
-				<div class="carousel-item" style="background-image: url('img/Taxi.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Taxi.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Empedrado.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
-				<div class="carousel-item" style="background-image: url('img/Euros.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Euros.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Bandera.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
-			    <div class="carousel-item" style="background-image: url('img/NY2.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/NY2.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Arco.jpg')"></div>
-				
             </div>
             <button class="carousel-button prev" onclick="prevSlide()">❮</button>
             <button class="carousel-button next" onclick="nextSlide()">❯</button>
@@ -1206,15 +1156,15 @@
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
-			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
-			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
-	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
-		    <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
             <!-- Duplicar para efecto continuo -->
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
@@ -1225,15 +1175,15 @@
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Global"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Help"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Learning"></div>
-			<div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
-			<div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
-	        <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Learning"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Career"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Career"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Certifications"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Corporate"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
-			<div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
         </div>
     </section>
@@ -1282,48 +1232,47 @@
     <section class="logos-section">
         <h3>Nuestros Colegios Asociados en Irlanda</h3>
         <div class="logos-carousel" id="logosCarousel">
-            <div class="school-icon-item"><img src="img/Prov-Icons/1.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
-					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  						
+            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>
             <!-- Duplicar para efecto continuo -->
-			            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>            
-						<div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>   
-					    <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
-			            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
-						<div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
-					    <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>  	        
+            <div class="school-icon-item"><img src="img/Ireland/1.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/2.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/3.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/4.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/5.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/6.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/7.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/8.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/9.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/10.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/11.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/12.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/13.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/14.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/15.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/16.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/17.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/18.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/19.png" alt=""></div>
+            <div class="school-icon-item"><img src="img/Ireland/20.png" alt=""></div>
         </div>
     </section>
 
@@ -1403,8 +1352,8 @@
                 <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
                 <h3>🇪🇸 España</h3>
                 <p>Flamenco, playas y la pasión española</p>
-		    </div>
-			     <div class="destino-card">
+            </div>
+            <div class="destino-card">
                 <div class="destino-image" style="background: linear-gradient(135deg, #FF0844, #FF8C00);"></div>
                 <h3>🇨🇦 Canadá</h3>
                 <p>Naturaleza espectacular y ciudades cosmopolitas</p>
@@ -1418,7 +1367,7 @@
                 <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
                 <h3>🇪🇸 España</h3>
                 <p>Flamenco, playas y la pasión española</p>
-		    </div>
+            </div>
         </div>
     </section>
 
@@ -1469,8 +1418,6 @@
         </div>
     </div>
 
-
-
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -1486,46 +1433,237 @@
         </div>
     </footer>
 
-    <script src="js/translations.js"></script>
     <script>
-        // Lógica de Traducción
+        // Traducciones completas para los idiomas: Español, Inglés, Francés, Chino, Griego, Ucraniano, Mongol
+        const translations = {
+            es: {
+                nav_method: "El Método",
+                nav_destinations: "Destinos",
+                nav_testimonials: "Testimonios",
+                nav_prices: "Precios",
+                nav_contact: "Contactar",
+                hero_h1: "Construye una Vida que Valga la Pena Contar",
+                hero_p: "Aprende inglés, vive experiencias inolvidables y conecta con el mundo. Tu aventura comienza aquí.",
+                hero_btn_start: "Empezar Ahora",
+                hero_btn_info: "Más Información",
+                destinos_h2: "Nuestros Destinos Destacados",
+                malta_p: "Vive el sol y la historia en el corazón del Mediterráneo, playas cristalinas, escuelas de clase mundial y una comunidad internacional vibrante.",
+                ireland_p: "Siente la magia de la Isla Esmeralda y su hospitalidad, paisajes, pubs acogedores y la calidez de la gente irlandesa te esperan.",
+                london_p: "Descubre oportunidades infinitas en la capital británica con su historia, cultura y oportunidades sin límites.",
+                edinburgh_p: "Explora la majestuosidad de Escocia y sus tradiciones, castillos medievales, arquitectura histórica y una atmósfera mágica te envuelve.",
+                contact_h2: "Empieza tu Aventura Hoy",
+                form_name: "Nombre",
+                form_email: "Email",
+                form_phone: "Teléfono",
+                form_interest: "¿Qué te gustaría saber?",
+                form_select: "Selecciona una opción",
+                form_submit: "Enviar →",
+                footer_contact: "Contacta con nosotros",
+                footer_rights: "© 2026 EduLingo. Todos los derechos reservados.",
+                footer_locations: "Disponible en Malta, Irlanda, Inglaterra, Escocia, Chipre, EE.UU., Canadá, Argentina y España"
+            },
+            en: {
+                nav_method: "The Method",
+                nav_destinations: "Destinations",
+                nav_testimonials: "Testimonials",
+                nav_prices: "Prices",
+                nav_contact: "Contact",
+                hero_h1: "Build a Life Worth Telling",
+                hero_p: "Learn English, live unforgettable experiences and connect with the world. Your adventure starts here.",
+                hero_btn_start: "Start Now",
+                hero_btn_info: "More Info",
+                destinos_h2: "Our Featured Destinations",
+                malta_p: "Live the sun and history in the heart of the Mediterranean, crystal clear beaches, world-class schools and a vibrant international community.",
+                ireland_p: "Feel the magic of the Emerald Isle and its hospitality, landscapes, cozy pubs and the warmth of the Irish people await you.",
+                london_p: "Discover endless opportunities in the British capital with its history, culture and limitless opportunities.",
+                edinburgh_p: "Explore the majesty of Scotland and its traditions, medieval castles, historic architecture and a magical atmosphere envelops you.",
+                contact_h2: "Start Your Adventure Today",
+                form_name: "Name",
+                form_email: "Email",
+                form_phone: "Phone",
+                form_interest: "What would you like to know?",
+                form_select: "Select an option",
+                form_submit: "Send →",
+                footer_contact: "Contact us",
+                footer_rights: "© 2026 EduLingo. All rights reserved.",
+                footer_locations: "Available in Malta, Ireland, England, Scotland, Cyprus, USA, Canada, Argentina and Spain"
+            },
+            fr: {
+                nav_method: "La Méthode",
+                nav_destinations: "Destinations",
+                nav_testimonials: "Témoignages",
+                nav_prices: "Tarifs",
+                nav_contact: "Contact",
+                hero_h1: "Construisez une Vie qui Vaut la Peine d'être Racontée",
+                hero_p: "Apprenez l'anglais, vivez des expériences inoubliables et connectez-vous au monde. Votre aventure commence ici.",
+                hero_btn_start: "Commencer Maintenant",
+                hero_btn_info: "Plus d'infos",
+                destinos_h2: "Nos Destinations Vedettes",
+                malta_p: "Vivez le soleil et l'histoire au cœur de la Méditerranée, plages cristallines, écoles de classe mondiale et une communauté internationale vibrante.",
+                ireland_p: "Ressentez la magie de l'île d'Émeraude et son hospitalité, ses paysages, ses pubs chaleureux et la gentillesse des Irlandais vous attendent.",
+                london_p: "Découvrez des opportunités infinies dans la capitale britannique avec son histoire, sa culture et des possibilités sans limites.",
+                edinburgh_p: "Explorez la majesté de l'Écosse et ses traditions, châteaux médiévaux, architecture historique et une atmosphère magique vous enveloppe.",
+                contact_h2: "Commencez votre Aventure Aujourd'hui",
+                form_name: "Nom",
+                form_email: "Email",
+                form_phone: "Téléphone",
+                form_interest: "Que souhaitez-vous savoir?",
+                form_select: "Sélectionnez une option",
+                form_submit: "Envoyer →",
+                footer_contact: "Contactez-nous",
+                footer_rights: "© 2026 EduLingo. Tous droits réservés.",
+                footer_locations: "Disponible à Malte, Irlande, Angleterre, Écosse, Chypre, États-Unis, Canada, Argentine et Espagne"
+            },
+            zh: {
+                nav_method: "学习方法",
+                nav_destinations: "目的地",
+                nav_testimonials: "学员反馈",
+                nav_prices: "价格",
+                nav_contact: "联系我们",
+                hero_h1: "构筑值得讲述的人生",
+                hero_p: "学习英语，体验难忘经历，与世界相连。你的冒险从这里开始。",
+                hero_btn_start: "立即开始",
+                hero_btn_info: "了解更多",
+                destinos_h2: "我们的精选目的地",
+                malta_p: "在地中海心脏地带享受阳光与历史，水晶般清澈的海滩、世界一流的学校和充满活力的国际社区。",
+                ireland_p: "感受翡翠岛的魔力及其热情好客，风景如画、舒适的酒吧和爱尔兰人民的温暖在等待着你。",
+                london_p: "在历史、文化和无限机遇的英国首都发现无穷可能。",
+                edinburgh_p: "探索苏格兰的雄伟与传统文化，中世纪城堡、历史建筑和神奇的氛围将你包围。",
+                contact_h2: "今日开启你的冒险",
+                form_name: "姓名",
+                form_email: "电子邮箱",
+                form_phone: "电话",
+                form_interest: "你想了解什么？",
+                form_select: "选择一个选项",
+                form_submit: "发送 →",
+                footer_contact: "联系我们",
+                footer_rights: "© 2026 EduLingo. 保留所有权利。",
+                footer_locations: "服务范围：马耳他、爱尔兰、英格兰、苏格兰、塞浦路斯、美国、加拿大、阿根廷和西班牙"
+            },
+            el: {
+                nav_method: "Η Μέθοδος",
+                nav_destinations: "Προορισμοί",
+                nav_testimonials: "Μαρτυρίες",
+                nav_prices: "Τιμές",
+                nav_contact: "Επικοινωνία",
+                hero_h1: "Χτίστε μια Ζωή που Αξίζει να Αφηγηθείτε",
+                hero_p: "Μάθετε αγγλικά, ζήστε αξέχαστες εμπειρίες και συνδεθείτε με τον κόσμο. Η περιπέτειά σας ξεκινά εδώ.",
+                hero_btn_start: "Ξεκινήστε Τώρα",
+                hero_btn_info: "Περισσότερες Πληροφορίες",
+                destinos_h2: "Οι Κορυφαίοι Προορισμοί Μας",
+                malta_p: "Ζήστε τον ήλιο και την ιστορία στην καρδιά της Μεσογείου, κρυστάλλινες παραλίες, σχολεία παγκόσμιας κλάσης και μια ζωντανή διεθνή κοινότητα.",
+                ireland_p: "Νιώστε τη μαγεία του Σμαραγδένιου Νησιού και τη φιλοξενία του, τοπία, φιλόξενες παμπ και η ζεστασιά των Ιρλανδών σας περιμένουν.",
+                london_p: "Ανακαλύψτε ατελείωτες ευκαιρίες στη βρετανική πρωτεύουσα με την ιστορία, τον πολιτισμό και απεριόριστες δυνατότητες.",
+                edinburgh_p: "Εξερευνήστε το μεγαλείο της Σκωτίας και τις παραδόσεις της, μεσαιωνικά κάστρα, ιστορική αρχιτεκτονική και μια μαγική ατμόσφαιρα σας τυλίγει.",
+                contact_h2: "Ξεκινήστε την Περιπέτειά σας Σήμερα",
+                form_name: "Όνομα",
+                form_email: "Email",
+                form_phone: "Τηλέφωνο",
+                form_interest: "Τι θα θέλατε να μάθετε;",
+                form_select: "Επιλέξτε μια επιλογή",
+                form_submit: "Αποστολή →",
+                footer_contact: "Επικοινωνήστε μαζί μας",
+                footer_rights: "© 2026 EduLingo. Με επιφύλαξη παντός δικαιώματος.",
+                footer_locations: "Διαθέσιμο σε Μάλτα, Ιρλανδία, Αγγλία, Σκωτία, Κύπρο, ΗΠΑ, Καναδά, Αργεντινή και Ισπανία"
+            },
+            uk: {
+                nav_method: "Метод",
+                nav_destinations: "Напрямки",
+                nav_testimonials: "Відгуки",
+                nav_prices: "Ціни",
+                nav_contact: "Контакти",
+                hero_h1: "Побудуйте життя, яке варто розповідати",
+                hero_p: "Вивчайте англійську, переживайте незабутні враження та спілкуйтеся зі світом. Ваша пригода починається тут.",
+                hero_btn_start: "Почати зараз",
+                hero_btn_info: "Докладніше",
+                destinos_h2: "Наші головні напрямки",
+                malta_p: "Насолоджуйтеся сонцем та історією в серці Середземномор'я, кришталево чистими пляжами, школами світового класу та яскравою міжнародною спільнотою.",
+                ireland_p: "Відчуйте магію Смарагдового острова та його гостинність, краєвиди, затишні паби та тепло ірландців чекають на вас.",
+                london_p: "Відкрийте безмежні можливості у британській столиці з її історією, культурою та необмеженими перспективами.",
+                edinburgh_p: "Досліджуйте велич Шотландії та її традиції, середньовічні замки, історичну архітектуру та чарівну атмосферу, яка вас огортає.",
+                contact_h2: "Розпочніть свою пригоду сьогодні",
+                form_name: "Ім'я",
+                form_email: "Email",
+                form_phone: "Телефон",
+                form_interest: "Що ви хотіли б дізнатися?",
+                form_select: "Виберіть опцію",
+                form_submit: "Надіслати →",
+                footer_contact: "Зв'яжіться з нами",
+                footer_rights: "© 2026 EduLingo. Усі права захищено.",
+                footer_locations: "Доступно в Мальті, Ірландії, Англії, Шотландії, Кіпрі, США, Канаді, Аргентині та Іспанії"
+            },
+            mn: {
+                nav_method: "Арга",
+                nav_destinations: "Очих газар",
+                nav_testimonials: "Гэрчлэл",
+                nav_prices: "Үнэ",
+                nav_contact: "Холбоо барих",
+                hero_h1: "Ярих үнэ цэнэтэй амьдралыг бүтээ",
+                hero_p: "Англи хэл сур, мартагдашгүй туршлагыг мэдэр, дэлхийтэй холбогд. Таны адал явдал эндээс эхэлнэ.",
+                hero_btn_start: "Одоо эхлэх",
+                hero_btn_info: "Дэлгэрэнгүй",
+                destinos_h2: "Бидний онцлох чиглэлүүд",
+                malta_p: "Газар дундын тэнгисийн зүрхэнд нар, түүхийг мэдэр, болор шиг тунгалаг далай, дэлхийн түвшний сургууль, олон улсын идэвхтэй нийгэмлэг.",
+                ireland_p: "Ирландын ид шид, зочломж, үзэсгэлэнт байгаль, дулаан пабууд, Ирланд ард түмний халуун сэтгэлийг мэдэр.",
+                london_p: "Түүх, соёл, хязгааргүй боломжуудыг санал болгодог Британийн нийслэлд эцэс төгсгөлгүй боломжуудыг нээ.",
+                edinburgh_p: "Шотландын сүр жавхлан, уламжлал, дундад зууны цайзууд, түүхэн архитектур, ид шидийн уур амьсгал таныг бүрхэнэ.",
+                contact_h2: "Аяллаа өнөөдөр эхлүүлэх",
+                form_name: "Нэр",
+                form_email: "Имэйл",
+                form_phone: "Утас",
+                form_interest: "Та юу мэдэхийг хүсэж байна?",
+                form_select: "Сонголтоо хий",
+                form_submit: "Илгээх →",
+                footer_contact: "Бидэнтэй холбогдох",
+                footer_rights: "© 2026 EduLingo. Бүх эрх хуулиар хамгаалагдсан.",
+                footer_locations: "Мальта, Ирланд, Англи, Шотланд, Кипр, АНУ, Канад, Аргентин, Испанид боломжтой"
+            }
+        };
+
         let currentLang = 'es';
 
         function changeLanguage(lang) {
+            if (!translations[lang]) return;
             currentLang = lang;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = translations[lang][key];
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+                        // for inputs, we set placeholder if it's a placeholder attribute; but for select we set inner text? Actually we need to handle differently.
+                        if (el.placeholder !== undefined) {
+                            el.placeholder = translations[lang][key];
+                        } else {
+                            el.innerText = translations[lang][key];
+                        }
+                    } else if (el.tagName === 'OPTION') {
+                        el.innerText = translations[lang][key];
                     } else {
                         el.innerText = translations[lang][key];
                     }
                 }
             });
-
-            // Actualizar banderas
+            // Update active flag styling
             document.querySelectorAll('.lang-flag').forEach(flag => {
                 flag.classList.remove('active');
                 if (flag.getAttribute('onclick').includes(lang)) {
                     flag.classList.add('active');
                 }
             });
-
-            // Guardar preferencia
             localStorage.setItem('preferredLang', lang);
         }
 
-        // Cargar idioma guardado
+        // Load saved language on page load
         window.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLang');
             if (savedLang && translations[savedLang]) {
                 changeLanguage(savedLang);
+            } else {
+                changeLanguage('es');
             }
             startFlyingCerts();
         });
 
-        // Animación Carrusel Volador (Cometa)
+        // Función para animación de vuelo (igual que el original)
         function startFlyingCerts() {
             const certs = ['img/Toelf.png', 'img/Ielts.png'];
             let currentCertIdx = 0;
@@ -1539,10 +1677,8 @@
                 container.appendChild(img);
                 document.body.appendChild(container);
 
-                // Trayectoria aleatoria
                 const startY = Math.random() * window.innerHeight;
                 const endY = Math.random() * window.innerHeight;
-                
                 let posX = -150;
                 let posY = startY;
                 const speedX = 5 + Math.random() * 5;
@@ -1555,7 +1691,6 @@
                     container.style.top = posY + 'px';
                     container.style.transform = `rotate(${posX / 10}deg)`;
 
-                    // Crear estela de estrellas
                     if (Math.random() > 0.7) {
                         createStar(posX + 60, posY + 30);
                     }
@@ -1565,10 +1700,9 @@
                     } else {
                         container.remove();
                         currentCertIdx = (currentCertIdx + 1) % certs.length;
-                        setTimeout(fly, 5000); // Esperar 5 segundos para el siguiente
+                        setTimeout(fly, 5000);
                     }
                 }
-
                 animate();
             }
 
@@ -1582,10 +1716,9 @@
                 setTimeout(() => star.remove(), 1000);
             }
 
-            setTimeout(fly, 3000); // Iniciar después de 3 segundos
+            setTimeout(fly, 3000);
         }
 
-        // Crear diamantes animados
         function createSparkles() {
             const sparklesContainer = document.getElementById('sparkles');
             for (let i = 0; i < 30; i++) {
@@ -1598,7 +1731,7 @@
             }
         }
 
-        // Carousel functionality
+        // Carousel
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
         const totalSlides = slides.length;
@@ -1616,7 +1749,6 @@
         function updateCarousel() {
             const inner = document.getElementById('carouselInner');
             inner.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
             document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
@@ -1637,7 +1769,6 @@
             updateCarousel();
         }
 
-        // Auto-advance carousel
         setInterval(nextSlide, 5000);
 
         // Form handling
@@ -1647,7 +1778,7 @@
             this.reset();
         });
 
-        // Chat functionality
+        // Chat
         function toggleChat() {
             const popup = document.getElementById('chatPopup');
             popup.classList.toggle('active');
@@ -1657,15 +1788,11 @@
             const input = document.getElementById('chatInput');
             const messages = document.getElementById('chatMessages');
             const message = input.value.trim();
-
             if (message) {
-                // Add user message
                 const userMsg = document.createElement('div');
                 userMsg.className = 'chat-message user';
                 userMsg.textContent = message;
                 messages.appendChild(userMsg);
-
-                // Simulate bot response
                 setTimeout(() => {
                     const botMsg = document.createElement('div');
                     botMsg.className = 'chat-message bot';
@@ -1673,19 +1800,15 @@
                     messages.appendChild(botMsg);
                     messages.scrollTop = messages.scrollHeight;
                 }, 500);
-
                 input.value = '';
                 messages.scrollTop = messages.scrollHeight;
             }
         }
 
         function handleChatKeypress(event) {
-            if (event.key === 'Enter') {
-                sendChatMessage();
-            }
+            if (event.key === 'Enter') sendChatMessage();
         }
 
-        // Initialize
         createSparkles();
         initCarousel();
     </script>
