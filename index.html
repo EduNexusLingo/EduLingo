@@ -60,6 +60,84 @@
             }
         }
 
+        /* Language Selector */
+        .lang-selector {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
+
+        .lang-flag {
+            width: 24px;
+            height: 16px;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: all 0.3s;
+            border: 1px solid #ddd;
+            object-fit: cover;
+        }
+
+        .lang-flag.active, .lang-flag:hover {
+            opacity: 1;
+            transform: scale(1.2);
+            border-color: #58CC02;
+        }
+
+        /* WhatsApp Icon */
+        .whatsapp-header {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-header:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-header img {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+        }
+
+        /* Flying Carousel Animation */
+        .flying-certs {
+            position: fixed;
+            top: -100px;
+            left: -100px;
+            z-index: 2000;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .flying-cert-img {
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
+        }
+
+        .star-trail {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            opacity: 0;
+            animation: starFade 1s forwards;
+        }
+
+        @keyframes starFade {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
         /* Header */
         header {
             position: fixed;
@@ -766,6 +844,81 @@
             margin: 0;
         }
 
+        /* Tabla de Destinos Estilo Moderno */
+        .destinos-table-section {
+            padding: 4rem 2rem;
+            background-color: #ffffff;
+        }
+
+        .destinos-grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .destino-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .destino-item:hover {
+            transform: scale(1.02);
+        }
+
+        .destino-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .destino-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .destino-overlay h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .destino-overlay p {
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+            line-height: 1.4;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 768px) {
+            .destinos-grid-container {
+                grid-template-columns: 1fr;
+            }
+            .destino-overlay h3 {
+                font-size: 1.5rem;
+            }
+            .destino-overlay p {
+                font-size: 0.9rem;
+            }
+        }
+
         /* Chat Widget */
         .chat-widget {
             position: fixed;
@@ -921,24 +1074,70 @@
     <header>
         <div class="logo">
             <img src="img/logo-oficial.png" alt="EduLingo Logo">
-            <span>EduLingo</span>
         </div>
         <nav>
-            <a href="#imagina">Imagina tu Vida</a>
-            <a href="#carousel">Destinos</a>
-            <a href="#precios">Precios</a>
-            <a href="#contacto" class="btn-contact">Contactar</a>
-        </nav>
-    </header>
+            <div class="lang-selector">
+                <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" onclick="changeLanguage('es')" alt="Español" title="Español">
+                <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" onclick="changeLanguage('en')" alt="English" title="English">
+                <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" onclick="changeLanguage('fr')" alt="Français" title="Français">
+                <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" onclick="changeLanguage('zh')" alt="中文" title="中文">
+                <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
+                <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
+            </div>
+            <a href="#metodo" data-i18n="nav_method">El Método</a>
+            <a href="#destinos" data-i18n="nav_destinations">Destinos</a>
+            <a href="#testimonios" data-i18n="nav_testimonials">Testimonios</a>
+            <a href="#precios" data-i18n="nav_prices">Precios</a>
+            <a href="#contacto" class="btn-contact" data-i18n="nav_contact">Contactar</a>
+            <a href="https://wa.me/353831036031" class="whatsapp-header" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+                <span>WhatsApp</span>
+            </a>
+        </nav>  </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Construye una Vida que Valga la Pena Contar</h1>
-            <p>Cursos online, viajes académicos y preparación oficial. Tu historia comienza con EduLingo.</p>
+            <h1 data-i18n="hero_h1">Construye una Vida que Valga la Pena Contar</h1>
+            <p data-i18n="hero_p">Aprende inglés, vive experiencias inolvidables y conecta con el mundo. Tu aventura comienza aquí.</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary">✨ Descubre tu plan ideal</button>
-                <button class="btn btn-secondary">Conocer más</button>
+                <button class="btn btn-primary" data-i18n="hero_btn_start">Empezar Ahora</button>
+                <button class="btn btn-secondary" data-i18n="hero_btn_info">Más Información</button>
+            </div>
+        </div>
+    </section>
+	
+	    <!-- Sección de Destinos Estilo Imagen -->
+    <section id="destinos" class="destinos-table-section">
+        <h2 data-i18n="destinos_h2" style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; background: linear-gradient(135deg, #58CC02, #1CB0F6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Nuestros Destinos Destacados</h2>
+        <div class="destinos-grid-container">
+            <div class="destino-item">
+                <img src="img/malta-experience-bzTgddDa5z9JB8RhwkDAfs.webp" alt="Malta">
+                <div class="destino-overlay">
+                    <h3>Malta</h3>
+                    <p data-i18n="malta_p">Vive el sol y la historia en el corazón del Mediterráneo, playas cristalinas, escuelas de clase mundial y una comunidad internacional vibrante.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/ireland-pubs-exg6C2oexUAKjvK6kmYnQ3.webp" alt="Irlanda">
+                <div class="destino-overlay">
+                    <h3>Irlanda</h3>
+                    <p data-i18n="ireland_p">Siente la magia de la Isla Esmeralda y su hospitalidad, paisajes, pubs acogedores y la calidez de la gente irlandesa te esperan.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/london-success-HGUcQo6Qdw6Pi3VwciHoGw.webp" alt="Londres">
+                <div class="destino-overlay">
+                    <h3>Londres</h3>
+                    <p data-i18n="london_p">Descubre oportunidades infinitas en la capital británica con su historia, cultura y oportunidades sin límites.</p>
+                </div>
+            </div>
+            <div class="destino-item">
+                <img src="img/edimburgo-adventure-fPnrzc3CWzT6UFrnAz2TUA.webp" alt="Edimburgo">
+                <div class="destino-overlay">
+                    <h3>Edimburgo</h3>
+                    <p data-i18n="edinburgh_p">Explora la majestuosidad de Escocia y sus tradiciones, castillos medievales, arquitectura histórica y una atmósfera mágica te envuelve.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -975,12 +1174,19 @@
         <div class="carousel">
             <div class="carousel-inner" id="carouselInner">
 			    <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+		        <div class="carousel-item" style="background-image: url('img/NY1.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('img/Perro.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('img/Mujer.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Temple.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
-                <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
+				<div class="carousel-item" style="background-image: url('img/Taxi.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Empedrado.jpg')"></div>
                 <div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
+				<div class="carousel-item" style="background-image: url('img/Euros.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Bandera.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
+			    <div class="carousel-item" style="background-image: url('img/NY2.jpg')"></div>
+                <div class="carousel-item" style="background-image: url('img/Arco.jpg')"></div>
+				
             </div>
             <button class="carousel-button prev" onclick="prevSlide()">❮</button>
             <button class="carousel-button next" onclick="nextSlide()">❯</button>
@@ -1008,6 +1214,8 @@
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
+		    <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
             <!-- Duplicar para efecto continuo -->
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Career"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Certifications"></div>
@@ -1025,6 +1233,8 @@
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Courses"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="English"></div>
             <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Global"></div>
+			<div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="English"></div>
+            <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Global"></div>
         </div>
     </section>
 
@@ -1193,38 +1403,53 @@
                 <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
                 <h3>🇪🇸 España</h3>
                 <p>Flamenco, playas y la pasión española</p>
+		    </div>
+			     <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF0844, #FF8C00);"></div>
+                <h3>🇨🇦 Canadá</h3>
+                <p>Naturaleza espectacular y ciudades cosmopolitas</p>
             </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #A8EDEA, #FED6E3);"></div>
+                <h3>🇦🇷 Argentina</h3>
+                <p>Tango, cultura y el español más hermoso</p>
+            </div>
+            <div class="destino-card">
+                <div class="destino-image" style="background: linear-gradient(135deg, #FF9A56, #FF6A88);"></div>
+                <h3>🇪🇸 España</h3>
+                <p>Flamenco, playas y la pasión española</p>
+		    </div>
         </div>
     </section>
 
     <!-- Contacto Section -->
     <section id="contacto" class="contacto">
-        <h2>Empieza tu Aventura Hoy</h2>
+        <h2 data-i18n="contact_h2">Empieza tu Aventura Hoy</h2>
         <div class="form-container">
             <form id="contactForm">
                 <div class="form-group">
-                    <label for="nombre">Nombre</label>
+                    <label for="nombre" data-i18n="form_name">Nombre</label>
                     <input type="text" id="nombre" name="nombre" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email" data-i18n="form_email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="telefono">Teléfono</label>
+                    <label for="telefono" data-i18n="form_phone">Teléfono</label>
                     <input type="tel" id="telefono" name="telefono" required>
                 </div>
                 <div class="form-group">
-                    <label for="interes">¿Qué te gustaría saber?</label>
+                    <label for="interes" data-i18n="form_interest">¿Qué te gustaría saber?</label>
                     <select id="interes" name="interes" required>
-                        <option value="">Selecciona una opción</option>
+                        <option value="" data-i18n="form_select">Selecciona una opción</option>
                         <option value="online">Cursos Online</option>
                         <option value="malta">Experiencia en Malta</option>
                         <option value="irlanda">Experiencia en Irlanda</option>
                         <option value="cambridge">Preparación Cambridge</option>
                     </select>
                 </div>
-                <button type="submit" class="form-submit">Enviar →</button>
+                <button type="submit" class="form-submit" data-i18n="form_submit">Enviar →</button>
             </form>
         </div>
     </section>
@@ -1244,22 +1469,122 @@
         </div>
     </div>
 
+
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-contact">
-                <p>Contacta con nosotros</p>
+                <p data-i18n="footer_contact">Contacta con nosotros</p>
                 <a href="mailto:lingo@EduNexus.eu">📧 lingo@EduNexus.eu</a>
                 <a href="https://wa.me/353831036031">📱 +353 83 103 6031</a>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 EduLingo. Todos los derechos reservados.</p>
-                <p>Disponible en Malta, Irlanda, Inglaterra, Escocia, Chipre, EE.UU., Canadá, Argentina y España</p>
+                <p data-i18n="footer_rights">&copy; 2026 EduLingo. Todos los derechos reservados.</p>
+                <p data-i18n="footer_locations">Disponible en Malta, Irlanda, Inglaterra, Escocia, Chipre, EE.UU., Canadá, Argentina y España</p>
             </div>
         </div>
     </footer>
 
+    <script src="js/translations.js"></script>
     <script>
+        // Lógica de Traducción
+        let currentLang = 'es';
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = translations[lang][key];
+                    } else {
+                        el.innerText = translations[lang][key];
+                    }
+                }
+            });
+
+            // Actualizar banderas
+            document.querySelectorAll('.lang-flag').forEach(flag => {
+                flag.classList.remove('active');
+                if (flag.getAttribute('onclick').includes(lang)) {
+                    flag.classList.add('active');
+                }
+            });
+
+            // Guardar preferencia
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Cargar idioma guardado
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang');
+            if (savedLang && translations[savedLang]) {
+                changeLanguage(savedLang);
+            }
+            startFlyingCerts();
+        });
+
+        // Animación Carrusel Volador (Cometa)
+        function startFlyingCerts() {
+            const certs = ['img/Toelf.png', 'img/Ielts.png'];
+            let currentCertIdx = 0;
+
+            function fly() {
+                const container = document.createElement('div');
+                container.className = 'flying-certs';
+                const img = document.createElement('img');
+                img.src = certs[currentCertIdx];
+                img.className = 'flying-cert-img';
+                container.appendChild(img);
+                document.body.appendChild(container);
+
+                // Trayectoria aleatoria
+                const startY = Math.random() * window.innerHeight;
+                const endY = Math.random() * window.innerHeight;
+                
+                let posX = -150;
+                let posY = startY;
+                const speedX = 5 + Math.random() * 5;
+                const stepY = (endY - startY) / (window.innerWidth / speedX);
+
+                function animate() {
+                    posX += speedX;
+                    posY += stepY;
+                    container.style.left = posX + 'px';
+                    container.style.top = posY + 'px';
+                    container.style.transform = `rotate(${posX / 10}deg)`;
+
+                    // Crear estela de estrellas
+                    if (Math.random() > 0.7) {
+                        createStar(posX + 60, posY + 30);
+                    }
+
+                    if (posX < window.innerWidth + 150) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        container.remove();
+                        currentCertIdx = (currentCertIdx + 1) % certs.length;
+                        setTimeout(fly, 5000); // Esperar 5 segundos para el siguiente
+                    }
+                }
+
+                animate();
+            }
+
+            function createStar(x, y) {
+                const star = document.createElement('div');
+                star.className = 'star-trail';
+                star.style.left = x + 'px';
+                star.style.top = y + 'px';
+                star.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                document.body.appendChild(star);
+                setTimeout(() => star.remove(), 1000);
+            }
+
+            setTimeout(fly, 3000); // Iniciar después de 3 segundos
+        }
+
         // Crear diamantes animados
         function createSparkles() {
             const sparklesContainer = document.getElementById('sparkles');
