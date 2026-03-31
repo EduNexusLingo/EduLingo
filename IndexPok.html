@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POK — Credenciales Digitales Verificables · Blockchain NFT</title>
+  <meta name="description" content="POK — Plataforma global para emitir credenciales digitales verificables y microcredenciales como NFT en blockchain. Confianza de 1100+ universidades.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+  <!-- Google Fonts: Poppins + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════ -->
+  <header>
+    <a href="#" class="logo">
+      <img src="img/edunexus-lingo-logo.png" alt="EduNexus Lingo Logo" style="height: 40px;">
+      <span style="margin-left: 10px; font-weight: 600; color: #1f2937;">POK</span>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <div class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="mainNav">
+      <!-- Language Flags -->
+      <div class="lang-selector">
+        <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" data-lang="es" onclick="changeLanguage('es')" alt="Español" title="Español">
+        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="English" title="English">
+        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="Français" title="Français">
+        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="中文" title="中文">
+        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
+        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="Українська" title="Українська">
+        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
+        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
+      </div>
+
+      <a href="#features" data-i18n="nav_features">Características</a>
+      <a href="#integrations" data-i18n="nav_team">Integraciones</a>
+      <a href="#faqs" data-i18n="nav_blog">FAQs</a>
+      <a href="#contact" class="btn-contact" data-i18n="nav_contact">Contactar</a>
+      <a href="https://www.edunexus.eu/index.html" class="btn-back" data-i18n="nav_back">← Volver a EduNexus</a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="hero-eyebrow" data-i18n="hero_badge">Credenciales Digitales Verificables</span>
+      <h1 data-i18n="hero_h1">Emite credenciales digitales verificables y microcredenciales como NFT en blockchain</h1>
+      <p data-i18n="hero_desc">POK es una plataforma global para la emisión de credenciales digitales verificables y microcredenciales — con la confianza de más de 1.100 universidades, gobiernos y empresas en 19 países.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" data-i18n="hero_btn_free">100% VERSIÓN GRATIS</button>
+        <button class="btn btn-secondary" data-i18n="hero_btn_example">Ver Ejemplo</button>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       STATS
+  ═══════════════════════════════════════ -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <div class="stat-number">+1100</div>
+        <div class="stat-label" data-i18n="stat_institutions">Instituciones</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">+19</div>
+        <div class="stat-label" data-i18n="stat_countries">Países</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">+1.5M</div>
+        <div class="stat-label" data-i18n="stat_credentials">Credenciales Emitidas</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">+1M</div>
+        <div class="stat-label" data-i18n="stat_shared">Credenciales Compartidas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FEATURES
+  ═══════════════════════════════════════ -->
+  <section id="features" class="features-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="features_title">Funcionalidades Destacadas</span>
+      <h2 data-i18n="features_title">Funcionalidades Destacadas</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🔒</div>
+        <h3 data-i18n="feature_secure">Seguro y Confiable</h3>
+        <p data-i18n="feature_secure_desc">Certifica en blockchain, verifica con un solo clic. Privacidad garantizada.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📈</div>
+        <h3 data-i18n="feature_employability">Empleabilidad</h3>
+        <p data-i18n="feature_employability_desc">Conecta tus credenciales con oportunidades reales y mide su impacto en tiempo real.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">🎨</div>
+        <h3 data-i18n="feature_whitelabel">White Label</h3>
+        <p data-i18n="feature_whitelabel_desc">Diseña credenciales, páginas y correos 100% personalizados con tu marca.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon">📊</div>
+        <h3 data-i18n="feature_metrics">Métricas</h3>
+        <p data-i18n="feature_metrics_desc">Mide lo que importa y mejora lo que cuenta con datos en tiempo real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       NFT VS WEB2
+  ═══════════════════════════════════════ -->
+  <section class="comparison-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="nft_vs_web2_title">Comparativa</span>
+      <h2 data-i18n="nft_vs_web2_title">NFT con POK vs Web2</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="comparison-grid">
+      <div class="comparison-card nft-card fade-in">
+        <h3 data-i18n="nft_with_pok">NFT con POK</h3>
+        <ul class="benefits-list">
+          <li data-i18n="nft_benefit_1">✓ Propiedad del usuario, no del proveedor</li>
+          <li data-i18n="nft_benefit_2">✓ Inmutable en blockchain pública</li>
+          <li data-i18n="nft_benefit_3">✓ Permanente, incluso si el emisor desaparece</li>
+          <li data-i18n="nft_benefit_4">✓ Totalmente verificable sin depender de POK</li>
+          <li data-i18n="nft_benefit_5">✓ 100% compatible con estándares internacionales</li>
+        </ul>
+      </div>
+      <div class="comparison-card web2-card fade-in">
+        <h3 data-i18n="web2_label">Web2 o Web2 con Blockchain</h3>
+        <ul class="risks-list">
+          <li data-i18n="web2_risk_1">✗ Credencial alojada en servidores privados</li>
+          <li data-i18n="web2_risk_2">✗ Propiedad del proveedor</li>
+          <li data-i18n="web2_risk_3">✗ Validación 'blockchain' solo como registro secundario</li>
+          <li data-i18n="web2_risk_4">✗ Blockchain privada sin valor público</li>
+          <li data-i18n="web2_risk_5">✗ Vulnerable a hackeos o eliminación</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       INTEGRATIONS
+  ═══════════════════════════════════════ -->
+  <section id="integrations" class="integrations-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="integrations_title">Integraciones</span>
+      <h2 data-i18n="integrations_title">Integraciones Totales</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle" data-i18n="integrations_desc">POK se conecta fácilmente con todas las plataformas y sistemas que ya usas.</p>
+    </div>
+    <div class="integrations-grid">
+      <div class="integration-box fade-in">
+        <h3 data-i18n="lms_integrated">LMS Integrados</h3>
+        <ul>
+          <li>Moodle</li>
+          <li>Blackboard</li>
+          <li>Canvas</li>
+          <li>Google Classroom</li>
+        </ul>
+      </div>
+      <div class="integration-box fade-in">
+        <h3 data-i18n="crm_tools">CRMs y Herramientas</h3>
+        <ul>
+          <li>Salesforce</li>
+          <li>HubSpot</li>
+          <li>Open edX</li>
+          <li>D2L Brightspace</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CERTIFICATIONS
+  ═══════════════════════════════════════ -->
+  <section class="certifications-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="certifications_title">Certificaciones</span>
+      <h2 data-i18n="certifications_title">Certificaciones y Cumplimiento</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="certifications-grid">
+      <div class="cert-box fade-in">
+        <h3 data-i18n="intl_standards">Estándares Internacionales</h3>
+        <ul>
+          <li data-i18n="cert_openbadge">OpenBadge 3.0: El estándar global</li>
+          <li data-i18n="cert_elm">European Learning Model (Europass)</li>
+          <li data-i18n="cert_gdpr">GDPR: Cumplimiento estricto</li>
+        </ul>
+      </div>
+      <div class="cert-box fade-in">
+        <h3 data-i18n="security_certs">Certificaciones de Seguridad</h3>
+        <ul>
+          <li data-i18n="cert_iso">ISO 27001: Gestión de seguridad</li>
+          <li data-i18n="cert_soc2">SOC 2: Controles de seguridad</li>
+          <li data-i18n="cert_1edtech">1EdTech Certified: Plataforma confiable</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       FAQs
+  ═══════════════════════════════════════ -->
+  <section id="faqs" class="faqs-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="faqs_title">Preguntas</span>
+      <h2 data-i18n="faqs_title">Preguntas Frecuentes</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="faqs-container">
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q1">
+          <span class="faq-icon">❓</span>
+          <span class="faq-text" data-i18n="faq_q1">¿Qué es POK y para quién está diseñado?</span>
+        </button>
+        <div class="faq-answer" data-i18n="faq_a1">POK (Proof of Knowledge) es una plataforma global diseñada para emitir, gestionar y verificar credenciales digitales de forma segura, interoperable y escalable.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q2">
+          <span class="faq-icon">🎓</span>
+          <span class="faq-text" data-i18n="faq_q2">¿Cuál es el Modelo Europeo de Aprendizaje (ELM)?</span>
+        </button>
+        <div class="faq-answer" data-i18n="faq_a2">El Modelo Europeo de Aprendizaje (ELM) es un marco técnico desarrollado por la Comisión Europea para garantizar que los diplomas se entiendan y reconozcan uniformemente.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q3">
+          <span class="faq-icon">⛓️</span>
+          <span class="faq-text" data-i18n="faq_q3">¿Qué es una credencial NFT?</span>
+        </button>
+        <div class="faq-answer" data-i18n="faq_a3">Una credencial NFT es un certificado digital emitido como un Token No Fungible en una blockchain pública, con verdadera propiedad digital.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <button class="faq-question" onclick="toggleFaq(this)" data-i18n="faq_q4">
+          <span class="faq-icon">💰</span>
+          <span class="faq-text" data-i18n="faq_q4">¿Cómo funciona el modelo de precios de POK?</span>
+        </button>
+        <div class="faq-answer" data-i18n="faq_a4">POK ofrece un plan Web2 gratuito e ilimitado, y credenciales blockchain NFT con pago por credencial, sin compromisos anuales obligatorios.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CTA
+  ═══════════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="cta-content fade-in">
+      <h2 data-i18n="cta_title">¡Comienza Hoy Mismo!</h2>
+      <p data-i18n="cta_desc">Prueba la versión 100% gratuita de POK con emisión ilimitada. Sin tarjeta de crédito, sin compromisos.</p>
+      <button class="btn btn-primary-large" data-i18n="cta_btn">Acceder a la Versión Gratis</button>
+    </div>
+  </section>
+  <!-- ═══════════════════════════════════════
+       CONTACT FORM
+  ═══════════════════════════════════════ -->
+  <section id="contact" class="contact-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="contact_title">Contacto</span>
+      <h2 data-i18n="contact_title">Ponte en Contacto</h2>
+      <p class="section-subtitle" data-i18n="contact_subtitle">¿Preguntas? Nos encantaría ayudarte. Envíanos un mensaje.</p>
+      <div class="gold-divider"></div>
+    </div>
+    
+    <div class="contact-content">
+      <!-- Contact Info Cards -->
+      <div class="contact-info-grid fade-in">
+        <div class="contact-info-card">
+          <div class="contact-icon">✉️</div>
+          <h4 data-i18n="contact_email">Email</h4>
+          <p><a href="mailto:Pok@edunexus.eu">Pok@edunexus.eu</a></p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📞</div>
+          <h4 data-i18n="contact_phone">Teléfono</h4>
+          <p><a href="tel:+353863688624">+353-86-3688624</a></p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📍</div>
+          <h4 data-i18n="contact_location">Ubicación</h4>
+          <p data-i18n="contact_country">Irlanda</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form-wrapper fade-in">
+        <form id="pokForm" class="contact-form" method="POST">
+          <!-- Campo: Organización -->
+          <div class="form-group full-width">
+            <label for="organization" data-i18n="contact_form_organization">Organización</label>
+            <input type="text" id="organization" name="organization" class="form-input" required>
+          </div>
+          
+          <!-- Campo: Correo de Contacto Obligatorio -->
+          <div class="form-group full-width">
+            <label for="contact-email" data-i18n="contact_form_email">
+              Correo de Contacto <span class="required">*</span>
+            </label>
+            <input type="email" id="contact-email" name="email" class="form-input" required>
+          </div>
+          
+          <!-- Campo: Detalles de la Organización -->
+          <div class="form-group full-width">
+            <label for="org-details" data-i18n="contact_form_org_details">Detalles de la Organización</label>
+            <input type="text" id="org-details" name="org_details" class="form-input" placeholder="Ej: Sector, tamaño, ubicación...">
+          </div>
+          
+          <!-- Campo: Detalle (Varios Renglones) -->
+          <div class="form-group full-width">
+            <label for="message" data-i18n="contact_form_message">Detalles Adicionales</label>
+            <textarea id="message" name="message" class="form-textarea" rows="8" placeholder="Cuéntanos más sobre tu consulta..." required></textarea>
+          </div>
+          
+          <!-- Botón Enviar -->
+          <button type="submit" class="btn btn-primary btn-submit" data-i18n="contact_form_submit">Enviar</button>
+          <div id="form-status" class="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-text">POK</span>
+          <div class="gold-divider" style="margin: 0.8rem 0;"></div>
+          <p data-i18n="footer_copyright">© 2026 POK - Proof of Knowledge. Todos los derechos reservados.</p>
+        </div>
+        <div class="footer-contact">
+          <a href="mailto:Pok@EduNexus.eu">✉ Pok@EduNexus.eu</a>
+          <a href="https://www.EduNexus.eu/Pok">🌐 EduNexus.eu/Pok</a>
+          <a href="https://www.edunexus.eu">🔗 edunexus.eu</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-i18n="footer_integration">Integración con EduNexus Lingo</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
