@@ -724,6 +724,20 @@
             text-decoration: none;
         }
 
+        #formMessage.success {
+            background-color: #f0fdf4;
+            border: 2px solid #10b981;
+            color: #065f46;
+            display: block;
+        }
+
+        #formMessage.error {
+            background-color: #fef2f2;
+            border: 2px solid #ef4444;
+            color: #7f1d1d;
+            display: block;
+        }
+
         /* Footer */
         footer {
             background-color: #1a1a1a;
@@ -1058,7 +1072,7 @@
                 <div class="section-divider"></div>
             </div>
             <div class="contact-container">
-                <form class="contact-form" action="https://formspree.io/f/mqegbwqa" method="POST">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mqegbwqa" method="POST" onsubmit="return handleFormSubmit(event);">
                     <div class="form-group">
                         <label for="organization" data-i18n="form_org">Organización</label>
                         <input type="text" id="organization" name="organization" required>
@@ -1077,6 +1091,7 @@
                     </div>
                     <button type="submit" class="form-submit" data-i18n="form_submit">Enviar Mensaje</button>
                 </form>
+                <div id="formMessage" style="display: none; margin-top: 1.5rem; padding: 1rem; border-radius: 0.5rem; text-align: center; font-weight: 600;"></div>
                 <div class="contact-email">
                     <p data-i18n="contact_email_text">¿Preguntas? Contáctanos directamente:</p>
                     <a href="mailto:pok.info@EduNexus.eu">pok.info@EduNexus.eu</a>
