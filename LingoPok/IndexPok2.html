@@ -26,7 +26,7 @@
   ═══════════════════════════════════════ -->
   <header>
     <a href="#" class="logo">
-      <img src="img/edulingo.png" alt="EduNexus Lingo Logo" style="height: 40px;">
+      <img src="img/edunexus-lingo-logo.png" alt="EduNexus Lingo Logo" style="height: 40px;">
       <span style="margin-left: 10px; font-weight: 600; color: #1f2937;">POK</span>
     </a>
 
@@ -281,37 +281,74 @@
   <!-- ═══════════════════════════════════════
        CONTACT FORM
   ═══════════════════════════════════════ -->
-<section id="contact" class="contact-section">
+  <section id="contact" class="contact-section">
     <div class="section-header fade-in">
       <span class="section-eyebrow" data-i18n="contact_title">Contacto</span>
       <h2 data-i18n="contact_title">Ponte en Contacto</h2>
+      <p class="section-subtitle" data-i18n="contact_subtitle">¿Preguntas? Nos encantaría ayudarte. Envíanos un mensaje.</p>
       <div class="gold-divider"></div>
     </div>
     
     <div class="contact-content">
+      <!-- Contact Info Cards -->
+      <div class="contact-info-grid fade-in">
+        <div class="contact-info-card">
+          <div class="contact-icon">✉️</div>
+          <h4 data-i18n="contact_email">Email</h4>
+          <p><a href="mailto:Pok@edunexus.eu">Pok@edunexus.eu</a></p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📞</div>
+          <h4 data-i18n="contact_phone">Teléfono</h4>
+          <p><a href="tel:+353863688624">+353-86-3688624</a></p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📍</div>
+          <h4 data-i18n="contact_location">Ubicación</h4>
+          <p data-i18n="contact_country">Irlanda</p>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
       <div class="contact-form-wrapper fade-in">
-        <form id="pokForm" class="contact-form" action="https://formspree.io/f/mlgonool" method="POST">
-          <div class="form-group full-width">
-            <label for="organization" data-i18n="contact_form_organization">Organización</label>
-            <input type="text" id="organization" name="organization" class="form-input" required>
+        <form action="https://formsubmit.co/Pok@edunexus.eu" method="POST" enctype="multipart/form-data" class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name" data-i18n="contact_form_name">Nombre</label>
+              <input type="text" id="contact-name" name="name" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-lastname" data-i18n="contact_form_lastname">Apellido</label>
+              <input type="text" id="contact-lastname" name="lastname" class="form-input">
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-email" data-i18n="contact_form_email">Correo Electrónico</label>
+              <input type="email" id="contact-email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-subject" data-i18n="contact_form_subject">Asunto</label>
+              <input type="text" id="contact-subject" name="subject" class="form-input" required>
+            </div>
           </div>
           
           <div class="form-group full-width">
-            <label for="email" data-i18n="contact_form_email">Correo <span class="required">*</span></label>
-            <input type="email" id="email" name="email" class="form-input" required>
+            <label for="contact-message" data-i18n="contact_form_message">Mensaje</label>
+            <textarea id="contact-message" name="message" class="form-textarea" rows="6" required></textarea>
           </div>
           
           <div class="form-group full-width">
-            <label for="message" data-i18n="contact_form_message">Detalles Adicionales</label>
-            <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+            <label for="contact-file" class="file-label" data-i18n="contact_form_file">Archivo (opcional)</label>
+            <input type="file" id="contact-file" name="file" class="file-input">
           </div>
           
-          <button type="submit" id="submitBtn" class="btn btn-primary btn-submit" data-i18n="contact_form_submit">Enviar</button>
-          <div id="form-status" style="margin-top:15px; text-align:center;"></div>
+          <button type="submit" class="btn btn-primary btn-submit" data-i18n="contact_form_submit">Enviar Mensaje</button>
         </form>
       </div>
     </div>
-  </s
+  </section>
   
 
   <!-- ═══════════════════════════════════════
