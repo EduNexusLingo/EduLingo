@@ -79,6 +79,27 @@ header {
   z-index: 1000;
   border-bottom: 1px solid rgba(201,168,76,0.2);
   box-shadow: 0 2px 30px rgba(0,0,0,0.5);
+  
+  
+  /* Este contenedor junta los logos */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Espacio entre los dos logos */
+}
+
+/* Esta regla evita que el icono sea gigante */
+.logo img {
+  height: 45px;      /* Ajusta este número según prefieras */
+  width: auto;       /* Mantiene la proporción para que no se deforme */
+  display: block;
+  object-fit: contain;
+}
+
+/* Ajuste opcional por si el logo de POK es más pequeño */
+.logo img[alt="POK"] {
+  height: 35px; 
+}
 }
 
 .logo {
