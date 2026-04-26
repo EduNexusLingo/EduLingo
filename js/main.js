@@ -286,20 +286,61 @@ function initHeaderScroll() {
 /* ============================================================
    FORM HANDLER
    ============================================================ */
-function initForm() {
+async function initForm() {
   const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
   if (!form) return;
-  form.addEventListener('submit', (e) => {
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('.form-submit');
-    const original = btn.textContent;
-    btn.textContent = '✓ Enviado';
-    btn.style.background = 'linear-gradient(135deg, #2d6a1a, #4a9c28)';
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
+    const originalBtnText = btn.textContent;
+    
+    // Status messages based on language
+    const statusMsgs = {
+      es: { sending: 'Enviando...', success: '¡Mensaje enviado con éxito!', error: 'Ups! Hubo un problema al enviar.' },
+      en: { sending: 'Sending...', success: 'Message sent successfully!', error: 'Oops! There was a problem sending.' },
+      fr: { sending: 'Envoi...', success: 'Message envoyé avec succès !', error: 'Oups ! Un problema est survenu.' },
+      zh: { sending: '正在发送...', success: '消息发送成功！', error: '糟糕！发送时出现问题。' },
+      el: { sending: 'Αποστολή...', success: 'Το μήνυμα στάλθηκε με επιτυχία!', error: 'Ωχ! Υπήρξε ένα πρόβλημα.' },
+      uk: { sending: 'Надсилання...', success: 'Повідомлення успішно надіслано!', error: 'Ой! Виникла проблема.' },
+      mn: { sending: 'Илгээж байна...', success: 'Амжилттай илгээгдлээ!', error: 'Алдаа гарлаа.' },
+      ja: { sending: '送信中...', success: '送信が完了しました！', error: 'エラーが発生しました。' }
+    };
+    const msg = statusMsgs[currentLang] || statusMsgs.es;
+
+    btn.disabled = true;
+    btn.textContent = msg.sending;
+
+    try {
+      const data = new FormData(form);
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        formMessage.textContent = msg.success;
+        formMessage.style.display = 'block';
+        formMessage.style.background = 'rgba(45, 106, 26, 0.3)';
+        form.reset();
+        btn.textContent = '✓';
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      formMessage.textContent = msg.error;
+      formMessage.style.display = 'block';
+      formMessage.style.background = 'rgba(139, 26, 26, 0.3)';
+      btn.textContent = originalBtnText;
+    } finally {
+      btn.disabled = false;
+      setTimeout(() => {
+        formMessage.style.display = 'none';
+        btn.textContent = originalBtnText;
+      }, 5000);
+    }
   });
 }
 
