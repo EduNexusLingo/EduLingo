@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,18 @@
 
   <style>
     :root {
-      --primary: #003366; /* Azul más oscuro para combinar con EduNexusLingo */
-      --secondary: #001f3f;
-      --accent: #d4af37; /* Dorado elegante */
-      --light: #fdfdfd;
-      --dark: #1a1a1a;
+      --primary: #0066cc;
+      --secondary: #004d99;
+      --accent: #ffcc00;
+      --light: #f8f9fa;
+      --dark: #333;
       --white: #ffffff;
-      --shadow: 0 8px 30px rgba(0,0,0,0.08);
-      --radius: 16px;
+      --shadow: 0 4px 15px rgba(0,0,0,0.1);
+      --radius: 12px;
     }
     .ireland-course-header {
-      padding: 140px 5% 80px;
-      background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 31, 63, 0.85)), url('img/dublin.jpg');
+      padding: 120px 5% 70px;
+      background: linear-gradient(rgba(0, 102, 204, 0.82), rgba(0, 77, 153, 0.82)), url('img/dublin.jpg');
       background-size: cover;
       background-position: center;
       color: #fff;
@@ -31,7 +31,7 @@
     }
     .ireland-course-header h1 { font-size: clamp(2.3rem, 5vw, 4.5rem); margin-bottom: 1rem; }
     .ireland-course-header p { max-width: 900px; margin: .35rem auto; font-size: 1.15rem; }
-    .logos-carousel-section { background: #fdfdfd; padding: 15px 0; border-bottom: 1px solid #eee; overflow: hidden; position: relative; margin-top: 100px; }
+    .logos-carousel-section { background: #fff; padding: 28px 0; border-bottom: 2px solid #e8eef5; overflow: hidden; position: relative; }
     .logos-carousel-section::before, .logos-carousel-section::after { content: ''; position: absolute; top: 0; width: 120px; height: 100%; z-index: 2; pointer-events: none; }
     .logos-carousel-section::before { left: 0; background: linear-gradient(to right, #fff 0%, transparent 100%); }
     .logos-carousel-section::after { right: 0; background: linear-gradient(to left, #fff 0%, transparent 100%); }
@@ -39,8 +39,8 @@
     .logos-track { display: flex; align-items: center; gap: 30px; width: max-content; animation: scrollLogos 45s linear infinite; }
     .logos-track:hover { animation-play-state: paused; }
     @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .logo-item { flex-shrink: 0; width: 140px; height: 70px; display: flex; align-items: center; justify-content: center; padding: 5px 10px; border-radius: 8px; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; cursor: pointer; }
-    .logo-item img { max-width: 120px; max-height: 55px; object-fit: contain; filter: grayscale(100%) opacity(0.6); transition: all .4s ease; }
+    .logo-item { flex-shrink: 0; width: 170px; height: 100px; display: flex; align-items: center; justify-content: center; padding: 8px 12px; border-radius: 10px; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; cursor: pointer; }
+    .logo-item img { max-width: 150px; max-height: 82px; object-fit: contain; filter: grayscale(50%) brightness(.65); transition: filter .4s ease, transform .4s ease; }
     .logo-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.13); }
     .logo-item:hover { box-shadow: 0 6px 22px rgba(0, 102, 204, .18); background: #f0f7ff; transform: translateY(-3px); }
     .content-section { padding: 60px 5%; background-color: #f4f7f6; }
@@ -86,6 +86,12 @@
       <div class="lang-selector">
         <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" data-lang="es" onclick="changeLanguage('es')" alt="ES">
         <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="EN">
+        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="FR">
+        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="ZH">
+        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="EL">
+        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="UK">
+        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="MN">
+        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="JP">
       </div>
       <a href="index-EduNexusLingo.html#inicio" data-i18n="nav_home">Inicio</a>
       <a href="index-EduNexusLingo.html#destinos" data-i18n="nav_destinations">Destinos</a>
@@ -99,72 +105,72 @@
 <div class="logos-track-wrapper">
 <div class="logos-track" id="logosTrack">
 <!-- Logos primera pasada -->
-<div class="logo-item" data-school="emerald"><img alt="Emerald" src="img/irlanda/emerald.png"/></div>
-<div class="logo-item" data-school="apollo"><img alt="Apollo" src="img/irlanda/apollo.png"/></div>
-<div class="logo-item" data-school="englishour"><img alt="Englishour" src="img/irlanda/englishour.png"/></div>
-<div class="logo-item" data-school="atlas"><img alt="Atlas" src="img/irlanda/atlas.jpg"/></div>
-<div class="logo-item" data-school="dci"><img alt="DCI" src="img/irlanda/dci.png"/></div>
-<div class="logo-item" data-school="delfin"><img alt="Delfin" src="img/irlanda/delfin.png"/></div>
-<div class="logo-item" data-school="everest"><img alt="Everest" src="img/irlanda/Everest.png"/></div>
-<div class="logo-item" data-school="ice"><img alt="ICE" src="img/irlanda/ice.png"/></div>
-<div class="logo-item" data-school="acet"><img alt="ACET" src="img/irlanda/ces.png"/></div>
-<div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="img/irlanda/corkenglishcollege.png"/></div>
-<div class="logo-item" data-school="twin-english"><img alt="Twin English" src="img/irlanda/twin.png"/></div>
-<div class="logo-item" data-school="ulearn"><img alt="ULearn" src="img/irlanda/Ulernlogo.png"/></div>
-<div class="logo-item" data-school="erin-school"><img alt="Erin School" src="img/irlanda/ErinSchool.png"/></div>
-<div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="img/irlanda/ces.png"/></div>
-<div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="img/irlanda/cew.png"/></div>
-<div class="logo-item" data-school="english-talks"><img alt="English Talks" src="img/irlanda/DirectEnglish.png"/></div>
-<div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="img/irlanda/EstudentCampus.avif"/></div>
-<div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="img/irlanda/BirchwaterEducation.avif"/></div>
-<div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="img/irlanda/EuroLanguaje.png"/></div>
-<div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="img/irlanda/BridgeMillsGalway.png"/></div>
-<div class="logo-item" data-school="ega-international"><img alt="EGA International" src="img/irlanda/EGAInternational.png"/></div>
-<div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="img/irlanda/KillarneySchool.jpg"/></div>
-<div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="img/irlanda/atc.png"/></div>
-<div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="img/irlanda/citydublin.png"/></div>
-<div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="img/irlanda/Cork-English-AcademyLogo.png"/></div>
-<div class="logo-item" data-school="dce-english"><img alt="DCE English" src="img/irlanda/DCE_School.png"/></div>
-<div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="img/irlanda/dorset.png"/></div>
-<div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="img/irlanda/cropped-Logo-ISI-Dublin.png"/></div>
-<div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="img/irlanda/Limerick Language.PNG"/></div>
-<div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="img/irlanda/Swan.png"/></div>
-<div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="img/irlanda/Kaplan-Logo.png"/></div>
-<div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="img/irlanda/elischools.png"/></div>
+<div class="logo-item" data-school="emerald"><img alt="Emerald" src="images/irlanda/emerald.png"/></div>
+<div class="logo-item" data-school="apollo"><img alt="Apollo" src="images/irlanda/apollo.png"/></div>
+<div class="logo-item" data-school="englishour"><img alt="Englishour" src="images/irlanda/englishour.png"/></div>
+<div class="logo-item" data-school="atlas"><img alt="Atlas" src="images/irlanda/atlas.jpg"/></div>
+<div class="logo-item" data-school="dci"><img alt="DCI" src="images/irlanda/dci.png"/></div>
+<div class="logo-item" data-school="delfin"><img alt="Delfin" src="images/irlanda/delfin.png"/></div>
+<div class="logo-item" data-school="everest"><img alt="Everest" src="images/irlanda/Everest.png"/></div>
+<div class="logo-item" data-school="ice"><img alt="ICE" src="images/irlanda/ice.png"/></div>
+<div class="logo-item" data-school="acet"><img alt="ACET" src="images/irlanda/ces.png"/></div>
+<div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="images/irlanda/corkenglishcollege.png"/></div>
+<div class="logo-item" data-school="twin-english"><img alt="Twin English" src="images/irlanda/twin.png"/></div>
+<div class="logo-item" data-school="ulearn"><img alt="ULearn" src="images/irlanda/Ulernlogo.png"/></div>
+<div class="logo-item" data-school="erin-school"><img alt="Erin School" src="images/irlanda/ErinSchool.png"/></div>
+<div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="images/irlanda/ces.png"/></div>
+<div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="images/irlanda/cew.png"/></div>
+<div class="logo-item" data-school="english-talks"><img alt="English Talks" src="images/irlanda/DirectEnglish.png"/></div>
+<div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="images/irlanda/EstudentCampus.avif"/></div>
+<div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="images/irlanda/BirchwaterEducation.avif"/></div>
+<div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="images/irlanda/EuroLanguaje.png"/></div>
+<div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="images/irlanda/BridgeMillsGalway.png"/></div>
+<div class="logo-item" data-school="ega-international"><img alt="EGA International" src="images/irlanda/EGAInternational.png"/></div>
+<div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="images/irlanda/KillarneySchool.jpg"/></div>
+<div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="images/irlanda/atc.png"/></div>
+<div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="images/irlanda/citydublin.png"/></div>
+<div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="images/irlanda/Cork-English-AcademyLogo.png"/></div>
+<div class="logo-item" data-school="dce-english"><img alt="DCE English" src="images/irlanda/DCE_School.png"/></div>
+<div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="images/irlanda/dorset.png"/></div>
+<div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="images/irlanda/cropped-Logo-ISI-Dublin.png"/></div>
+<div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="images/irlanda/Limerick Language.PNG"/></div>
+<div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="images/irlanda/Swan.png"/></div>
+<div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="images/irlanda/Kaplan-Logo.png"/></div>
+<div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="images/irlanda/elischools.png"/></div>
 <!-- Logos segunda pasada (duplicado para loop infinito) -->
-<div class="logo-item" data-school="emerald"><img alt="Emerald" src="img/irlanda/emerald.png"/></div>
-<div class="logo-item" data-school="apollo"><img alt="Apollo" src="img/irlanda/apollo.png"/></div>
-<div class="logo-item" data-school="englishour"><img alt="Englishour" src="img/irlanda/englishour.png"/></div>
-<div class="logo-item" data-school="atlas"><img alt="Atlas" src="img/irlanda/atlas.jpg"/></div>
-<div class="logo-item" data-school="dci"><img alt="DCI" src="img/irlanda/dci.png"/></div>
-<div class="logo-item" data-school="delfin"><img alt="Delfin" src="img/irlanda/delfin.png"/></div>
-<div class="logo-item" data-school="everest"><img alt="Everest" src="img/irlanda/Everest.png"/></div>
-<div class="logo-item" data-school="ice"><img alt="ICE" src="img/irlanda/ice.png"/></div>
-<div class="logo-item" data-school="acet"><img alt="ACET" src="img/irlanda/ces.png"/></div>
-<div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="img/irlanda/corkenglishcollege.png"/></div>
-<div class="logo-item" data-school="twin-english"><img alt="Twin English" src="img/irlanda/twin.png"/></div>
-<div class="logo-item" data-school="ulearn"><img alt="ULearn" src="img/irlanda/Ulernlogo.png"/></div>
-<div class="logo-item" data-school="erin-school"><img alt="Erin School" src="img/irlanda/ErinSchool.png"/></div>
-<div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="img/irlanda/ces.png"/></div>
-<div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="img/irlanda/cew.PNG"/></div>
-<div class="logo-item" data-school="english-talks"><img alt="English Talks" src="img/irlanda/DirectEnglish.png"/></div>
-<div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="img/irlanda/EstudentCampus.avif"/></div>
-<div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="img/irlanda/BirchwaterEducation.avif"/></div>
-<div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="img/irlanda/EuroLanguaje.png"/></div>
-<div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="img/irlanda/BridgeMillsGalway.png"/></div>
-<div class="logo-item" data-school="ega-international"><img alt="EGA International" src="img/irlanda/EGAInternational.png"/></div>
-<div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="img/irlanda/KillarneySchool.jpg"/></div>
-<div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="img/irlanda/atc.png"/></div>
-<div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="img/irlanda/citydublin.png"/></div>
-<div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="img/irlanda/Cork-English-AcademyLogo.png"/></div>
-<div class="logo-item" data-school="dce-english"><img alt="DCE English" src="img/irlanda/DCE_School.png"/></div>
-<div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="img/irlanda/dorset.png"/></div>
-<div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="img/irlanda/cropped-Logo-ISI-Dublin.png"/></div>
-<div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="img/irlanda/Limerick Language.PNG"/></div>
-<div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="img/irlanda/Swan.png"/></div>
-<div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="img/irlanda/Kaplan-Logo.png"/></div>
-<div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="img/irlanda/elischools.png"/></div>
-<div class="logo-item" data-school="emerald"><img alt="Emerald" src="img/irlanda/emerald.png"/></div><div class="logo-item" data-school="apollo"><img alt="Apollo" src="img/irlanda/apollo.png"/></div><div class="logo-item" data-school="englishour"><img alt="Englishour" src="img/irlanda/englishour.png"/></div><div class="logo-item" data-school="atlas"><img alt="Atlas" src="img/irlanda/atlas.jpg"/></div><div class="logo-item" data-school="dci"><img alt="DCI" src="img/irlanda/dci.png"/></div><div class="logo-item" data-school="delfin"><img alt="Delfin" src="img/irlanda/delfin.png"/></div><div class="logo-item" data-school="everest"><img alt="Everest" src="img/irlanda/Everest.png"/></div><div class="logo-item" data-school="ice"><img alt="ICE" src="img/irlanda/ice.png"/></div><div class="logo-item" data-school="acet"><img alt="ACET" src="img/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="img/irlanda/corkenglishcollege.png"/></div><div class="logo-item" data-school="twin-english"><img alt="Twin English" src="img/irlanda/twin.png"/></div><div class="logo-item" data-school="ulearn"><img alt="ULearn" src="img/irlanda/Ulernlogo.png"/></div><div class="logo-item" data-school="erin-school"><img alt="Erin School" src="img/irlanda/ErinSchool.png"/></div><div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="img/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="img/irlanda/cew.png"/></div><div class="logo-item" data-school="english-talks"><img alt="English Talks" src="img/irlanda/DirectEnglish.png"/></div><div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="img/irlanda/EstudentCampus.avif"/></div><div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="img/irlanda/BirchwaterEducation.avif"/></div><div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="img/irlanda/EuroLanguaje.png"/></div><div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="img/irlanda/BridgeMillsGalway.png"/></div><div class="logo-item" data-school="ega-international"><img alt="EGA International" src="img/irlanda/EGAInternational.png"/></div><div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="img/irlanda/KillarneySchool.jpg"/></div><div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="img/irlanda/atc.png"/></div><div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="img/irlanda/citydublin.png"/></div><div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="img/irlanda/Cork-English-AcademyLogo.png"/></div><div class="logo-item" data-school="dce-english"><img alt="DCE English" src="img/irlanda/DCE_School.png"/></div><div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="img/irlanda/dorset.png"/></div><div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="img/irlanda/cropped-Logo-ISI-Dublin.png"/></div><div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="img/irlanda/Limerick Language.PNG"/></div><div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="img/irlanda/Swan.png"/></div><div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="img/irlanda/Kaplan-Logo.png"/></div><div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="img/irlanda/elischools.png"/></div><div class="logo-item" data-school="emerald"><img alt="Emerald" src="img/irlanda/emerald.png"/></div><div class="logo-item" data-school="apollo"><img alt="Apollo" src="img/irlanda/apollo.png"/></div><div class="logo-item" data-school="englishour"><img alt="Englishour" src="img/irlanda/englishour.png"/></div><div class="logo-item" data-school="atlas"><img alt="Atlas" src="img/irlanda/atlas.jpg"/></div><div class="logo-item" data-school="dci"><img alt="DCI" src="img/irlanda/dci.png"/></div><div class="logo-item" data-school="delfin"><img alt="Delfin" src="img/irlanda/delfin.png"/></div><div class="logo-item" data-school="everest"><img alt="Everest" src="img/irlanda/Everest.png"/></div><div class="logo-item" data-school="ice"><img alt="ICE" src="img/irlanda/ice.png"/></div><div class="logo-item" data-school="acet"><img alt="ACET" src="img/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="img/irlanda/corkenglishcollege.png"/></div><div class="logo-item" data-school="twin-english"><img alt="Twin English" src="img/irlanda/twin.png"/></div><div class="logo-item" data-school="ulearn"><img alt="ULearn" src="img/irlanda/Ulernlogo.png"/></div><div class="logo-item" data-school="erin-school"><img alt="Erin School" src="img/irlanda/ErinSchool.png"/></div><div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="img/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="img/irlanda/cew.PNG"/></div><div class="logo-item" data-school="english-talks"><img alt="English Talks" src="img/irlanda/DirectEnglish.png"/></div><div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="img/irlanda/EstudentCampus.avif"/></div><div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="img/irlanda/BirchwaterEducation.avif"/></div><div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="img/irlanda/EuroLanguaje.png"/></div><div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="img/irlanda/BridgeMillsGalway.png"/></div><div class="logo-item" data-school="ega-international"><img alt="EGA International" src="img/irlanda/EGAInternational.png"/></div><div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="img/irlanda/KillarneySchool.jpg"/></div><div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="img/irlanda/atc.png"/></div><div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="img/irlanda/citydublin.png"/></div><div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="img/irlanda/Cork-English-AcademyLogo.png"/></div><div class="logo-item" data-school="dce-english"><img alt="DCE English" src="img/irlanda/DCE_School.png"/></div><div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="img/irlanda/dorset.png"/></div><div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="img/irlanda/cropped-Logo-ISI-Dublin.png"/></div><div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="img/irlanda/Limerick Language.PNG"/></div><div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="img/irlanda/Swan.png"/></div><div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="img/irlanda/Kaplan-Logo.png"/></div><div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="img/irlanda/elischools.png"/></div></div>
+<div class="logo-item" data-school="emerald"><img alt="Emerald" src="images/irlanda/emerald.png"/></div>
+<div class="logo-item" data-school="apollo"><img alt="Apollo" src="images/irlanda/apollo.png"/></div>
+<div class="logo-item" data-school="englishour"><img alt="Englishour" src="images/irlanda/englishour.png"/></div>
+<div class="logo-item" data-school="atlas"><img alt="Atlas" src="images/irlanda/atlas.jpg"/></div>
+<div class="logo-item" data-school="dci"><img alt="DCI" src="images/irlanda/dci.png"/></div>
+<div class="logo-item" data-school="delfin"><img alt="Delfin" src="images/irlanda/delfin.png"/></div>
+<div class="logo-item" data-school="everest"><img alt="Everest" src="images/irlanda/Everest.png"/></div>
+<div class="logo-item" data-school="ice"><img alt="ICE" src="images/irlanda/ice.png"/></div>
+<div class="logo-item" data-school="acet"><img alt="ACET" src="images/irlanda/ces.png"/></div>
+<div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="images/irlanda/corkenglishcollege.png"/></div>
+<div class="logo-item" data-school="twin-english"><img alt="Twin English" src="images/irlanda/twin.png"/></div>
+<div class="logo-item" data-school="ulearn"><img alt="ULearn" src="images/irlanda/Ulernlogo.png"/></div>
+<div class="logo-item" data-school="erin-school"><img alt="Erin School" src="images/irlanda/ErinSchool.png"/></div>
+<div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="images/irlanda/ces.png"/></div>
+<div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="images/irlanda/cew.PNG"/></div>
+<div class="logo-item" data-school="english-talks"><img alt="English Talks" src="images/irlanda/DirectEnglish.png"/></div>
+<div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="images/irlanda/EstudentCampus.avif"/></div>
+<div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="images/irlanda/BirchwaterEducation.avif"/></div>
+<div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="images/irlanda/EuroLanguaje.png"/></div>
+<div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="images/irlanda/BridgeMillsGalway.png"/></div>
+<div class="logo-item" data-school="ega-international"><img alt="EGA International" src="images/irlanda/EGAInternational.png"/></div>
+<div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="images/irlanda/KillarneySchool.jpg"/></div>
+<div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="images/irlanda/atc.png"/></div>
+<div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="images/irlanda/citydublin.png"/></div>
+<div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="images/irlanda/Cork-English-AcademyLogo.png"/></div>
+<div class="logo-item" data-school="dce-english"><img alt="DCE English" src="images/irlanda/DCE_School.png"/></div>
+<div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="images/irlanda/dorset.png"/></div>
+<div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="images/irlanda/cropped-Logo-ISI-Dublin.png"/></div>
+<div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="images/irlanda/Limerick Language.PNG"/></div>
+<div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="images/irlanda/Swan.png"/></div>
+<div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="images/irlanda/Kaplan-Logo.png"/></div>
+<div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="images/irlanda/elischools.png"/></div>
+<div class="logo-item" data-school="emerald"><img alt="Emerald" src="images/irlanda/emerald.png"/></div><div class="logo-item" data-school="apollo"><img alt="Apollo" src="images/irlanda/apollo.png"/></div><div class="logo-item" data-school="englishour"><img alt="Englishour" src="images/irlanda/englishour.png"/></div><div class="logo-item" data-school="atlas"><img alt="Atlas" src="images/irlanda/atlas.jpg"/></div><div class="logo-item" data-school="dci"><img alt="DCI" src="images/irlanda/dci.png"/></div><div class="logo-item" data-school="delfin"><img alt="Delfin" src="images/irlanda/delfin.png"/></div><div class="logo-item" data-school="everest"><img alt="Everest" src="images/irlanda/Everest.png"/></div><div class="logo-item" data-school="ice"><img alt="ICE" src="images/irlanda/ice.png"/></div><div class="logo-item" data-school="acet"><img alt="ACET" src="images/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="images/irlanda/corkenglishcollege.png"/></div><div class="logo-item" data-school="twin-english"><img alt="Twin English" src="images/irlanda/twin.png"/></div><div class="logo-item" data-school="ulearn"><img alt="ULearn" src="images/irlanda/Ulernlogo.png"/></div><div class="logo-item" data-school="erin-school"><img alt="Erin School" src="images/irlanda/ErinSchool.png"/></div><div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="images/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="images/irlanda/cew.png"/></div><div class="logo-item" data-school="english-talks"><img alt="English Talks" src="images/irlanda/DirectEnglish.png"/></div><div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="images/irlanda/EstudentCampus.avif"/></div><div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="images/irlanda/BirchwaterEducation.avif"/></div><div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="images/irlanda/EuroLanguaje.png"/></div><div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="images/irlanda/BridgeMillsGalway.png"/></div><div class="logo-item" data-school="ega-international"><img alt="EGA International" src="images/irlanda/EGAInternational.png"/></div><div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="images/irlanda/KillarneySchool.jpg"/></div><div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="images/irlanda/atc.png"/></div><div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="images/irlanda/citydublin.png"/></div><div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="images/irlanda/Cork-English-AcademyLogo.png"/></div><div class="logo-item" data-school="dce-english"><img alt="DCE English" src="images/irlanda/DCE_School.png"/></div><div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="images/irlanda/dorset.png"/></div><div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="images/irlanda/cropped-Logo-ISI-Dublin.png"/></div><div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="images/irlanda/Limerick Language.PNG"/></div><div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="images/irlanda/Swan.png"/></div><div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="images/irlanda/Kaplan-Logo.png"/></div><div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="images/irlanda/elischools.png"/></div><div class="logo-item" data-school="emerald"><img alt="Emerald" src="images/irlanda/emerald.png"/></div><div class="logo-item" data-school="apollo"><img alt="Apollo" src="images/irlanda/apollo.png"/></div><div class="logo-item" data-school="englishour"><img alt="Englishour" src="images/irlanda/englishour.png"/></div><div class="logo-item" data-school="atlas"><img alt="Atlas" src="images/irlanda/atlas.jpg"/></div><div class="logo-item" data-school="dci"><img alt="DCI" src="images/irlanda/dci.png"/></div><div class="logo-item" data-school="delfin"><img alt="Delfin" src="images/irlanda/delfin.png"/></div><div class="logo-item" data-school="everest"><img alt="Everest" src="images/irlanda/Everest.png"/></div><div class="logo-item" data-school="ice"><img alt="ICE" src="images/irlanda/ice.png"/></div><div class="logo-item" data-school="acet"><img alt="ACET" src="images/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-college"><img alt="Cork English College" src="images/irlanda/corkenglishcollege.png"/></div><div class="logo-item" data-school="twin-english"><img alt="Twin English" src="images/irlanda/twin.png"/></div><div class="logo-item" data-school="ulearn"><img alt="ULearn" src="images/irlanda/Ulernlogo.png"/></div><div class="logo-item" data-school="erin-school"><img alt="Erin School" src="images/irlanda/ErinSchool.png"/></div><div class="logo-item" data-school="ces-cork"><img alt="CES Cork" src="images/irlanda/ces.png"/></div><div class="logo-item" data-school="cork-english-world"><img alt="Cork English World" src="images/irlanda/cew.PNG"/></div><div class="logo-item" data-school="english-talks"><img alt="English Talks" src="images/irlanda/DirectEnglish.png"/></div><div class="logo-item" data-school="student-campus"><img alt="Student Campus" src="images/irlanda/EstudentCampus.avif"/></div><div class="logo-item" data-school="birchwater"><img alt="Birchwater" src="images/irlanda/BirchwaterEducation.avif"/></div><div class="logo-item" data-school="euro-language"><img alt="Euro Language" src="images/irlanda/EuroLanguaje.png"/></div><div class="logo-item" data-school="bridge-mills"><img alt="Bridge Mills" src="images/irlanda/BridgeMillsGalway.png"/></div><div class="logo-item" data-school="ega-international"><img alt="EGA International" src="images/irlanda/EGAInternational.png"/></div><div class="logo-item" data-school="killarney-school"><img alt="Killarney School" src="images/irlanda/KillarneySchool.jpg"/></div><div class="logo-item" data-school="atc-dublin"><img alt="ATC Dublin" src="images/irlanda/atc.png"/></div><div class="logo-item" data-school="city-college-dublin"><img alt="City College Dublin" src="images/irlanda/citydublin.png"/></div><div class="logo-item" data-school="cork-english-academy"><img alt="Cork English Academy" src="images/irlanda/Cork-English-AcademyLogo.png"/></div><div class="logo-item" data-school="dce-english"><img alt="DCE English" src="images/irlanda/DCE_School.png"/></div><div class="logo-item" data-school="dorset-college"><img alt="Dorset College" src="images/irlanda/dorset.png"/></div><div class="logo-item" data-school="isi-dublin"><img alt="ISI Dublin" src="images/irlanda/cropped-Logo-ISI-Dublin.png"/></div><div class="logo-item" data-school="limerick-language"><img alt="Limerick Language" src="images/irlanda/Limerick Language.PNG"/></div><div class="logo-item" data-school="swan-dublin"><img alt="Swan Dublin" src="images/irlanda/Swan.png"/></div><div class="logo-item" data-school="kaplan"><img alt="Kaplan" src="images/irlanda/Kaplan-Logo.png"/></div><div class="logo-item" data-school="eli-dublin"><img alt="ELI Dublin" src="images/irlanda/elischools.png"/></div></div>
 </div>
 </section>
   <section class="ireland-course-header">
@@ -187,9 +193,9 @@
       <div class="institution-grid">
         
         <div id="school-emerald" class="institution-card is-featured" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/Emerald5.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
+          <div class="card-image" style="background-image: url('images/irlanda/Emerald5.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span>EMERALD</span><img src="img/irlanda/Emerald.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>EMERALD</span><img src="images/irlanda/Emerald.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Rathgar, Dublín 6)</div>
             <p data-i18n="school_emerald_desc">Prestigiosa institución con más de 30 años de experiencia, ubicada en una mansión victoriana con jardines privados.</p>
           </div>
@@ -208,9 +214,9 @@
         </div>
 
         <div id="school-apollo" class="institution-card is-featured" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/apollo-1.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
+          <div class="card-image" style="background-image: url('images/irlanda/apollo-1.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span>APOLLO</span><img src="img/irlanda/apollo.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>APOLLO</span><img src="images/irlanda/apollo.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Lad Lane, Dublín 2)</div>
             <p data-i18n="school_apollo_desc">Escuela moderna y premiada situada en el centro de Dublín, conocida por su enfoque innovador y tecnológico.</p>
           </div>
@@ -229,9 +235,9 @@
         </div>
 
         <div id="school-englishour" class="institution-card is-featured" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/englishour-4.webp');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
+          <div class="card-image" style="background-image: url('images/irlanda/englishour-4.webp');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ENGLISHOUR</span><img src="img/irlanda/englishour-logo-24.webp" alt="Logo"></h3>
+            <h3 class="card-title"><span>ENGLISHOUR</span><img src="images/irlanda/englishour-logo-24.webp" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Westmoreland Street, Dublin 2)</div>
             <p data-i18n="school_englishour_desc">Expertos en comunicación oral con un método directo, situada en el corazón de la ciudad cerca de Trinity College.</p>
           </div>
@@ -250,9 +256,9 @@
         </div>
 
         <div id="school-atlas" class="institution-card is-featured" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/atlas-1.jpg');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
+          <div class="card-image" style="background-image: url('images/irlanda/atlas-1.jpg');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ATLAS</span><img src="img/irlanda/atlas.jpg" alt="Logo"></h3>
+            <h3 class="card-title"><span>ATLAS</span><img src="images/irlanda/atlas.jpg" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (South Richmond Street, Dublín)</div>
             <p data-i18n="school_atlas_desc">Reconocida por su excelencia académica, Atlas ofrece un ambiente vibrante en un edificio icónico frente al Gran Canal.</p>
           </div>
@@ -271,9 +277,9 @@
         </div>
 
         <div id="school-dci" class="institution-card is-featured" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/dci-1.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
+          <div class="card-image" style="background-image: url('images/irlanda/dci-1.png');"><span class="card-badge" data-i18n="card_featured">Destacado</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span>DCI</span><img src="img/irlanda/dci.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>DCI</span><img src="images/irlanda/dci.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Dublin City)</div>
             <p data-i18n="school_dci_desc">Centro moderno con enfoque en el aprendizaje práctico y técnico, ideal para estudiantes con objetivos académicos claros.</p>
           </div>
@@ -292,9 +298,9 @@
         </div>
 
         <div id="school-delfin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/delfin-staff.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/delfin-staff.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>DELFIN DUBLIN</span><img src="img/irlanda/delfin.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>DELFIN DUBLIN</span><img src="images/irlanda/delfin.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Parnell Square East, Dublín)</div>
             <p data-i18n="school_delfin_desc">Famosa por su ambiente divertido y social, Delfin ofrece educación de calidad en una ubicación central histórica.</p>
           </div>
@@ -313,9 +319,9 @@
         </div>
 
         <div id="school-everest" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/EverestPIC.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/EverestPIC.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>EVEREST</span><img src="img/irlanda/Everest.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>EVEREST</span><img src="images/irlanda/Everest.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Cumberland st. South Dublín 2)</div>
             <p data-i18n="school_everest_desc">Escuela fundada por profesores con un fuerte enfoque académico y seguimiento personalizado del estudiante.</p>
           </div>
@@ -334,9 +340,9 @@
         </div>
 
         <div id="school-ice" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/ice-3.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/ice-3.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ICE</span><img src="img/irlanda/ice.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ICE</span><img src="images/irlanda/ice.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Malahide, Co. Dublin)</div>
             <p data-i18n="school_ice_desc">Ubicada en el pintoresco pueblo costero de Malahide, ideal para una experiencia inmersiva y segura.</p>
           </div>
@@ -355,9 +361,9 @@
         </div>
 
         <div id="school-acet" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/ceswellington-1.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/ceswellington-1.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ACET</span><img src="img/irlanda/ceswellington.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ACET</span><img src="images/irlanda/ceswellington.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (Wellington House, Cork)</div>
             <p data-i18n="school_acet_desc">Escuela boutique líder en Cork con un servicio altamente personalizado y ambiente profesional.</p>
           </div>
@@ -376,9 +382,9 @@
         </div>
 
         <div id="school-cork-english-college" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/corkenglishcollege-1.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/corkenglishcollege-1.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>CORK ENGLISH COLLEGE</span><img src="img/irlanda/corkenglishcollege.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>CORK ENGLISH COLLEGE</span><img src="images/irlanda/corkenglishcollege.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (Saint Patrick’s Bridge, Cork)</div>
             <p data-i18n="school_cork_english_college_desc">Institución familiar premiada, centro oficial de exámenes para Cambridge, IELTS y OET.</p>
           </div>
@@ -397,9 +403,9 @@
         </div>
 
         <div id="school-twin-english" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/Twin English Centre Dublin.avif');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/Twin English Centre Dublin.avif');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>TWIN ENGLISH CENTRE</span><img src="img/irlanda/twin11.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>TWIN ENGLISH CENTRE</span><img src="images/irlanda/twin11.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (N Great George's St, Dublin)</div>
             <p data-i18n="school_twin_english_desc">Parte de un grupo educativo global, Twin destaca por sus programas que combinan clases y experiencia laboral.</p>
           </div>
@@ -418,9 +424,9 @@
         </div>
 
         <div id="school-ulearn" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/ulearn2.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/ulearn2.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ULEARN</span><img src="img/irlanda/Ulernlogo.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ULEARN</span><img src="images/irlanda/Ulernlogo.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Harcourt Street, Dublin 2)</div>
             <p data-i18n="school_ulearn_desc">Con más de 30 años de historia, ULearn es conocida por su ambiente familiar y trato cercano al estudiante.</p>
           </div>
@@ -439,9 +445,9 @@
         </div>
 
         <div id="school-erin-school" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/erincollege-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/erincollege-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ERIN SCHOOL</span><img src="img/irlanda/ErinSchool.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ERIN SCHOOL</span><img src="images/irlanda/ErinSchool.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Rotunda, Dublin)</div>
             <p data-i18n="school_erin_school_desc">Una opción popular por su flexibilidad y multiculturalidad en el centro norte de la ciudad.</p>
           </div>
@@ -460,9 +466,9 @@
         </div>
 
         <div id="school-ces-cork" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/ceswellington-1.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/ceswellington-1.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>CES CORK</span><img src="img/irlanda/ceswellington.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>CES CORK</span><img src="images/irlanda/ceswellington.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (Wellington House, Cork)</div>
             <p data-i18n="school_ces_cork_desc">Parte del prestigioso grupo CES, ofrece una educación de primer nivel en la amigable ciudad de Cork.</p>
           </div>
@@ -481,9 +487,9 @@
         </div>
 
         <div id="school-cork-english-world" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/cew-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/cew-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>CORK ENGLISH WORLD</span><img src="img/irlanda/cew.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>CORK ENGLISH WORLD</span><img src="images/irlanda/cew.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (Bishop St, Cork City)</div>
             <p data-i18n="school_cork_english_world_desc">Especializada en fluidez y confianza, esta escuela independiente ofrece un ambiente cercano y profesional.</p>
           </div>
@@ -502,9 +508,9 @@
         </div>
 
         <div id="school-english-talks" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/EnglishTalks1.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/EnglishTalks1.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ENGLISH TALKS</span><img src="img/irlanda/DirectEnglish.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ENGLISH TALKS</span><img src="images/irlanda/DirectEnglish.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (St. Patrick’s Hill, Cork)</div>
             <p data-i18n="school_english_talks_desc">Centro moderno en Cork que combina métodos tradicionales con tecnología educativa innovadora.</p>
           </div>
@@ -523,9 +529,9 @@
         </div>
 
         <div id="school-student-campus" class="institution-card" data-city="limerick">
-          <div class="card-image" style="background-image: url('img/irlanda/EstudentCampus2.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/EstudentCampus2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>STUDENT CAMPUS</span><img src="img/irlanda/EstudentCampus.avif" alt="Logo"></h3>
+            <h3 class="card-title"><span>STUDENT CAMPUS</span><img src="images/irlanda/EstudentCampus.avif" alt="Logo"></h3>
             <div class="card-info">📍 Limerick (Patrick Street, Limerick)</div>
             <p data-i18n="school_student_campus_desc">Ubicada en la histórica Limerick, ofrece una experiencia auténtica y una excelente inmersión en la vida irlandesa.</p>
           </div>
@@ -544,9 +550,9 @@
         </div>
 
         <div id="school-birchwater" class="institution-card" data-city="limerick">
-          <div class="card-image" style="background-image: url('img/irlanda/BirchwaterEducation3.avif');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/BirchwaterEducation3.avif');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>BIRCHWATER EDUCATION</span><img src="img/irlanda/BirchwaterEducation.avif" alt="Logo"></h3>
+            <h3 class="card-title"><span>BIRCHWATER EDUCATION</span><img src="images/irlanda/BirchwaterEducation.avif" alt="Logo"></h3>
             <div class="card-info">📍 Shannon (Ballycasey House, Shannon)</div>
             <p data-i18n="school_birchwater_desc">Una escuela única en la región de Shannon, perfecta para quienes buscan tranquilidad y un entorno natural.</p>
           </div>
@@ -565,9 +571,9 @@
         </div>
 
         <div id="school-euro-language" class="institution-card" data-city="galway">
-          <div class="card-image" style="background-image: url('img/irlanda/EuroLanguaje2.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/EuroLanguaje2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>EURO LANGUAGE CENTER</span><img src="img/irlanda/EuroLanguaje.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>EURO LANGUAGE CENTER</span><img src="images/irlanda/EuroLanguaje.png" alt="Logo"></h3>
             <div class="card-info">📍 Galway (Middle Street, Galway)</div>
             <p data-i18n="school_euro_language_desc">Especialistas en la vibrante Galway, enfocados en integrar al estudiante en la cultura bohemia de la ciudad.</p>
           </div>
@@ -586,9 +592,9 @@
         </div>
 
         <div id="school-bridge-mills" class="institution-card" data-city="galway">
-          <div class="card-image" style="background-image: url('img/irlanda/BridgeMillsGalway-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/BridgeMillsGalway-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>BRIDGE MILLS GALWAY</span><img src="img/irlanda/BridgeMillsGalway.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>BRIDGE MILLS GALWAY</span><img src="images/irlanda/BridgeMillsGalway.png" alt="Logo"></h3>
             <div class="card-info">📍 Galway (The Bridge Mills, Galway)</div>
             <p data-i18n="school_bridge_mills_desc">Ubicada en un molino restaurado del siglo XVIII a orillas del río Corrib, combina historia y excelencia académica.</p>
           </div>
@@ -607,9 +613,9 @@
         </div>
 
         <div id="school-ega-international" class="institution-card" data-city="limerick">
-          <div class="card-image" style="background-image: url('img/irlanda/EGAInternational1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/EGAInternational1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>EGA INTERNATIONAL</span><img src="img/irlanda/EGAInternational.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>EGA INTERNATIONAL</span><img src="images/irlanda/EGAInternational.png" alt="Logo"></h3>
             <div class="card-info">📍 Killarney (College Square, Killarney)</div>
             <p data-i18n="school_ega_international_desc">Situada en el corazón del Parque Nacional de Killarney, ofrece una experiencia de aprendizaje rodeada de naturaleza.</p>
           </div>
@@ -628,9 +634,9 @@
         </div>
 
         <div id="school-killarney-school" class="institution-card" data-city="limerick">
-          <div class="card-image" style="background-image: url('img/irlanda/KillarneySchool-1.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/KillarneySchool-1.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>KILLARNEY SCHOOL OF ENGLISH</span><img src="img/irlanda/KillarneySchool.jpg" alt="Logo"></h3>
+            <h3 class="card-title"><span>KILLARNEY SCHOOL OF ENGLISH</span><img src="images/irlanda/KillarneySchool.jpg" alt="Logo"></h3>
             <div class="card-info">📍 Killarney (Muckross Road, Killarney)</div>
             <p data-i18n="school_killarney_school_desc">Escuela familiar con décadas de experiencia, conocida por su calidez y su entorno paisajístico espectacular.</p>
           </div>
@@ -649,9 +655,9 @@
         </div>
 
         <div id="school-atc-dublin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/atc-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/atc-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ATC DUBLIN</span><img src="img/irlanda/atc.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ATC DUBLIN</span><img src="images/irlanda/atc.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Bray, Dublin)</div>
             <p data-i18n="school_atc_dublin_desc">ATC ofrece programas de alta calidad en Bray, una hermosa ciudad costera a solo 35 minutos del centro de Dublín.</p>
           </div>
@@ -670,9 +676,9 @@
         </div>
 
         <div id="school-city-college-dublin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/citydublin-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/citydublin-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>CITY COLLEGE DUBLIN</span><img src="img/irlanda/citydublin.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>CITY COLLEGE DUBLIN</span><img src="images/irlanda/citydublin.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (George Street, Dublín 2)</div>
             <p data-i18n="school_city_college_dublin_desc">Enfoque profesional y académico de alto nivel en una institución que ofrece formación para el mundo real.</p>
           </div>
@@ -691,9 +697,9 @@
         </div>
 
         <div id="school-cork-english-academy" class="institution-card" data-city="cork">
-          <div class="card-image" style="background-image: url('img/irlanda/CorkEnglishAcademy.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/CorkEnglishAcademy.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>CORK ENGLISH ACADEMY</span><img src="img/irlanda/Cork-English-AcademyLogo.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>CORK ENGLISH ACADEMY</span><img src="images/irlanda/Cork-English-AcademyLogo.png" alt="Logo"></h3>
             <div class="card-info">📍 Cork (Drinan Street, Cork City)</div>
             <p data-i18n="school_cork_english_academy_desc">Academia independiente de alta calidad que destaca por su trato personalizado y su excelente ubicación en Cork.</p>
           </div>
@@ -712,9 +718,9 @@
         </div>
 
         <div id="school-dce-english" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/DCE English Language School1n.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/DCE English Language School1n.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>DCE ENGLISH</span><img src="img/irlanda/DCE_School.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>DCE ENGLISH</span><img src="images/irlanda/DCE_School.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (North Cumberland Street, Dublín 1)</div>
             <p data-i18n="school_dce_english_desc">DCE se centra en proporcionar una educación accesible y efectiva en una ubicación céntrica y conveniente.</p>
           </div>
@@ -733,9 +739,9 @@
         </div>
 
         <div id="school-dorset-college" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/dorset-1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/dorset-1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>DORSET COLLEGE</span><img src="img/irlanda/dorset.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>DORSET COLLEGE</span><img src="images/irlanda/dorset.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Belvedere Place, Dublín 1)</div>
             <p data-i18n="school_dorset_college_desc">Institución educativa integral que ofrece desde cursos de inglés hasta grados universitarios, fomentando el progreso académico.</p>
           </div>
@@ -754,9 +760,9 @@
         </div>
 
         <div id="school-isi-dublin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/isi-dublin-10.jpg');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/isi-dublin-10.jpg');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ISI DUBLIN</span><img src="img/irlanda/cropped-Logo-ISI-Dublin.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ISI DUBLIN</span><img src="images/irlanda/cropped-Logo-ISI-Dublin.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Meetinghouse Lane, Dublin 7)</div>
             <p data-i18n="school_isi_dublin_desc">Combina un diseño interior moderno e industrial con un edificio histórico, ganadora de múltiples premios "Star School".</p>
           </div>
@@ -775,9 +781,9 @@
         </div>
 
         <div id="school-limerick-language" class="institution-card" data-city="limerick">
-          <div class="card-image" style="background-image: url('img/irlanda/limerick1.webp');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/limerick1.webp');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>LIMERICK LANGUAGE CENTRE</span><img src="img/irlanda/Limerick Language.PNG" alt="Logo"></h3>
+            <h3 class="card-title"><span>LIMERICK LANGUAGE CENTRE</span><img src="images/irlanda/Limerick Language.PNG" alt="Logo"></h3>
             <div class="card-info">📍 Limerick (Mallow Street, Limerick)</div>
             <p data-i18n="school_limerick_language_desc">Ubicada en un elegante edificio georgiano, esta escuela es famosa por su ambiente cálido y profesorado experto.</p>
           </div>
@@ -796,9 +802,9 @@
         </div>
 
         <div id="school-swan-dublin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/df4e8f_8eca342da14e4508aec32059b83d9048~mv2.avif');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/df4e8f_8eca342da14e4508aec32059b83d9048~mv2.avif');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>SWAN DUBLIN</span><img src="img/irlanda/Swan.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>SWAN DUBLIN</span><img src="images/irlanda/Swan.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Grafton Street, Dublin 2)</div>
             <p data-i18n="school_swan_dublin_desc">Fundada por una familia de profesores, Swan está situada en la calle más famosa de Dublín: Grafton Street.</p>
           </div>
@@ -817,9 +823,9 @@
         </div>
 
         <div id="school-kaplan" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/KAPLAN_2_-_AYA.webp');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/KAPLAN_2_-_AYA.webp');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>KAPLAN</span><img src="img/irlanda/Kaplan-Logo.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>KAPLAN</span><img src="images/irlanda/Kaplan-Logo.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Temple Bar, Dublin)</div>
             <p data-i18n="school_kaplan_desc">Líder global en educación, Kaplan Dublín se ubica en un edificio del siglo XVIII junto al río Liffey.</p>
           </div>
@@ -838,9 +844,9 @@
         </div>
 
         <div id="school-eli-dublin" class="institution-card" data-city="dublin">
-          <div class="card-image" style="background-image: url('img/irlanda/elischools1.png');"></div>
+          <div class="card-image" style="background-image: url('images/irlanda/elischools1.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span>ELI DUBLIN</span><img src="img/irlanda/elischools.png" alt="Logo"></h3>
+            <h3 class="card-title"><span>ELI DUBLIN</span><img src="images/irlanda/elischools.png" alt="Logo"></h3>
             <div class="card-info">📍 Dublín (Herbert Place, Dublin 2)</div>
             <p data-i18n="school_eli_dublin_desc">ELI ofrece una experiencia de alta calidad en edificios georgianos magníficamente restaurados en el distrito de los negocios.</p>
           </div>
@@ -875,26 +881,20 @@
   <script>
     (function () {
       function applyTranslations(lang) {
-        if (typeof translations === 'undefined' || !translations[lang]) {
-            console.error('Translations not found for language:', lang);
-            return;
-        }
+        if (typeof translations === 'undefined' || !translations[lang]) return;
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
-          if (translations[lang][key] !== undefined) {
-              el.textContent = translations[lang][key];
-          }
+          if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
         });
         document.querySelectorAll('.lang-flag').forEach(function (flag) {
           flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
         });
         document.documentElement.lang = lang;
-        try { localStorage.setItem('selectedLanguage', lang); } catch (e) {}
       }
       window.changeLanguage = function (lang) { applyTranslations(lang); };
       document.addEventListener('DOMContentLoaded', function () {
-        var saved = 'en';
-        try { saved = localStorage.getItem('selectedLanguage') || 'en'; } catch (e) {}
+        var saved = 'es';
+        try { saved = localStorage.getItem('selectedLanguage') || 'es'; } catch (e) {}
         applyTranslations(saved);
         
         document.querySelectorAll('.filter-btn').forEach(function (btn) {
