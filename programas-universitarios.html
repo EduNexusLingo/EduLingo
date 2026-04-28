@@ -9,6 +9,41 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Estilos para posicionar las banderas junto al logo en móvil */
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mobile-lang {
+      display: none;
+      gap: 5px;
+      margin-left: 5px;
+    }
+    .mobile-lang .lang-flag {
+      width: 25px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: transform 0.2s;
+    }
+    .mobile-lang .lang-flag:hover {
+      transform: scale(1.1);
+    }
+    .mobile-lang .lang-flag.active {
+      border: 2px solid var(--gold, #d4af37);
+    }
+
+    @media (max-width: 768px) {
+      .mobile-lang {
+        display: flex;
+      }
+      .desktop-lang {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="sparkles" id="sparkles"></div>
@@ -21,20 +56,18 @@
       <a href="https://www.Edunexuslingo.com/LingoPok/index.html" class="logo">
         <img src="img/pok.png" alt="POK">
       </a>
+      <div class="lang-selector mobile-lang">
+        <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" data-lang="es" onclick="changeLanguage('es')" alt="ES">
+        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="EN">
+      </div>
     </div>
     <div class="menu-toggle" id="menuToggle" aria-label="Menu">
       <span></span><span></span><span></span>
     </div>
     <nav id="mainNav">
-      <div class="lang-selector">
+      <div class="lang-selector desktop-lang">
         <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" data-lang="es" onclick="changeLanguage('es')" alt="ES">
         <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="EN">
-        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="FR">
-        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="ZH">
-        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="EL">
-        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="UK">
-        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="MN">
-        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="JP">
       </div>
       <a href="index-EduNexusLingo.html#inicio" data-i18n="nav_home">Start</a>
       <a href="index-EduNexusLingo.html#destinos" data-i18n="nav_destinations">Destinations</a>
