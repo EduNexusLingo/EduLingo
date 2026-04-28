@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,18 +12,18 @@
 
   <style>
     :root {
-      --primary: #0066cc;
-      --secondary: #004d99;
-      --accent: #ffcc00;
-      --light: #f8f9fa;
-      --dark: #333;
+      --primary: #003366; /* Azul más oscuro para combinar con EduNexusLingo */
+      --secondary: #001f3f;
+      --accent: #d4af37; /* Dorado elegante */
+      --light: #fdfdfd;
+      --dark: #1a1a1a;
       --white: #ffffff;
-      --shadow: 0 4px 15px rgba(0,0,0,0.1);
-      --radius: 12px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.08);
+      --radius: 16px;
     }
     .ireland-course-header {
-      padding: 120px 5% 70px;
-      background: linear-gradient(rgba(0, 102, 204, 0.82), rgba(0, 77, 153, 0.82)), url('img/dublin.jpg');
+      padding: 140px 5% 80px;
+      background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 31, 63, 0.85)), url('img/dublin.jpg');
       background-size: cover;
       background-position: center;
       color: #fff;
@@ -31,7 +31,7 @@
     }
     .ireland-course-header h1 { font-size: clamp(2.3rem, 5vw, 4.5rem); margin-bottom: 1rem; }
     .ireland-course-header p { max-width: 900px; margin: .35rem auto; font-size: 1.15rem; }
-    .logos-carousel-section { background: #fff; padding: 28px 0; border-bottom: 2px solid #e8eef5; overflow: hidden; position: relative; }
+    .logos-carousel-section { background: #fdfdfd; padding: 15px 0; border-bottom: 1px solid #eee; overflow: hidden; position: relative; margin-top: 100px; }
     .logos-carousel-section::before, .logos-carousel-section::after { content: ''; position: absolute; top: 0; width: 120px; height: 100%; z-index: 2; pointer-events: none; }
     .logos-carousel-section::before { left: 0; background: linear-gradient(to right, #fff 0%, transparent 100%); }
     .logos-carousel-section::after { right: 0; background: linear-gradient(to left, #fff 0%, transparent 100%); }
@@ -39,8 +39,8 @@
     .logos-track { display: flex; align-items: center; gap: 30px; width: max-content; animation: scrollLogos 45s linear infinite; }
     .logos-track:hover { animation-play-state: paused; }
     @keyframes scrollLogos { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    .logo-item { flex-shrink: 0; width: 170px; height: 100px; display: flex; align-items: center; justify-content: center; padding: 8px 12px; border-radius: 10px; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; cursor: pointer; }
-    .logo-item img { max-width: 150px; max-height: 82px; object-fit: contain; filter: grayscale(50%) brightness(.65); transition: filter .4s ease, transform .4s ease; }
+    .logo-item { flex-shrink: 0; width: 140px; height: 70px; display: flex; align-items: center; justify-content: center; padding: 5px 10px; border-radius: 8px; transition: transform .3s ease, box-shadow .3s ease, background .3s ease; cursor: pointer; }
+    .logo-item img { max-width: 120px; max-height: 55px; object-fit: contain; filter: grayscale(100%) opacity(0.6); transition: all .4s ease; }
     .logo-item:hover img { filter: grayscale(0%) brightness(1); transform: scale(1.13); }
     .logo-item:hover { box-shadow: 0 6px 22px rgba(0, 102, 204, .18); background: #f0f7ff; transform: translateY(-3px); }
     .content-section { padding: 60px 5%; background-color: #f4f7f6; }
@@ -86,12 +86,6 @@
       <div class="lang-selector">
         <img src="https://flagcdn.com/w40/es.png" class="lang-flag active" data-lang="es" onclick="changeLanguage('es')" alt="ES">
         <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="EN">
-        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="FR">
-        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="ZH">
-        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="EL">
-        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="UK">
-        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="MN">
-        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="JP">
       </div>
       <a href="index-EduNexusLingo.html#inicio" data-i18n="nav_home">Inicio</a>
       <a href="index-EduNexusLingo.html#destinos" data-i18n="nav_destinations">Destinos</a>
@@ -881,20 +875,26 @@
   <script>
     (function () {
       function applyTranslations(lang) {
-        if (typeof translations === 'undefined' || !translations[lang]) return;
+        if (typeof translations === 'undefined' || !translations[lang]) {
+            console.error('Translations not found for language:', lang);
+            return;
+        }
         document.querySelectorAll('[data-i18n]').forEach(function (el) {
           var key = el.getAttribute('data-i18n');
-          if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+          if (translations[lang][key] !== undefined) {
+              el.textContent = translations[lang][key];
+          }
         });
         document.querySelectorAll('.lang-flag').forEach(function (flag) {
           flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
         });
         document.documentElement.lang = lang;
+        try { localStorage.setItem('selectedLanguage', lang); } catch (e) {}
       }
       window.changeLanguage = function (lang) { applyTranslations(lang); };
       document.addEventListener('DOMContentLoaded', function () {
-        var saved = 'es';
-        try { saved = localStorage.getItem('selectedLanguage') || 'es'; } catch (e) {}
+        var saved = 'en';
+        try { saved = localStorage.getItem('selectedLanguage') || 'en'; } catch (e) {}
         applyTranslations(saved);
         
         document.querySelectorAll('.filter-btn').forEach(function (btn) {
