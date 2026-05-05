@@ -383,31 +383,35 @@
   ═══════════════════════════════════════ -->
   <footer>
     <div class="footer-content">
-      <div class="footer-top">
-	    <div class="wechat-qr" style="margin-top: 2rem; text-align: center;">
-          <p style="margin-bottom: 0.5rem; font-size: 0.9rem; color: #888;" data-i18n="wechat_scan">扫描二维码通过微信联系我们 We Chat</p>
-          <img src="img/wechat-qr.png" alt="WeChat QR Code" style="width: 120px; height: 120px; border: 5px solid #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-        <div class="footer-brand">
-          <span class="logo-text">Edu Lingo</span>
-          <div class="gold-divider" style="margin: 0.8rem 0;"></div>
-          <a href="https://wa.me/353831036031" target="_blank" rel="noopener">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20" alt="WhatsApp"> WhatsApp
-          </a>
-          <a href="mailto:info@edunexus.eu">✉ info@edunexus.eu</a>
-          <a href="https://www.edunexus.eu">🌐 edunexus.eu</a>
-		  <p data-i18n="footer_tagline">Educación de élite para quienes aspiran a lo extraordinario.</p>
+      <div class="footer-top" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+        <!-- Columna Izquierda: WeChat QR -->
+        <div class="wechat-qr" style="text-align: left; flex: 1; min-width: 200px;">
+          <p style="margin-bottom: 0.5rem; font-size: 0.85rem; color: #888;" data-i18n="wechat_scan">扫描二维码通过微信联系 nosotros We Chat</p>
+          <img src="img/wechat-qr.png" alt="WeChat QR Code" style="width: 110px; height: 110px; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        </div>
+
+        <!-- Columna Central: Contactos y Marca -->
+        <div class="footer-brand" style="text-align: center; flex: 1; min-width: 250px;">
+          <div class="footer-contact" style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center; margin-bottom: 1.5rem;">
+            <a href="https://wa.me/353831036031" target="_blank" rel="noopener" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="22" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="mailto:info@edunexus.eu" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">✉ info@edunexus.eu</a>
+            <a href="https://www.edunexus.eu" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">🌐 edunexus.eu</a>
+          </div>
+          <span class="logo-text" style="color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; margin-bottom: 0.5rem;">Edu Lingo</span>
+          <div class="gold-divider" style="margin: 0 auto; width: 80px; height: 2px; background: linear-gradient(to right, transparent, #d4af37, transparent);"></div>
+        </div>
+
+        <!-- Columna Derecha: Tagline -->
+        <div class="footer-tagline-container" style="text-align: right; flex: 1; min-width: 200px;">
+          <p data-i18n="footer_tagline" style="color: #888; font-size: 0.95rem; line-height: 1.5;">Elite education for those who aspire to the extraordinary.</p>
         </div>
       </div>
-      
-	  </div>
-      <div class="footer-bottom">
-        <p data-i18n="footer_rights">© 2026 EduNexusLingo. Todos los derechos reservados.</p>
-        <p class="footer-locations" data-i18n="footer_locations">Disponible en España, Malta, Irlanda, Inglaterra, Chipre, EE.UU.</p>
-      </div>
 
-
-	  <!-- WeChat QR Code Section -->
-        
+      <div class="footer-bottom" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <p data-i18n="footer_rights" style="color: #666; font-size: 0.85rem;">© 2026 EduNexusLingo. All rights reserved.</p>
+        <p class="footer-locations" data-i18n="footer_locations" style="color: #666; font-size: 0.85rem;">Available in Spain, Malta, Ireland, England, Cyprus, USA.</p>
       </div>
     </div>
   </footer>
