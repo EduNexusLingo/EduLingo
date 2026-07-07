@@ -562,6 +562,9 @@ const translations = {
     "prog_school_duration": "8 - 52 Weeks",
     "prog_school_title": "Language Schools",
     "prog_school_description": "English programs for all levels.",
+    "prog_school_li1": "✓ Academic Excellence",
+    "prog_school_li2": "✓ Safe Environment",
+    "prog_school_li3": "✓ Well-Rounded Development",
     "prog_uni_duration": "1 - 4 Years",
     "prog_uni_title": "University Programs",
     "prog_uni_description": "Bachelor and Master degrees."
@@ -1130,6 +1133,9 @@ const translations = {
     "prog_school_duration": "8 - 52 Semanas",
     "prog_school_title": "Escuelas de Idiomas",
     "prog_school_description": "Programas de inglés para todos los niveles.",
+    "prog_school_li1": "✓ Excelencia Académica",
+    "prog_school_li2": "✓ Ambiente Seguro",
+    "prog_school_li3": "✓ Desarrollo Integral",
     "prog_uni_duration": "1 - 4 Años",
     "prog_uni_title": "Programas Universitarios",
     "prog_uni_description": "Grados y Másteres."
@@ -1697,6 +1703,9 @@ const translations = {
     "prog_school_duration": "8 - 52 Semanas",
     "prog_school_title": "Escolas de Idiomas",
     "prog_school_description": "Programas de inglês para todos os níveis.",
+    "prog_school_li1": "✓ Excelência Acadêmica",
+    "prog_school_li2": "✓ Ambiente Seguro",
+    "prog_school_li3": "✓ Desenvolvimento Integral",
     "prog_uni_duration": "1 - 4 Anos",
     "prog_uni_title": "Programas Universitários",
     "prog_uni_description": "Bacharelado e Mestrado."
@@ -2264,6 +2273,9 @@ const translations = {
     "prog_school_duration": "8 - 52 週間",
     "prog_school_title": "語学学校",
     "prog_school_description": "全レベル対象の英語プログラム。",
+    "prog_school_li1": "✓ 学業の卓越性",
+    "prog_school_li2": "✓ 安全な環境",
+    "prog_school_li3": "✓ 総合的な成長",
     "prog_uni_duration": "1 - 4 年",
     "prog_uni_title": "大学プログラム",
     "prog_uni_description": "学士および修士号。"
@@ -2831,6 +2843,9 @@ const translations = {
     "prog_school_duration": "8 - 52 周",
     "prog_school_title": "语言学校",
     "prog_school_description": "适合各级水平的英语课程。",
+    "prog_school_li1": "✓ 学术卓越",
+    "prog_school_li2": "✓ 安全环境",
+    "prog_school_li3": "✓ 全面发展",
     "prog_uni_duration": "1 - 4 年",
     "prog_uni_title": "大学课程",
     "prog_uni_description": "学士和硕士学位。"
@@ -3398,6 +3413,9 @@ const translations = {
     "prog_school_duration": "8 - 52 Semaines",
     "prog_school_title": "Écoles de langues",
     "prog_school_description": "Programas d'anglais pour tous les niveaux.",
+    "prog_school_li1": "✓ Excellence académique",
+    "prog_school_li2": "✓ Environnement sûr",
+    "prog_school_li3": "✓ Développement global",
     "prog_uni_duration": "1 - 4 Ans",
     "prog_uni_title": "Programmes universitaires",
     "prog_uni_description": "Licences et Masters."
