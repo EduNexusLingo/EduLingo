@@ -885,64 +885,11 @@
   </footer>
 
   <script src="translations.js"></script>
-  <!-- <script src="js/main.js"></script> -->
+  <script src="main.js"></script>
 
   <script>
-    (function () {
-      function applyTranslations(lang) {
-        if (typeof translations === 'undefined') {
-            console.error('Translations object is undefined. Check translations.js loading.');
-            return;
-        }
-        if (!translations[lang]) {
-            console.error('Translations not found for language:', lang);
-            return;
-        }
-        
-        console.log('Applying translations for:', lang);
-        
-        document.querySelectorAll('[data-i18n]').forEach(function (el) {
-          var key = el.getAttribute('data-i18n');
-          if (translations[lang] && translations[lang][key] !== undefined) {
-              // Si es un input o textarea, cambiar el placeholder
-              if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                  el.placeholder = translations[lang][key];
-              } else {
-                  el.innerHTML = translations[lang][key];
-              }
-          } else {
-              console.warn('Missing translation key:', key, 'for language:', lang);
-          }
-        });
-        
-        document.querySelectorAll('.lang-flag').forEach(function (flag) {
-          if (flag.getAttribute('data-lang') === lang) {
-              flag.classList.add('active');
-          } else {
-              flag.classList.remove('active');
-          }
-        });
-        
-        document.documentElement.lang = lang;
-        try { localStorage.setItem('selectedLanguage', lang); } catch (e) {}
-      }
-      
-      window.changeLanguage = function (lang) { 
-        console.log('Language change requested:', lang);
-        applyTranslations(lang); 
-      };
-      
+(function () {
       document.addEventListener('DOMContentLoaded', function () {
-        console.log('DOM Content Loaded. Initializing language...');
-        var saved = 'en';
-        try { 
-            saved = localStorage.getItem('selectedLanguage') || 'en'; 
-            console.log('Saved language from localStorage:', saved);
-        } catch (e) {
-            console.error('Error reading localStorage:', e);
-        }
-        applyTranslations(saved);
-        
         document.querySelectorAll('.filter-btn').forEach(function (btn) {
           btn.addEventListener('click', function () {
             document.querySelectorAll('.filter-btn').forEach(function (b) { b.classList.remove('active'); });
@@ -953,7 +900,7 @@
             });
           });
         });
-        
+
         document.querySelectorAll('.logo-item').forEach(function (logo) {
           logo.addEventListener('click', function () {
             var sid = 'school-' + logo.getAttribute('data-school');
@@ -962,8 +909,8 @@
           });
         });
       });
-    })();
-  </script>
+})();
+</script>
 
 </body>
 </html>
