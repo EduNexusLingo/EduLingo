@@ -1,5 +1,5 @@
 
-function changeLanguage(lang) {
+window.changeLanguage = function(lang) {
     // Actualizar flags activas
     document.querySelectorAll('.lang-flag').forEach(flag => {
         flag.classList.remove('active');
@@ -9,8 +9,8 @@ function changeLanguage(lang) {
     });
 
     // Cambiar textos
-    const texts = translations[lang];
-    if (texts) {
+    if (typeof translations !== 'undefined' && translations[lang]) {
+        const texts = translations[lang];
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (texts[key]) {
@@ -24,14 +24,16 @@ function changeLanguage(lang) {
                 el.placeholder = texts[key];
             }
         });
+    } else {
+        console.error('Traducciones no encontradas para el idioma:', lang);
     }
 
     // Guardar preferencia
-    localStorage.setItem('selectedLang', lang);
+    localStorage.setItem('selectedLanguage', lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('selectedLang') || 'es';
+    const savedLang = localStorage.getItem('selectedLanguage') || 'es';
     changeLanguage(savedLang);
 
     // Mobile Menu Toggle
