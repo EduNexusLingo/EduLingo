@@ -236,7 +236,7 @@
 
     /* ── HEADER FLAGS ── */
     .header-left { display: flex; align-items: center; gap: 15px; }
-    .header-flags { display: flex; gap: 8px; margin-left: 10px; align-items: center; }
+    .header-flags { display: flex; gap: 8px; margin-left: 10px; align-items: center; flex-wrap: wrap; row-gap: 6px; }
     .header-flags img {
       width: 28px; height: 18px;
       cursor: pointer; border-radius: 3px;
@@ -248,9 +248,10 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      .header-left { gap: 10px; }
+      .header-left { gap: 10px; flex-wrap: wrap; }
       .logo-group img { height: 35px !important; }
-      .header-flags img { width: 24px; height: 16px; }
+      .header-flags img { width: 20px; height: 13px; }
+      .header-flags { gap: 5px; max-width: 220px; }
       .ireland-course-header h1 { font-size: 1.8rem; }
       .institution-grid { grid-template-columns: 1fr; }
     }
@@ -272,21 +273,17 @@
           <img src="img/pok.png" alt="POK">
         </a>
       </div>
-      
-      
-      <div class="lang-selector">
-        <img src="https://flagcdn.com/w40/br.png" class="lang-flag active" data-lang="pt" onclick="changeLanguage('pt')" alt="Português" title="Português">
-        <img src="https://flagcdn.com/w40/es.png" class="lang-flag" data-lang="es" onclick="changeLanguage('es')" alt="Español" title="Español">
-        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="English" title="English">
-        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="Français" title="Français">
-        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="中文" title="中文">
-        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
-        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="Українська" title="Українська">
-        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
-        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
+      <div class="header-flags">
+        <img src="https://flagcdn.com/w40/br.png" class="lang-flag" data-lang="pt" onclick="window.changeLanguage('pt')" alt="Português" title="Português">
+        <img src="https://flagcdn.com/w40/es.png" class="lang-flag" data-lang="es" onclick="window.changeLanguage('es')" alt="Español" title="Español">
+        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="window.changeLanguage('en')" alt="English" title="English">
+        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="window.changeLanguage('fr')" alt="Français" title="Français">
+        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="window.changeLanguage('zh')" alt="中文" title="中文">
+        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="window.changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
+        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="window.changeLanguage('uk')" alt="Українська" title="Українська">
+        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="window.changeLanguage('mn')" alt="Монгол" title="Монгол">
+        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="window.changeLanguage('ja')" alt="日本語" title="日本語">
       </div>
-
-
     </div>
     <div class="menu-toggle" id="menuToggle" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -398,17 +395,17 @@
 
         <!-- 1. UCD -->
         <div id="uni-ucd" class="institution-card is-featured" data-type="public">
-          <div class="card-image" style="background-image: url('img2/ucd-2.png');"><span class="card-badge" data-i18n="uni_badge_val_1">Russell Group</span></div>
+          <div class="card-image" style="background-image: url('img2/ucd-2.png');"><span class="card-badge">Russell Group</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_1">University College Dublin</span> <img src="img2/ucd.png" alt="UCD Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_1">📍 Belfield, Dublin 4 | Est. 1854</div>
+            <h3 class="card-title">University College Dublin <img src="img2/ucd.png" alt="UCD Logo"></h3>
+            <div class="card-info">📍 Belfield, Dublin 4 &nbsp;|&nbsp; Est. 1854</div>
             <p class="card-desc" data-i18n="uni_ucd_desc">Ireland's largest university and a member of the prestigious Research Universities Ireland network, offering over 500 programmes across all disciplines.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_1">Arts, Science, Commerce, Engineering, Law, Medicine</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_2">MBA, MSc Data Analytics, LLM, MA International Relations</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Arts, Science, Commerce, Engineering, Law, Medicine</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Data Analytics, LLM, MA International Relations</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_1">From €18,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €18,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -421,15 +418,15 @@
         <div id="uni-tcd" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/trinitycollege-2.png');"><span class="card-badge" data-i18n="badge_top_ranked">Top Ranked</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_2">Trinity College Dublin</span> <img src="img2/trinitycollege.png" alt="TCD Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_2">📍 College Green, Dublin 2 | Est. 1592</div>
+            <h3 class="card-title">Trinity College Dublin <img src="img2/trinitycollege.png" alt="TCD Logo"></h3>
+            <div class="card-info">📍 College Green, Dublin 2 &nbsp;|&nbsp; Est. 1592</div>
             <p class="card-desc" data-i18n="uni_tcd_desc">Ireland's oldest university and consistently ranked among the world's top 100, renowned for research excellence and its historic campus in the heart of Dublin.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_3">Arts, Science, Engineering, Law, Medicine, Business</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_4">MSc Computer Science, MBA, LLM, MA Global Affairs</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Arts, Science, Engineering, Law, Medicine, Business</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Computer Science, MBA, LLM, MA Global Affairs</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_2">From €20,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €20,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -442,15 +439,15 @@
         <div id="uni-ucc" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/ucc-2.png');"><span class="card-badge" data-i18n="badge_top_ranked">Top Ranked</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_3">University College Cork</span> <img src="img2/ucc.png" alt="UCC Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_3">📍 Cork City | Est. 1845</div>
+            <h3 class="card-title">University College Cork <img src="img2/ucc.png" alt="UCC Logo"></h3>
+            <div class="card-info">📍 Cork City &nbsp;|&nbsp; Est. 1845</div>
             <p class="card-desc" data-i18n="uni_ucc_desc">A world-class research university in the heart of Cork, offering a wide range of programmes with a strong focus on sustainability and innovation.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_5">Pharmacy, Engineering, Arts, Science, Law, Food Science</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_6">MSc Sustainable Energy, MBA, LLM, MA Film Studies</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Pharmacy, Engineering, Arts, Science, Law, Food Science</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Sustainable Energy, MBA, LLM, MA Film Studies</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_3">From €15,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €15,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -463,15 +460,15 @@
         <div id="uni-dcu" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/dcu-2.png');"><span class="card-badge" data-i18n="badge_innovation">Innovation Leader</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_4">Dublin City University</span> <img src="img2/dcu.png" alt="DCU Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_4">📍 Glasnevin, Dublin 9 | Est. 1989</div>
+            <h3 class="card-title">Dublin City University <img src="img2/dcu.png" alt="DCU Logo"></h3>
+            <div class="card-info">📍 Glasnevin, Dublin 9 &nbsp;|&nbsp; Est. 1989</div>
             <p class="card-desc" data-i18n="uni_dcu_desc">A young, dynamic university with a strong focus on technology, business and communications, known for its industry partnerships and high graduate employment rates.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_7">Computing, Business, Journalism, Biotechnology, Education</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_8">MSc AI, MBA, MA Journalism, MSc Biotechnology</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Computing, Business, Journalism, Biotechnology, Education</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc AI, MBA, MA Journalism, MSc Biotechnology</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_4">From €14,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €14,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -484,15 +481,15 @@
         <div id="uni-ul" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/universityoflimerick-2.png');"><span class="card-badge" data-i18n="badge_coop">Co-op Leader</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_5">University of Limerick</span> <img src="img2/universityoflimerick.png" alt="UL Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_5">📍 Limerick City | Est. 1972</div>
+            <h3 class="card-title">University of Limerick <img src="img2/universityoflimerick.png" alt="UL Logo"></h3>
+            <div class="card-info">📍 Limerick City &nbsp;|&nbsp; Est. 1972</div>
             <p class="card-desc" data-i18n="uni_ul_desc">Renowned for its cooperative education model, UL offers students real-world work placements integrated into their degree programmes.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_9">Engineering, Business, Sports Science, Nursing, Law</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_10">MBA, MSc Finance, MA Education, MSc Engineering</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Engineering, Business, Sports Science, Nursing, Law</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Finance, MA Education, MSc Engineering</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_4coop_12">4 yrs (UG, incl. co-op) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_5">From €14,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €14,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -505,15 +502,15 @@
         <div id="uni-maynooth" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/maynoothuniversity-2.png');"><span class="card-badge" data-i18n="badge_humanities">Humanities Hub</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_6">Maynooth University</span> <img src="img2/maynoothuniversity.png" alt="Maynooth Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_6">📍 Maynooth, Co. Kildare | Est. 1997</div>
+            <h3 class="card-title">Maynooth University <img src="img2/maynoothuniversity.png" alt="Maynooth Logo"></h3>
+            <div class="card-info">📍 Maynooth, Co. Kildare &nbsp;|&nbsp; Est. 1997</div>
             <p class="card-desc" data-i18n="uni_maynooth_desc">A vibrant campus university 25 km from Dublin, celebrated for its humanities, social sciences and computer science programmes.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_11">Arts, Computer Science, Law, Mathematics, Psychology</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_12">MA Philosophy, MSc Computer Science, LLM, MA Sociology</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Arts, Computer Science, Law, Mathematics, Psychology</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MA Philosophy, MSc Computer Science, LLM, MA Sociology</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_6">From €13,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €13,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -526,15 +523,15 @@
         <div id="uni-nuig" class="institution-card is-featured" data-type="public">
           <div class="card-image" style="background-image: url('img2/nuigalway-2.png');"><span class="card-badge" data-i18n="badge_research">Research Leader</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_7">University of Galway</span> <img src="img2/nuigalway.png" alt="NUI Galway Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_7">📍 Galway City | Est. 1845</div>
+            <h3 class="card-title">University of Galway <img src="img2/nuigalway.png" alt="NUI Galway Logo"></h3>
+            <div class="card-info">📍 Galway City &nbsp;|&nbsp; Est. 1845</div>
             <p class="card-desc" data-i18n="uni_nuig_desc">Located in one of Ireland's most vibrant cities, the University of Galway is a leading research institution with a strong international community.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_13">Medicine, Law, Engineering, Arts, Science, Commerce</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_14">MSc Marine Science, MBA, LLM, MA Irish Studies</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Medicine, Law, Engineering, Arts, Science, Commerce</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Marine Science, MBA, LLM, MA Irish Studies</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_7">From €14,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €14,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -547,15 +544,15 @@
         <div id="uni-tudublin" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/tudublin-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_8">TU Dublin</span> <img src="img2/tudublin.png" alt="TU Dublin Logo"></h3>
+            <h3 class="card-title">TU Dublin <img src="img2/tudublin.png" alt="TU Dublin Logo"></h3>
             <div class="card-info">📍 Dublin (Grangegorman &amp; City Campus) &nbsp;|&nbsp; Est. 2019</div>
             <p class="card-desc" data-i18n="uni_tudublin_desc">Ireland's first technological university, offering a broad range of applied and professional programmes across science, technology, business and the arts.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_15">Computing, Architecture, Tourism, Business, Engineering</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_16">MSc Data Science, MBA, MA Design, MSc Environmental Science</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Computing, Architecture, Tourism, Business, Engineering</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Data Science, MBA, MA Design, MSc Environmental Science</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_8">From €12,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €12,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -568,15 +565,15 @@
         <div id="uni-atu" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/atu-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_9">Atlantic Technological University</span> <img src="img2/atu.png" alt="ATU Logo"></h3>
+            <h3 class="card-title">Atlantic Technological University <img src="img2/atu.png" alt="ATU Logo"></h3>
             <div class="card-info">📍 Galway, Sligo &amp; Letterkenny &nbsp;|&nbsp; Est. 2022</div>
             <p class="card-desc" data-i18n="uni_atu_desc">A multi-campus technological university serving the west and north-west of Ireland, with strong links to regional industry and enterprise.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_17">Engineering, Nursing, Business, Computing, Science</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_18">MSc Cybersecurity, MBA, MSc Renewable Energy, MA Education</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Engineering, Nursing, Business, Computing, Science</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Cybersecurity, MBA, MSc Renewable Energy, MA Education</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_9">From €11,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €11,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -589,15 +586,15 @@
         <div id="uni-mtu" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/munstertechnologicaluniversity-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_10">Munster Technological University</span> <img src="img2/munstertechnologicaluniversity.png" alt="MTU Logo"></h3>
+            <h3 class="card-title">Munster Technological University <img src="img2/munstertechnologicaluniversity.png" alt="MTU Logo"></h3>
             <div class="card-info">📍 Cork &amp; Kerry &nbsp;|&nbsp; Est. 2021</div>
             <p class="card-desc" data-i18n="uni_mtu_desc">MTU combines the strengths of Cork IT and IT Tralee to deliver applied programmes with a strong focus on industry collaboration and innovation.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_19">Computing, Engineering, Business, Science, Arts</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_20">MSc Software Development, MBA, MSc Cybersecurity</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Computing, Engineering, Business, Science, Arts</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Software Development, MBA, MSc Cybersecurity</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_10">From €11,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €11,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -610,15 +607,15 @@
         <div id="uni-setu" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/setu-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_11">SETU – South East Technological University</span> <img src="img2/setu.png" alt="SETU Logo"></h3>
+            <h3 class="card-title">SETU – South East Technological University <img src="img2/setu.png" alt="SETU Logo"></h3>
             <div class="card-info">📍 Waterford &amp; Carlow &nbsp;|&nbsp; Est. 2022</div>
             <p class="card-desc" data-i18n="uni_setu_desc">SETU serves the south-east of Ireland with a wide portfolio of applied programmes and a growing research profile in health, engineering and business.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_21">Nursing, Engineering, Business, Computing, Science</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_22">MSc Health Informatics, MBA, MSc Engineering Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Nursing, Engineering, Business, Computing, Science</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Health Informatics, MBA, MSc Engineering Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_11">From €11,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €11,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -631,15 +628,15 @@
         <div id="uni-tus" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/tus-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_12">TUS – Technological University of the Shannon</span> <img src="img2/tus.png" alt="TUS Logo"></h3>
+            <h3 class="card-title">TUS – Technological University of the Shannon <img src="img2/tus.png" alt="TUS Logo"></h3>
             <div class="card-info">📍 Limerick, Athlone &amp; Thurles &nbsp;|&nbsp; Est. 2021</div>
             <p class="card-desc" data-i18n="uni_tus_desc">TUS is Ireland's midlands and midwest technological university, offering career-focused programmes with strong industry connections across the Shannon region.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_23">Engineering, Business, Computing, Science, Arts</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_24">MSc Data Science, MBA, MSc Mechanical Engineering</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Engineering, Business, Computing, Science, Arts</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Data Science, MBA, MSc Mechanical Engineering</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_12">From €11,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €11,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -652,15 +649,15 @@
         <div id="uni-dkit" class="institution-card" data-type="tech">
           <div class="card-image" style="background-image: url('img2/dundalkinstituteoftechnology-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_13">Dundalk Institute of Technology</span> <img src="img2/dundalkinstituteoftechnology.png" alt="DKIT Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_8">📍 Dundalk, Co. Louth | Est. 1970</div>
+            <h3 class="card-title">Dundalk Institute of Technology <img src="img2/dundalkinstituteoftechnology.png" alt="DKIT Logo"></h3>
+            <div class="card-info">📍 Dundalk, Co. Louth &nbsp;|&nbsp; Est. 1970</div>
             <p class="card-desc" data-i18n="uni_dkit_desc">DkIT is a leading institute of technology in the north-east of Ireland, with strong links to the cross-border economy and a focus on applied learning.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_25">Computing, Business, Engineering, Nursing, Sport</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_26">MSc Computing, MBA, MSc Engineering, MA Education</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Computing, Business, Engineering, Nursing, Sport</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Computing, MBA, MSc Engineering, MA Education</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_13">From €10,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -673,15 +670,15 @@
         <div id="uni-rcsi" class="institution-card is-featured" data-type="specialist">
           <div class="card-image" style="background-image: url('img2/rcsi-2.png');"><span class="card-badge" data-i18n="badge_health">Health Sciences</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_14">RCSI University of Medicine &amp; Health Sciences</span> <img src="img2/rcsi.png" alt="RCSI Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_9">📍 St. Stephen's Green, Dublin 2 | Est. 1784</div>
+            <h3 class="card-title">RCSI University of Medicine &amp; Health Sciences <img src="img2/rcsi.png" alt="RCSI Logo"></h3>
+            <div class="card-info">📍 St. Stephen's Green, Dublin 2 &nbsp;|&nbsp; Est. 1784</div>
             <p class="card-desc" data-i18n="uni_rcsi_desc">One of the world's leading health sciences universities, RCSI is consistently ranked in the top 250 globally and is dedicated entirely to health and medicine.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_27">Medicine, Pharmacy, Physiotherapy, Nursing, Radiography</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_28">MSc Surgical Sciences, MSc Nursing, MSc Healthcare Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Medicine, Pharmacy, Physiotherapy, Nursing, Radiography</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Surgical Sciences, MSc Nursing, MSc Healthcare Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_56med_12">5–6 yrs (UG Medicine) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_14">From €25,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €25,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -694,15 +691,15 @@
         <div id="uni-griffith" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/griffithcollege-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_15">Griffith College</span> <img src="img2/griffithcollege.png" alt="Griffith College Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_10">📍 South Circular Road, Dublin 8 | Est. 1974</div>
+            <h3 class="card-title">Griffith College <img src="img2/griffithcollege.png" alt="Griffith College Logo"></h3>
+            <div class="card-info">📍 South Circular Road, Dublin 8 &nbsp;|&nbsp; Est. 1974</div>
             <p class="card-desc" data-i18n="uni_griffith_desc">Ireland's largest independent third-level college, offering a wide range of programmes in business, law, journalism, design and computing.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_29">Business, Law, Journalism, Computing, Design</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_30">MBA, LLM, MA Journalism, MSc Computing</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Law, Journalism, Computing, Design</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, LLM, MA Journalism, MSc Computing</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_15">From €12,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €12,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -715,15 +712,15 @@
         <div id="uni-dbs" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/dbs-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_16">Dublin Business School</span> <img src="img2/dbs.png" alt="DBS Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_11">📍 Aungier Street, Dublin 2 | Est. 1975</div>
+            <h3 class="card-title">Dublin Business School <img src="img2/dbs.png" alt="DBS Logo"></h3>
+            <div class="card-info">📍 Aungier Street, Dublin 2 &nbsp;|&nbsp; Est. 1975</div>
             <p class="card-desc" data-i18n="uni_dbs_desc">DBS is one of Ireland's largest private colleges, specialising in business, law, arts and psychology with a strong focus on professional development.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_31">Business, Law, Psychology, Marketing, Accounting</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_32">MBA, LLM, MSc Psychology, MA Human Resource Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Law, Psychology, Marketing, Accounting</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, LLM, MSc Psychology, MA Human Resource Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_16">From €11,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €11,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -736,15 +733,15 @@
         <div id="uni-nci" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/nationalcollegeofireland-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_17">National College of Ireland</span> <img src="img2/nationalcollegeofireland.png" alt="NCI Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_12">📍 IFSC, Dublin 1 | Est. 1951</div>
+            <h3 class="card-title">National College of Ireland <img src="img2/nationalcollegeofireland.png" alt="NCI Logo"></h3>
+            <div class="card-info">📍 IFSC, Dublin 1 &nbsp;|&nbsp; Est. 1951</div>
             <p class="card-desc" data-i18n="uni_nci_desc">Located in Dublin's financial district, NCI specialises in business, computing and human resources, with a strong emphasis on lifelong learning.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_33">Business, Computing, Human Resources, Finance</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_34">MSc Data Analytics, MBA, MSc HRM, MSc FinTech</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Human Resources, Finance</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Data Analytics, MBA, MSc HRM, MSc FinTech</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_17">From €10,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -757,15 +754,15 @@
         <div id="uni-ibat" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/ibat-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_18">IBAT College Dublin</span> <img src="img2/ibat.png" alt="IBAT Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_13">📍 Fleet Street, Dublin 2 | Est. 2004</div>
+            <h3 class="card-title">IBAT College Dublin <img src="img2/ibat.png" alt="IBAT Logo"></h3>
+            <div class="card-info">📍 Fleet Street, Dublin 2 &nbsp;|&nbsp; Est. 2004</div>
             <p class="card-desc" data-i18n="uni_ibat_desc">A modern private college in the heart of Dublin, offering flexible business and technology programmes designed for working professionals and international students.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_35">Business, Computing, Accounting, Marketing</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_36">MBA, MSc Computing, MSc Project Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Accounting, Marketing</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Computing, MSc Project Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_18">From €10,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -778,15 +775,15 @@
         <div id="uni-cct" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/cct-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_19">CCT College Dublin</span> <img src="img2/cct.png" alt="CCT Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_14">📍 Chancery Lane, Dublin 8 | Est. 2004</div>
+            <h3 class="card-title">CCT College Dublin <img src="img2/cct.png" alt="CCT Logo"></h3>
+            <div class="card-info">📍 Chancery Lane, Dublin 8 &nbsp;|&nbsp; Est. 2004</div>
             <p class="card-desc" data-i18n="uni_cct_desc">CCT specialises in technology and business programmes, offering a highly international campus environment with strong pathways to employment in Ireland's tech sector.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_37">Computing, Business, Cybersecurity, Data Science</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_38">MSc Cybersecurity, MBA, MSc Cloud Computing, MSc AI</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Computing, Business, Cybersecurity, Data Science</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Cybersecurity, MBA, MSc Cloud Computing, MSc AI</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_19">From €10,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -799,15 +796,15 @@
         <div id="uni-difc" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/difc-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_20">DIFC – Dublin International Foundation College</span> <img src="img2/difc.png" alt="DIFC Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_15">📍 Dublin City Centre | Est. 2005</div>
+            <h3 class="card-title">DIFC – Dublin International Foundation College <img src="img2/difc.png" alt="DIFC Logo"></h3>
+            <div class="card-info">📍 Dublin City Centre &nbsp;|&nbsp; Est. 2005</div>
             <p class="card-desc" data-i18n="uni_difc_desc">DIFC provides foundation and undergraduate programmes that serve as pathways into Ireland's leading universities, with a focus on international student support.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_39">Business, Computing, Foundation Year Programmes</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_40">MBA, MSc Business Analytics</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Foundation Year Programmes</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Business Analytics</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_1">3–4 yrs (UG) | 1 yr (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_20">From €9,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €9,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -820,15 +817,15 @@
         <div id="uni-dorset" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/dorsetcollege-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_21">Dorset College Dublin</span> <img src="img2/dorsetcollege.png" alt="Dorset College Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_16">📍 Dorset Street, Dublin 1 | Est. 1999</div>
+            <h3 class="card-title">Dorset College Dublin <img src="img2/dorsetcollege.png" alt="Dorset College Logo"></h3>
+            <div class="card-info">📍 Dorset Street, Dublin 1 &nbsp;|&nbsp; Est. 1999</div>
             <p class="card-desc" data-i18n="uni_dorset_desc">Dorset College offers a range of business and computing programmes in a welcoming environment, with a strong track record of student progression to top universities.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_41">Business, Computing, Marketing, Accounting</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_42">MBA, MSc Computing, MSc Business Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Marketing, Accounting</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Computing, MSc Business Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_21">From €9,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €9,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -841,15 +838,15 @@
         <div id="uni-independent" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/independentcollege-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_22">Independent College Dublin</span> <img src="img2/independentcollege.png" alt="Independent College Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_17">📍 Lower Pembroke Street, Dublin 2 | Est. 2004</div>
+            <h3 class="card-title">Independent College Dublin <img src="img2/independentcollege.png" alt="Independent College Logo"></h3>
+            <div class="card-info">📍 Lower Pembroke Street, Dublin 2 &nbsp;|&nbsp; Est. 2004</div>
             <p class="card-desc" data-i18n="uni_independent_desc">A boutique private college offering specialised programmes in psychology, counselling, business and social sciences in a supportive, student-centred environment.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_43">Psychology, Counselling, Business, Social Science</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_44">MSc Psychology, MA Counselling, MBA</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Psychology, Counselling, Business, Social Science</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc Psychology, MA Counselling, MBA</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_22">From €10,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -862,15 +859,15 @@
         <div id="uni-icd" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/icdbusinessschool-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_23">ICD Business School</span> <img src="img2/icdbusinessschool.png" alt="ICD Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_18">📍 Parnell Square, Dublin 1 | Est. 2002</div>
+            <h3 class="card-title">ICD Business School <img src="img2/icdbusinessschool.png" alt="ICD Logo"></h3>
+            <div class="card-info">📍 Parnell Square, Dublin 1 &nbsp;|&nbsp; Est. 2002</div>
             <p class="card-desc" data-i18n="uni_icd_desc">ICD Business School focuses exclusively on business and management education, offering internationally recognised qualifications with a strong emphasis on entrepreneurship.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_45">Business, Management, Entrepreneurship, Marketing</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_46">MBA, MSc International Business, MSc Marketing</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Management, Entrepreneurship, Marketing</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc International Business, MSc Marketing</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_23">From €10,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -883,15 +880,15 @@
         <div id="uni-citygroup" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/cityeducationgroup-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_24">City Education Group</span> <img src="img2/cityeducationgroup.png" alt="City Education Group Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_19">📍 Dublin City Centre | Est. 2006</div>
+            <h3 class="card-title">City Education Group <img src="img2/cityeducationgroup.png" alt="City Education Group Logo"></h3>
+            <div class="card-info">📍 Dublin City Centre &nbsp;|&nbsp; Est. 2006</div>
             <p class="card-desc" data-i18n="uni_citygroup_desc">City Education Group offers a diverse portfolio of undergraduate and postgraduate programmes across business, hospitality, computing and social sciences.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_47">Business, Hospitality, Computing, Social Care</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_48">MBA, MSc Hospitality Management, MSc Computing</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Hospitality, Computing, Social Care</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Hospitality Management, MSc Computing</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_24">From €9,500/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €9,500/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -904,15 +901,15 @@
         <div id="uni-holmes" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/holmesInstitute-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_25">Holmes Institute Dublin</span> <img src="img2/holmesInstitute.png" alt="Holmes Institute Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_20">📍 Dublin City Centre | Est. 2010</div>
+            <h3 class="card-title">Holmes Institute Dublin <img src="img2/holmesInstitute.png" alt="Holmes Institute Logo"></h3>
+            <div class="card-info">📍 Dublin City Centre &nbsp;|&nbsp; Est. 2010</div>
             <p class="card-desc" data-i18n="uni_holmes_desc">Holmes Institute offers Australian-accredited business and computing programmes in Dublin, providing students with internationally recognised qualifications.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_49">Business, Computing, Information Technology</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_50">MBA, MSc IT, MSc Business Administration</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Information Technology</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc IT, MSc Business Administration</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_3_12">3 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_25">From €10,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €10,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -925,15 +922,15 @@
         <div id="uni-gbs" class="institution-card" data-type="private">
           <div class="card-image" style="background-image: url('img2/galwaybusinessschool-2.png');"></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_26">Galway Business School</span> <img src="img2/galwaybusinessschool.png" alt="GBS Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_21">📍 Galway City | Est. 2003</div>
+            <h3 class="card-title">Galway Business School <img src="img2/galwaybusinessschool.png" alt="GBS Logo"></h3>
+            <div class="card-info">📍 Galway City &nbsp;|&nbsp; Est. 2003</div>
             <p class="card-desc" data-i18n="uni_gbs_desc">Galway Business School offers affordable, flexible business and computing programmes in the vibrant city of Galway, with strong links to the local tech and pharma industries.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_51">Business, Computing, Accounting, Marketing</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_52">MBA, MSc Business Computing, MSc Management</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Business, Computing, Accounting, Marketing</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MBA, MSc Business Computing, MSc Management</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_34_12">3–4 yrs (UG) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_26">From €9,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €9,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -946,15 +943,15 @@
         <div id="uni-shannon" class="institution-card is-featured" data-type="specialist">
           <div class="card-image" style="background-image: url('img2/shannoncollege-2.png');"><span class="card-badge" data-i18n="badge_hospitality">Hospitality</span></div>
           <div class="card-content">
-            <h3 class="card-title"><span data-i18n="uni_name_27">Shannon College of Hotel Management</span> <img src="img2/shannoncollege.png" alt="Shannon College Logo"></h3>
-            <div class="card-info" data-i18n="uni_info_22">📍 Shannon, Co. Clare | Est. 1951</div>
+            <h3 class="card-title">Shannon College of Hotel Management <img src="img2/shannoncollege.png" alt="Shannon College Logo"></h3>
+            <div class="card-info">📍 Shannon, Co. Clare &nbsp;|&nbsp; Est. 1951</div>
             <p class="card-desc" data-i18n="uni_shannon_desc">A world-renowned specialist college affiliated with NUI Galway, offering elite hospitality and hotel management programmes with guaranteed international internships.</p>
             <table class="card-table">
               <tr><th colspan="2" data-i18n="table_highlights">Programme Highlights</th></tr>
-              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td data-i18n="uni_prog_list_53">Hotel Management, International Hospitality Management</td></tr>
-              <tr><td data-i18n="table_master">🎓 Master's</td><td data-i18n="uni_prog_list_54">MSc International Hospitality Management, MBA (Hospitality)</td></tr>
+              <tr><td data-i18n="table_bachelor">🎓 Bachelor's</td><td>Hotel Management, International Hospitality Management</td></tr>
+              <tr><td data-i18n="table_master">🎓 Master's</td><td>MSc International Hospitality Management, MBA (Hospitality)</td></tr>
               <tr><td data-i18n="table_duration">📅 Duration</td><td data-i18n="dur_4intern_12">4 yrs (UG, incl. internship) | 1–2 yrs (PG)</td></tr>
-              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td data-i18n="uni_fees_val_27">From €15,000/yr</td></tr>
+              <tr><td data-i18n="table_fees">💶 Fees (non-EU)</td><td>From €15,000/yr</td></tr>
             </table>
           </div>
           <div class="card-footer">
@@ -995,9 +992,166 @@
   <script src="js/main.js"></script>
 
   <script>
-(function () {
+  (function () {
+
+    /* ── BILINGUAL TRANSLATIONS (grado-specific keys) ── */
+    var gradoTranslations = {
+      en: {
+        grado_h1:             "Bachelor's & Master's Degrees in Ireland",
+        grado_p1:             "Explore undergraduate and postgraduate programmes at Ireland's leading universities and colleges.",
+        grado_p2:             "We negotiate the best offer tailored to your profile and budget.",
+        grado_back:           "← Back to Home",
+        grado_section_title:  "Universities & Colleges",
+        grado_section_subtitle: "Click on any institution to view the full list of undergraduate and postgraduate programmes available.",
+        filter_all:           "All",
+        filter_public:        "Public Universities",
+        filter_tech:          "Technological Universities",
+        filter_private:       "Private Colleges",
+        filter_specialist:    "Specialist",
+        table_highlights:     "Programme Highlights",
+        table_bachelor:       "🎓 Bachelor's",
+        table_master:         "🎓 Master's",
+        table_duration:       "📅 Duration",
+        table_fees:           "💶 Fees (non-EU)",
+        dur_34_12:            "3–4 yrs (UG) | 1–2 yrs (PG)",
+        dur_4coop_12:         "4 yrs (UG, incl. co-op) | 1–2 yrs (PG)",
+        dur_4intern_12:       "4 yrs (UG, incl. internship) | 1–2 yrs (PG)",
+        dur_56med_12:         "5–6 yrs (UG Medicine) | 1–2 yrs (PG)",
+        dur_34_1:             "3–4 yrs (UG) | 1 yr (PG)",
+        dur_3_12:             "3 yrs (UG) | 1–2 yrs (PG)",
+        card_view_courses:    "View All Courses",
+        card_website:         "Website ↗",
+        badge_top_ranked:     "Top Ranked",
+        badge_innovation:     "Innovation Leader",
+        badge_coop:           "Co-op Leader",
+        badge_humanities:     "Humanities Hub",
+        badge_research:       "Research Leader",
+        badge_health:         "Health Sciences",
+        badge_hospitality:    "Hospitality",
+        uni_ucd_desc:         "Ireland's largest university and a member of the prestigious Research Universities Ireland network, offering over 500 programmes across all disciplines.",
+        uni_tcd_desc:         "Ireland's oldest university and consistently ranked among the world's top 100, renowned for research excellence and its historic campus in the heart of Dublin.",
+        uni_ucc_desc:         "A world-class research university in the heart of Cork, offering a wide range of programmes with a strong focus on sustainability and innovation.",
+        uni_dcu_desc:         "A young, dynamic university with a strong focus on technology, business and communications, known for its industry partnerships and high graduate employment rates.",
+        uni_ul_desc:          "Renowned for its cooperative education model, UL offers students real-world work placements integrated into their degree programmes.",
+        uni_maynooth_desc:    "A vibrant campus university 25 km from Dublin, celebrated for its humanities, social sciences and computer science programmes.",
+        uni_nuig_desc:        "Located in one of Ireland's most vibrant cities, the University of Galway is a leading research institution with a strong international community.",
+        uni_tudublin_desc:    "Ireland's first technological university, offering a broad range of applied and professional programmes across science, technology, business and the arts.",
+        uni_atu_desc:         "A multi-campus technological university serving the west and north-west of Ireland, with strong links to regional industry and enterprise.",
+        uni_mtu_desc:         "MTU combines the strengths of Cork IT and IT Tralee to deliver applied programmes with a strong focus on industry collaboration and innovation.",
+        uni_setu_desc:        "SETU serves the south-east of Ireland with a wide portfolio of applied programmes and a growing research profile in health, engineering and business.",
+        uni_tus_desc:         "TUS is Ireland's midlands and midwest technological university, offering career-focused programmes with strong industry connections across the Shannon region.",
+        uni_dkit_desc:        "DkIT is a leading institute of technology in the north-east of Ireland, with strong links to the cross-border economy and a focus on applied learning.",
+        uni_rcsi_desc:        "One of the world's leading health sciences universities, RCSI is consistently ranked in the top 250 globally and is dedicated entirely to health and medicine.",
+        uni_griffith_desc:    "Ireland's largest independent third-level college, offering a wide range of programmes in business, law, journalism, design and computing.",
+        uni_dbs_desc:         "DBS is one of Ireland's largest private colleges, specialising in business, law, arts and psychology with a strong focus on professional development.",
+        uni_nci_desc:         "Located in Dublin's financial district, NCI specialises in business, computing and human resources, with a strong emphasis on lifelong learning.",
+        uni_ibat_desc:        "A modern private college in the heart of Dublin, offering flexible business and technology programmes designed for working professionals and international students.",
+        uni_cct_desc:         "CCT specialises in technology and business programmes, offering a highly international campus environment with strong pathways to employment in Ireland's tech sector.",
+        uni_difc_desc:        "DIFC provides foundation and undergraduate programmes that serve as pathways into Ireland's leading universities, with a focus on international student support.",
+        uni_dorset_desc:      "Dorset College offers a range of business and computing programmes in a welcoming environment, with a strong track record of student progression to top universities.",
+        uni_independent_desc: "A boutique private college offering specialised programmes in psychology, counselling, business and social sciences in a supportive, student-centred environment.",
+        uni_icd_desc:         "ICD Business School focuses exclusively on business and management education, offering internationally recognised qualifications with a strong emphasis on entrepreneurship.",
+        uni_citygroup_desc:   "City Education Group offers a diverse portfolio of undergraduate and postgraduate programmes across business, hospitality, computing and social sciences.",
+        uni_holmes_desc:      "Holmes Institute offers Australian-accredited business and computing programmes in Dublin, providing students with internationally recognised qualifications.",
+        uni_gbs_desc:         "Galway Business School offers affordable, flexible business and computing programmes in the vibrant city of Galway, with strong links to the local tech and pharma industries.",
+        uni_shannon_desc:     "A world-renowned specialist college affiliated with NUI Galway, offering elite hospitality and hotel management programmes with guaranteed international internships."
+      },
+      es: {
+        grado_h1:             "Grados y Másteres en Irlanda",
+        grado_p1:             "Explora programas de grado y posgrado en las principales universidades e institutos de Irlanda.",
+        grado_p2:             "Negociamos la mejor oferta adaptada a tu perfil y presupuesto.",
+        grado_back:           "← Volver al inicio",
+        grado_section_title:  "Universidades e Institutos",
+        grado_section_subtitle: "Haz clic en cualquier institución para ver la lista completa de programas de grado y posgrado disponibles.",
+        filter_all:           "Todos",
+        filter_public:        "Universidades Públicas",
+        filter_tech:          "Universidades Tecnológicas",
+        filter_private:       "Colegios Privados",
+        filter_specialist:    "Especialistas",
+        table_highlights:     "Programas Destacados",
+        table_bachelor:       "🎓 Grado",
+        table_master:         "🎓 Máster",
+        table_duration:       "📅 Duración",
+        table_fees:           "💶 Tasas (no-UE)",
+        dur_34_12:            "3–4 años (Grado) | 1–2 años (Posgrado)",
+        dur_4coop_12:         "4 años (Grado, incl. prácticas) | 1–2 años (Posgrado)",
+        dur_4intern_12:       "4 años (Grado, incl. internship) | 1–2 años (Posgrado)",
+        dur_56med_12:         "5–6 años (Medicina) | 1–2 años (Posgrado)",
+        dur_34_1:             "3–4 años (Grado) | 1 año (Posgrado)",
+        dur_3_12:             "3 años (Grado) | 1–2 años (Posgrado)",
+        card_view_courses:    "Ver todos los cursos",
+        card_website:         "Sitio web ↗",
+        badge_top_ranked:     "Top Ranking",
+        badge_innovation:     "Líder en Innovación",
+        badge_coop:           "Líder en Prácticas",
+        badge_humanities:     "Hub de Humanidades",
+        badge_research:       "Líder en Investigación",
+        badge_health:         "Ciencias de la Salud",
+        badge_hospitality:    "Hostelería",
+        uni_ucd_desc:         "La universidad más grande de Irlanda y miembro de la red Research Universities Ireland, con más de 500 programas en todas las disciplinas.",
+        uni_tcd_desc:         "La universidad más antigua de Irlanda, clasificada entre las 100 mejores del mundo, reconocida por su excelencia investigadora y su histórico campus en el corazón de Dublín.",
+        uni_ucc_desc:         "Una universidad de investigación de clase mundial en el corazón de Cork, con una amplia oferta de programas centrados en la sostenibilidad y la innovación.",
+        uni_dcu_desc:         "Una universidad joven y dinámica con fuerte enfoque en tecnología, negocios y comunicación, conocida por sus alianzas con la industria y altas tasas de empleo.",
+        uni_ul_desc:          "Reconocida por su modelo de educación cooperativa, UL integra prácticas laborales reales en los programas de grado.",
+        uni_maynooth_desc:    "Una vibrante universidad de campus a 25 km de Dublín, celebrada por sus programas de humanidades, ciencias sociales e informática.",
+        uni_nuig_desc:        "Ubicada en una de las ciudades más vibrantes de Irlanda, la Universidad de Galway es una institución de investigación líder con una sólida comunidad internacional.",
+        uni_tudublin_desc:    "La primera universidad tecnológica de Irlanda, con una amplia oferta de programas aplicados y profesionales en ciencias, tecnología, negocios y artes.",
+        uni_atu_desc:         "Universidad tecnológica multicampus que sirve al oeste y noroeste de Irlanda, con fuertes vínculos con la industria y la empresa regional.",
+        uni_mtu_desc:         "MTU combina las fortalezas del CIT y el IT Tralee para ofrecer programas aplicados con un fuerte enfoque en la colaboración industrial y la innovación.",
+        uni_setu_desc:        "SETU sirve al sureste de Irlanda con una amplia cartera de programas aplicados y un creciente perfil investigador en salud, ingeniería y negocios.",
+        uni_tus_desc:         "TUS es la universidad tecnológica del midlands y midwest de Irlanda, con programas orientados a la carrera profesional y fuertes conexiones con la industria de la región de Shannon.",
+        uni_dkit_desc:        "DkIT es un instituto de tecnología líder en el noreste de Irlanda, con fuertes vínculos con la economía transfronteriza y enfoque en el aprendizaje aplicado.",
+        uni_rcsi_desc:        "Una de las principales universidades de ciencias de la salud del mundo, RCSI está clasificada entre las 250 mejores a nivel global y se dedica íntegramente a la salud y la medicina.",
+        uni_griffith_desc:    "El mayor colegio independiente de tercer nivel de Irlanda, con una amplia oferta en negocios, derecho, periodismo, diseño e informática.",
+        uni_dbs_desc:         "DBS es uno de los mayores colegios privados de Irlanda, especializado en negocios, derecho, artes y psicología con fuerte enfoque en el desarrollo profesional.",
+        uni_nci_desc:         "Ubicado en el distrito financiero de Dublín, NCI se especializa en negocios, informática y recursos humanos, con fuerte énfasis en el aprendizaje permanente.",
+        uni_ibat_desc:        "Un moderno colegio privado en el corazón de Dublín, con programas flexibles de negocios y tecnología diseñados para profesionales en activo y estudiantes internacionales.",
+        uni_cct_desc:         "CCT se especializa en tecnología y negocios, ofreciendo un campus altamente internacional con sólidas vías de empleo en el sector tecnológico irlandés.",
+        uni_difc_desc:        "DIFC ofrece programas de acceso y grado como vías de entrada a las principales universidades irlandesas, con especial atención al apoyo al estudiante internacional.",
+        uni_dorset_desc:      "Dorset College ofrece programas de negocios e informática en un entorno acogedor, con un sólido historial de progresión de estudiantes a las mejores universidades.",
+        uni_independent_desc: "Un colegio privado boutique con programas especializados en psicología, orientación, negocios y ciencias sociales en un entorno centrado en el estudiante.",
+        uni_icd_desc:         "ICD Business School se centra exclusivamente en educación empresarial y de gestión, ofreciendo titulaciones reconocidas internacionalmente con fuerte énfasis en el emprendimiento.",
+        uni_citygroup_desc:   "City Education Group ofrece una cartera diversa de programas de grado y posgrado en negocios, hostelería, informática y ciencias sociales.",
+        uni_holmes_desc:      "Holmes Institute ofrece programas de negocios e informática con acreditación australiana en Dublín, proporcionando titulaciones reconocidas internacionalmente.",
+        uni_gbs_desc:         "Galway Business School ofrece programas asequibles y flexibles de negocios e informática en la vibrante ciudad de Galway, con fuertes vínculos con las industrias tecnológica y farmacéutica locales.",
+        uni_shannon_desc:     "Un colegio especialista de renombre mundial afiliado a la Universidad de Galway, con programas de élite en hostelería y gestión hotelera con internships internacionales garantizados."
+      }
+    };
+
+    /* ── MERGE INTO GLOBAL translations OBJECT ── */
+    function mergeTranslations() {
+      if (typeof translations !== 'undefined') {
+        ['en', 'es'].forEach(function(lang) {
+          if (!translations[lang]) translations[lang] = {};
+          Object.assign(translations[lang], gradoTranslations[lang]);
+        });
+      } else {
+        /* fallback: use local object only */
+        window.translations = gradoTranslations;
+      }
+    }
+
+    /* ── APPLY TRANSLATIONS ── */
+    function applyTranslations(lang) {
+      mergeTranslations();
+      var t = (window.translations && window.translations[lang]) || gradoTranslations[lang] || gradoTranslations['en'];
+      if (!t) return;
+
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var key = el.getAttribute('data-i18n');
+        if (t[key] !== undefined) el.textContent = t[key];
+      });
+
+      document.querySelectorAll('.lang-flag').forEach(function(flag) {
+        flag.classList.toggle('active', flag.getAttribute('data-lang') === lang);
+      });
+
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('selectedLanguage', lang); } catch(e) {}
+    }
 
     /* ── PUBLIC API (same as ingles.irlanda.html) ── */
+    window.changeLanguage = function(lang) { applyTranslations(lang); };
 
     /* ── STAR BURST EFFECT ── */
     var STAR_COLORS = ['#FFD700','#FF6B6B','#4ECDC4','#45B7D1','#96CEB4','#FFEAA7','#DDA0DD','#98FB98','#FF8C69','#87CEEB'];
@@ -1031,6 +1185,7 @@
       /* Default language: always English on first load, then respect localStorage */
       var saved = 'en';
       try { saved = localStorage.getItem('selectedLanguage') || 'en'; } catch(e) {}
+      applyTranslations(saved);
 
       /* Star burst on featured cards */
       document.querySelectorAll('.institution-card.is-featured').forEach(function(card) {
@@ -1085,7 +1240,7 @@
     });
 
   })();
-</script>
+  </script>
 
 </body>
 </html>
