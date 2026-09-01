@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="style.css">
 
 <style>
 /* Estilos para la nueva sección de programas */
@@ -468,7 +468,7 @@
   
   
   <!-- ═══════════════════════════════════════
-       CONTACTO (FORMSPREE INTEGRATION)
+       CONTACTO (FORMSUBMIT)
   ═══════════════════════════════════════ -->
   <section id="contacto" class="contacto">
     <div class="section-header fade-in">
@@ -477,30 +477,35 @@
       <div class="gold-divider"></div>
     </div>
     <div class="form-container fade-in">
-      <form id="contactForm" action="https://formspree.io/f/mlgonool" method="POST">
+      <p class="form-intro">Cuéntanos qué necesitas y el equipo de EduNexusLingo responderá a tu correo.</p>
+      <form id="contactForm" action="https://formsubmit.co/info@edunexuslingo.com" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="_subject" value="Nueva consulta desde EduNexusLingo">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-group">
-          <label for="organization" data-i18n="form_org">Organización</label>
-          <input type="text" id="organization" name="organization" required>
+          <label for="name" data-i18n="form_name">Nombre completo *</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
         </div>
         <div class="form-group">
           <label for="email" data-i18n="form_email">Correo Electrónico *</label>
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" autocomplete="email" required>
         </div>
         <div class="form-group">
           <label for="phone" data-i18n="form_phone">Teléfono (Opcional)</label>
-          <input type="tel" id="phone" name="phone">
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
         </div>
         <div class="form-group">
           <label for="message" data-i18n="form_message">Mensaje *</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" name="message" rows="5" required placeholder="Programa, destino o duda que te gustaría consultar"></textarea>
         </div>
         <button type="submit" class="form-submit" data-i18n="form_submit">Enviar Mensaje</button>
+        <p class="form-note">Al enviar, aparecerá la página de confirmación de FormSubmit. La primera vez, confirma la activación desde el correo recibido en <strong>info@edunexuslingo.com</strong>.</p>
       </form>
-      <div id="formMessage" style="display: none; margin-top: 1.5rem; padding: 1rem; border-radius: 0.5rem; text-align: center; font-weight: 600; color: var(--ivory); background: rgba(201,168,76,0.2);"></div>
       
-      <div class="contact-email" style="margin-top: 2rem; text-align: center; border-top: 1px solid rgba(201,168,76,0.1); padding-top: 1.5rem;">
-          <p data-i18n="contact_email_text" style="color: rgba(248,244,238,0.6); font-size: 0.9rem; margin-bottom: 0.5rem;">¿Preguntas? Contáctanos directamente:</p>
-          <a href="mailto:info@EduNexus.eu" style="color: var(--gold); text-decoration: none; font-weight: 700; font-size: 1.1rem;">info@EduNexus.eu</a>
+      <div class="contact-email">
+          <p data-i18n="contact_email_text">¿Prefieres escribirnos directamente?</p>
+          <a href="mailto:info@edunexuslingo.com">info@edunexuslingo.com</a>
       </div>
     </div>
   </section>
@@ -511,35 +516,46 @@
   ═══════════════════════════════════════ -->
   <footer>
     <div class="footer-content">
-      <div class="footer-top" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
-        <!-- Columna Izquierda: WeChat QR -->
-        <div class="wechat-qr" style="text-align: left; flex: 1; min-width: 200px;">
-          <p style="margin-bottom: 0.5rem; font-size: 0.85rem; color: #888;" data-i18n="wechat_scan">扫描二维码通过微信联系 nosotros We Chat</p>
-          <img src="img/wechat-qr.png" alt="WeChat QR Code" style="width: 110px; height: 110px; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+      <div class="footer-top">
+        <!-- Columna Izquierda: Códigos QR de contacto -->
+        <div class="qr-contacts">
+          <article class="qr-card wechat-qr">
+            <p class="qr-title" data-i18n="wechat_scan">WeChat</p>
+            <p class="qr-description">Escanea para hablar por WeChat</p>
+            <img src="img/wechat-qr.png" alt="Código QR de WeChat" loading="lazy">
+          </article>
+          <article class="qr-card whatsapp-qr">
+            <p class="qr-title">WhatsApp</p>
+            <p class="qr-description">Escanea para abrir una conversación</p>
+            <a href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener" aria-label="Escribir a EduNexusLingo por WhatsApp">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;format=png&amp;margin=10&amp;data=https%3A%2F%2Fapi.whatsapp.com%2Fsend%2F%3Fphone%3D353831036031%26text%3D%26type%3Dphone_number%26app_absent%3D0" alt="Código QR para WhatsApp de EduNexusLingo" loading="lazy">
+            </a>
+            <a class="qr-number" href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">+353 83 103 6031</a>
+          </article>
         </div>
 
         <!-- Columna Central: Contactos y Marca -->
-        <div class="footer-brand" style="text-align: center; flex: 1; min-width: 250px;">
-          <div class="footer-contact" style="display: flex; flex-direction: column; gap: 0.8rem; align-items: center; margin-bottom: 1.5rem;">
-            <a href="https://wa.me/353831036031" target="_blank" rel="noopener" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+        <div class="footer-brand">
+          <div class="footer-contact">
+            <a href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="22" alt="WhatsApp"> WhatsApp
             </a>
-            <a href="mailto:info@edunexus.eu" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">✉ info@edunexus.eu</a>
-            <a href="https://www.edunexus.eu" style="color: #d4af37; font-size: 1.1rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">🌐 edunexus.eu</a>
+            <a href="mailto:info@edunexuslingo.com">✉ info@edunexuslingo.com</a>
+            <a href="https://www.edunexuslingo.eu">🌐 edunexuslingo.eu</a>
           </div>
-          <span class="logo-text" style="color: #d4af37; font-size: 1.8rem; font-weight: 700; display: block; margin-bottom: 0.5rem;">Edu Lingo</span>
-          <div class="gold-divider" style="margin: 0 auto; width: 80px; height: 2px; background: linear-gradient(to right, transparent, #d4af37, transparent);"></div>
+          <span class="logo-text">EduNexusLingo</span>
+          <div class="gold-divider"></div>
         </div>
 
         <!-- Columna Derecha: Tagline -->
-        <div class="footer-tagline-container" style="text-align: right; flex: 1; min-width: 200px;">
-          <p data-i18n="footer_tagline" style="color: #888; font-size: 0.95rem; line-height: 1.5;">Elite education for those who aspire to the extraordinary.</p>
+        <div class="footer-tagline-container">
+          <p data-i18n="footer_tagline">Elite education for those who aspire to the extraordinary.</p>
         </div>
       </div>
 
-      <div class="footer-bottom" style="margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-        <p data-i18n="footer_rights" style="color: #666; font-size: 0.85rem;">© 2026 EduNexusLingo. All rights reserved.</p>
-        <p class="footer-locations" data-i18n="footer_locations" style="color: #666; font-size: 0.85rem;">Available in Spain, Malta, Ireland, England, Cyprus, USA.</p>
+      <div class="footer-bottom">
+        <p data-i18n="footer_rights">© 2026 EduNexusLingo. All rights reserved.</p>
+        <p class="footer-locations" data-i18n="footer_locations">Available in Spain, Malta, Ireland, England, Cyprus, USA.</p>
       </div>
     </div>
   </footer>
