@@ -430,7 +430,7 @@
   <!-- ═══════════════════════════════════════
        CONTACTO (RESTAURADO)
 
-  <section id="contacto" class="contacto">
+  <section class="contacto contacto-legacy">
     <div class="section-header fade-in">
       <span class="section-eyebrow" data-i18n="contact_eyebrow">Contáctanos</span>
       <h2 class="light" data-i18n="contact_h2">Empieza tu Aventura Hoy</h2>
@@ -577,7 +577,40 @@
   <script src="js/translations.js"></script>
   <script src="js/main.js"></script>
   <!-- Botón flotante LingoPOK -->
-  <script src="js/floating-pok.js"></script>
+    <script src="js/floating-pok.js"></script>
+  <!-- Garantiza que #contacto se posiciona correctamente tras cargar imágenes y scripts. -->
+  <script>
+    (function () {
+      function jumpToContact() {
+        if (window.location.hash !== '#contacto') return;
+        var target = document.getElementById('contacto');
+        if (!target) return;
+        var header = document.querySelector('header');
+        var offset = header ? header.getBoundingClientRect().height + 12 : 12;
+        var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+        var root = document.documentElement;
+        var previousBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, top);
+        root.style.scrollBehavior = previousBehavior;
+      }
 
+      jumpToContact();
+      document.addEventListener('DOMContentLoaded', function () {
+        jumpToContact();
+        window.setTimeout(jumpToContact, 150);
+      });
+      window.addEventListener('load', function () {
+        window.setTimeout(jumpToContact, 50);
+      });
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest('a[href="#contacto"]');
+        if (!link) return;
+        event.preventDefault();
+        history.replaceState(null, '', '#contacto');
+        jumpToContact();
+      });
+    }());
+  </script>
 </body>
 </html>
