@@ -1548,3 +1548,30 @@ footer {
   transition: all 0.4s ease;
   font-family: 'Lato', sans-serif;
 }
+
+/* Contact update: formulario claro y canales QR parejos. */
+.form-intro { color: rgba(248,244,238,0.74); font-family: 'Lato', sans-serif; font-size: 1rem; line-height: 1.7; margin: 0 0 2rem; max-width: 56ch; }
+.form-honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+.form-note { color: rgba(248,244,238,0.48); font-family: 'Lato', sans-serif; font-size: 0.78rem; line-height: 1.55; margin-top: 1rem; }
+.form-note strong { color: rgba(248,244,238,0.75); font-weight: 700; }
+.form-submit:focus-visible, .qr-card a:focus-visible, .footer-contact a:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 4px; }
+.form-submit:active { transform: translateY(0) scale(0.98); }
+.contact-email { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(201,168,76,0.18); text-align: center; }
+.contact-email p { color: rgba(248,244,238,0.58); font-family: 'Lato', sans-serif; font-size: 0.9rem; margin-bottom: 0.5rem; }
+.contact-email a { color: var(--gold-light); font-family: 'Lato', sans-serif; font-size: 1rem; font-weight: 700; text-decoration: none; }
+.contact-email a:hover { color: var(--white); }
+.footer-top { display: grid; grid-template-columns: minmax(360px, 1.2fr) minmax(240px, 0.8fr) minmax(190px, 0.7fr); gap: 3rem; align-items: center; }
+.qr-contacts { display: flex; gap: 1rem; align-items: stretch; }
+.qr-card { flex: 1 1 0; min-width: 142px; padding: 1rem; text-align: center; border: 1px solid rgba(201,168,76,0.22); background: rgba(255,255,255,0.035); border-radius: 12px; }
+.qr-title { color: var(--gold-light); font-family: 'Lato', sans-serif; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; }
+.qr-description { color: rgba(248,244,238,0.55); font-family: 'Lato', sans-serif; font-size: 0.72rem; line-height: 1.35; min-height: 2.1em; margin: 0.35rem 0 0.8rem; }
+.qr-card img { display: block; width: min(100%, 132px); aspect-ratio: 1; height: auto; margin: 0 auto; padding: 6px; background: var(--white); border: 2px solid rgba(255,255,255,0.88); border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.24); }
+.qr-card a:hover img { border-color: var(--gold-light); }
+.qr-number { display: inline-block; color: var(--gold); font-family: 'Lato', sans-serif; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.04em; margin-top: 0.75rem; text-decoration: none; }
+.footer-brand { text-align: center; }
+.footer-brand .footer-contact { align-items: center; margin-bottom: 1.5rem; }
+.footer-tagline-container { text-align: right; }
+.footer-tagline-container p { color: rgba(248,244,238,0.55); font-family: 'Lato', sans-serif; font-size: 0.9rem; line-height: 1.65; }
+@media (max-width: 1050px) { .footer-top { grid-template-columns: 1fr 1fr; } .footer-tagline-container { grid-column: 1 / -1; text-align: center; } }
+@media (max-width: 620px) { .qr-contacts { gap: 0.7rem; } .qr-card { min-width: 0; padding: 0.7rem; } .qr-card img { width: 112px; } .footer-top { grid-template-columns: 1fr; gap: 2.25rem; } .footer-tagline-container { grid-column: auto; } }
+@media (prefers-reduced-motion: reduce) { .form-submit, .qr-card img, .contact-email a { transition: none !important; } }
