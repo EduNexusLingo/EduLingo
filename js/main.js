@@ -14,7 +14,7 @@
  */
 function detectBrowserLanguage() {
   const supported = ['es', 'en', 'fr', 'zh', 'el', 'uk', 'mn', 'ja'];
-  const browserLangs = navigator.languages || [navigator.language || 'es'];
+  const browserLangs = navigator.languages || [navigator.language || 'en'];
 
   for (const lang of browserLangs) {
     const code = lang.toLowerCase().split('-')[0];
@@ -23,10 +23,10 @@ function detectBrowserLanguage() {
     if (code === 'zh') return 'zh';
     if (code === 'uk') return 'uk';
   }
-  return 'es'; // default
+  return 'en'; // default
 }
 
-let currentLang = 'es';
+let currentLang = 'en';
 
 function changeLanguage(lang) {
   if (!translations[lang]) return;
@@ -287,20 +287,10 @@ function initHeaderScroll() {
    FORM HANDLER
    ============================================================ */
 function initForm() {
-  const form = document.getElementById('contactForm');
-  if (!form) return;
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.form-submit');
-    const original = btn.textContent;
-    btn.textContent = '✓ Enviado';
-    btn.style.background = 'linear-gradient(135deg, #2d6a1a, #4a9c28)';
-    setTimeout(() => {
-      btn.textContent = original;
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
-  });
+  // Intentionally disabled: the real submit is handled by the Web3Forms
+  // AJAX script inside index.html. This function used to block submission
+  // with preventDefault() and never actually sent the message.
+  return;
 }
 
 /* ============================================================
@@ -308,7 +298,7 @@ function initForm() {
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Determine language
-  let lang = 'es';
+  let lang = 'en';
   try {
     const saved = localStorage.getItem('edunexus_lang');
     if (saved && translations[saved]) {
