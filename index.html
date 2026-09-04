@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -146,9 +146,9 @@
     <nav id="mainNav">
       <!-- Language Flags -->
       <div class="lang-selector">
-        <img src="https://flagcdn.com/w40/br.png" class="lang-flag active" data-lang="pt" onclick="changeLanguage('pt')" alt="Português" title="Português">
+        <img src="https://flagcdn.com/w40/br.png" class="lang-flag" data-lang="pt" onclick="changeLanguage('pt')" alt="Português" title="Português">
         <img src="https://flagcdn.com/w40/es.png" class="lang-flag" data-lang="es" onclick="changeLanguage('es')" alt="Español" title="Español">
-        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag" data-lang="en" onclick="changeLanguage('en')" alt="English" title="English">
+        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag active" data-lang="en" onclick="changeLanguage('en')" alt="English" title="English">
         <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="Français" title="Français">
         <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="中文" title="中文">
         <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
@@ -478,11 +478,11 @@
     </div>
     <div class="form-container fade-in">
       <p class="form-intro">Cuéntanos qué necesitas y el equipo de EduNexusLingo responderá a tu correo.</p>
-      <form id="contactForm" action="https://formsubmit.co/info@edunexuslingo.com" method="POST" accept-charset="UTF-8">
-        <input type="hidden" name="_subject" value="Nueva consulta desde EduNexusLingo">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="true">
-        <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="access_key" value="79976520-35c3-4ef2-abcc-a0ff85ea182f">
+        <input type="hidden" name="subject" value="Nueva consulta desde EduNexusLingo">
+        <input type="hidden" name="from_name" value="Web EduNexusLingo">
+        <input type="checkbox" name="botcheck" class="form-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-group">
           <label for="name" data-i18n="form_name">Nombre completo *</label>
           <input type="text" id="name" name="name" autocomplete="name" required>
@@ -500,7 +500,6 @@
           <textarea id="message" name="message" rows="5" required placeholder="Programa, destino o duda que te gustaría consultar"></textarea>
         </div>
         <button type="submit" class="form-submit" data-i18n="form_submit">Enviar Mensaje</button>
-        <p class="form-note">Al enviar, aparecerá la página de confirmación de FormSubmit. La primera vez, confirma la activación desde el correo recibido en <strong>info@edunexuslingo.com</strong>.</p>
       </form>
       
       <div class="contact-email">
@@ -612,5 +611,49 @@
       });
     }());
   </script>
+
+    <!-- Web3Forms AJAX submit -->
+    <script>
+      (function () {
+        var form = document.getElementById('contactForm');
+        if (!form || form.action.indexOf('web3forms') === -1) return;
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var note = document.createElement('p');
+        note.className = 'form-note';
+        note.setAttribute('role', 'status');
+        note.setAttribute('aria-live', 'polite');
+        note.style.marginTop = '14px';
+        form.appendChild(note);
+
+        function isEnglish() {
+          var l = (document.documentElement.lang || '').toLowerCase();
+          return l.indexOf('en') === 0;
+        }
+        function msg(en, es) { return isEnglish() ? en : es; }
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (submitBtn) submitBtn.disabled = true;
+          note.style.color = '';
+          note.textContent = msg('Sending message…', 'Enviando mensaje…');
+          var data = new FormData(form);
+          data.set('replyto', data.get('email') || '');
+          try {
+            var res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+            var out = await res.json().catch(function () { return {}; });
+            var failed = out.success === false || String(out.success).toLowerCase() === 'false';
+            if (!res.ok || failed) throw new Error('fail');
+            form.reset();
+            note.style.color = '#1a7f37';
+            note.textContent = msg('Message sent successfully. We will reply soon.', 'Mensaje enviado correctamente. Te responderemos pronto.');
+          } catch (err) {
+            note.style.color = '#c0392b';
+            note.textContent = msg('Could not send now. Please email info@edunexuslingo.com', 'No se pudo enviar ahora. Escríbenos a info@edunexuslingo.com');
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      })();
+    </script>
 </body>
 </html>
