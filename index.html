@@ -7,9 +7,9 @@
   <meta name="description" content="EduNexusLingo — Elite education for those who aspire to the extraordinary. Learn English in Malta, Ireland, London, Edinburgh, and more.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
-  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+  <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
   <!-- Google Fonts: Playfair Display + Lato -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,8 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="css/paquistan.css">
+  <link rel="stylesheet" href="css/style.css">
 
 <style>
 /* Estilos para la nueva sección de programas */
@@ -117,6 +116,31 @@
     }
 }
 </style>
+  <!-- Redirección por país: solo la portada principal consulta la ubicación. -->
+  <script>
+    (function () {
+      var controller = new AbortController();
+      var timeout = window.setTimeout(function () { controller.abort(); }, 5000);
+      fetch('https://free.freeipapi.com/api/v1/json', {
+        signal: controller.signal,
+        credentials: 'omit',
+        cache: 'no-store'
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Geolocation unavailable');
+          return response.json();
+        })
+        .then(function (data) {
+          if (data && data.countryCode === 'PK') {
+            window.location.replace('/pakistan/index.html' + window.location.search + window.location.hash);
+          }
+        })
+        .catch(function () {
+          // Si no se puede determinar el país, se mantiene la página original.
+        })
+        .finally(function () { window.clearTimeout(timeout); });
+    }());
+  </script>
 </head>
 <body>
 
@@ -130,10 +154,10 @@
  
 <div class="logo-group">
   <a href="#" class="logo">
-    <img src="../img/EduLingo-1.jpg" alt="EduNexusLingo Logo">
+    <img src="img/EduLingo-1.jpg" alt="EduNexusLingo Logo">
   </a>
   <a href="https://www.Edunexuslingo.com/LingoPok/index.html" class="logo">
-    <img src="../img/pok.png" alt="POK">
+    <img src="img/pok.png" alt="POK">
   </a>
 </div>
 
@@ -161,7 +185,7 @@
       <a href="#metodo" data-i18n="nav_method">The Method</a>
       <a href="#destinos" data-i18n="nav_destinations">Destinations</a>
       <a href="#testimonios" data-i18n="nav_testimonials">Testimonials</a>
-      <a href="#programas">Resources</a>
+      <a href="#programas" data-i18n="nav_prices">Prices</a>
       <a href="#contacto" class="btn-contact" data-i18n="nav_contact">Contact</a>
 
       <!-- WhatsApp -->
@@ -181,6 +205,8 @@
       <h1 data-i18n="hero_h1">Build a Life Worth Telling About</h1>
       <p data-i18n="hero_p">Learn English, have unforgettable experiences, and connect with the world. Your adventure begins here.</p>
       <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" data-i18n="hero_btn_start">Get Started Now</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('destinos').scrollIntoView({behavior:'smooth'})" data-i18n="hero_btn_info">More Information</button>
       </div>
     </div>
     <div class="scroll-indicator">
@@ -200,7 +226,7 @@
     <div class="destinos-grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
       <!-- Irlanda -->
       <div class="destino-item fade-in">
-        <img src="../img/ireland-pubs-exg6C2oexUAKjvK6kmYnQ3.webp" alt="Irlanda" loading="lazy">
+        <img src="img/ireland-pubs-exg6C2oexUAKjvK6kmYnQ3.webp" alt="Irlanda" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_ireland">Emerald Island</span>
           <h3 data-i18n="dest_ireland_h3">Irland</h3>
@@ -209,7 +235,7 @@
       </div>
       <!-- Inglaterra -->
       <div class="destino-item fade-in">
-        <img src="../img/london-success-HGUcQo6Qdw6Pi3VwciHoGw.webp" alt="Inglaterra" loading="lazy">
+        <img src="img/london-success-HGUcQo6Qdw6Pi3VwciHoGw.webp" alt="Inglaterra" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_london">United Kingdom</span>
           <h3 data-i18n="dest_england_h3">England</h3>
@@ -218,7 +244,7 @@
       </div>
       <!-- Estados Unidos -->
       <div class="destino-item fade-in">
-        <img src="../img/NY1.jpg" alt="Estados Unidos" loading="lazy">
+        <img src="img/NY1.jpg" alt="Estados Unidos" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_usa">North America</span>
           <h3 data-i18n="dest_usa_h3">USA</h3>
@@ -227,7 +253,7 @@
       </div>
       <!-- España -->
       <div class="destino-item fade-in">
-        <img src="../img/malta-experience-bzTgddDa5z9JB8RhwkDAfs.webp" alt="España" loading="lazy">
+        <img src="img/malta-experience-bzTgddDa5z9JB8RhwkDAfs.webp" alt="España" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_spain">Europe</span>
           <h3 data-i18n="dest_spain_h3">Spain</h3>
@@ -236,7 +262,7 @@
       </div>
       <!-- Malta -->
       <div class="destino-item fade-in">
-        <img src="../img/malta1.jpg" alt="Malta" loading="lazy">
+        <img src="img/malta1.jpg" alt="Malta" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_malta">Mediterranean</span>
           <h3 data-i18n="dest_malta_h3">Malta</h3>
@@ -245,7 +271,7 @@
       </div>
       <!-- Chipre -->
       <div class="destino-item fade-in">
-        <img src="../img/chipre1.jpg" alt="Chipre" loading="lazy">
+        <img src="img/chipre1.jpg" alt="Chipre" loading="lazy">
         <div class="destino-overlay">
           <span class="dest-badge" data-i18n="dest_badge_cyprus">Mediterranean</span>
           <h3 data-i18n="dest_cyprus_h3">Chipre</h3>
@@ -255,60 +281,98 @@
     </div>
   </section>
 
-  <!-- Materiales específicos para visitantes de Pakistán -->
-  <section id="programas" class="pakistan-resources" aria-labelledby="pakistan-resources-title">
+  <!-- NUESTROS PROGRAMAS (4 CUADRANTES) -->
+  <section id="programas" class="programs-section">
     <div class="section-header">
-      <span class="section-eyebrow">Discover and share</span>
-      <h2 id="pakistan-resources-title">Explore Edu Lingo</h2>
+      <span class="section-eyebrow" data-i18n="precios_eyebrow">Exclusive Plans</span>
+      <h2 data-i18n="precios_h2">Our Programs</h2>
       <div class="gold-divider"></div>
-      <p>Discover our international education opportunities and share these resources.</p>
     </div>
-    <div class="pakistan-grid">
-      <article class="pakistan-card">
-        <a class="pakistan-card-link" href="recursos/video-universidades.mp4" download="EduLingo-International-Colleges-and-Universities.mp4">
-          <span class="pakistan-card-image"><img src="imagenes/video.jpeg" alt="Bachelor's and master's degrees with Edu Lingo"></span>
-          <span class="pakistan-card-copy">
-            <p>Discover the endless possibilities of the world of Edu Lingo! See the details of some of our favourite European Universities in this video.</p>
-            <span class="pakistan-card-action">Download video (MP4)</span>
-          </span>
-        </a>
-        <details class="pakistan-video-preview">
-          <summary>Watch the video online</summary>
-          <video controls preload="none" playsinline poster="imagenes/video.jpeg">
-            <source src="recursos/video-universidades.mp4" type="video/mp4">
-            Your browser cannot play this video. Use the download link above.
-          </video>
-        </details>
-      </article>
-      <article class="pakistan-card">
-        <a class="pakistan-card-link" href="recursos/folleto-a5.pdf" download="EduLingo-Pakistan-A5-Leaflet.pdf">
-          <span class="pakistan-card-image"><img src="imagenes/folleto.jpeg" alt="Study abroad A5 leaflet"></span>
-          <span class="pakistan-card-copy">
-            <p>Download, print as A5 leaflet and share the global possibilities of Edu Lingo.</p>
-            <span class="pakistan-card-action">Download leaflet (PDF)</span>
-          </span>
-        </a>
-      </article>
-      <article class="pakistan-card">
-        <a class="pakistan-card-link" href="recursos/cartel.pdf" download="EduLingo-Pakistan-Poster.pdf">
-          <span class="pakistan-card-image"><img src="imagenes/cartel.jpeg" alt="Your future starts here: study abroad poster"></span>
-          <span class="pakistan-card-copy">
-            <p>A4 or A3, download and share the possibilities of Edu Lingo in your school.</p>
-            <span class="pakistan-card-action">Download poster (PDF)</span>
-          </span>
-        </a>
-      </article>
-      <article class="pakistan-card">
-        <a class="pakistan-card-link" href="recursos/presentacion-digital.pdf" download="EduLingo-Pakistan-Digital-Presentation.pdf">
-          <span class="pakistan-card-image"><img src="imagenes/presentacion.jpeg" alt="Edu Lingo digital slideshow"></span>
-          <span class="pakistan-card-copy">
-            <p>Share our Edu Lingo slideshow on your digital devices.</p>
-            <span class="pakistan-card-action">Download presentation (PDF)</span>
-          </span>
-        </a>
-      </article>
+
+    <div class="programs-container">
+      <!-- 1. Languaje -->
+      <a href="language.html" class="program-card">
+        <div class="program-info">
+          <div>
+            <div class="program-duration">⏱️ <span data-i18n="prog_eng_duration">1, 4, 12 or 25 weeks - 2 Years</span></div>
+            <h3 data-i18n="prog_eng_title">English Courses</h3>
+            <p data-i18n="prog_eng_description">Intensive General English, Business English, and exam preparation programs</p>
+            <ul class="program-features">
+              <li data-i18n="prog_eng_li1">✓ International Certification</li>
+              <li data-i18n="prog_eng_li2">✓ Job Opportunity</li>
+              <li data-i18n="prog_eng_li3">✓ Guaranteed Student Visa</li>
+            </ul>
+          </div>
+          <div class="btn-more" data-i18n="prog_btn">More Information</div>
+        </div>
+        <div class="program-image">
+          <img src="img/Languaje.png" alt="Language Courses">
+        </div>
+      </a>
+
+      <!-- 2. Vocational -->
+      <a href="vocational.html" class="program-card">
+        <div class="program-info">
+          <div>
+            <div class="program-duration">⏱️ <span data-i18n="prog_prof_duration">6 months to 2 years</span></div>
+            <h3 data-i18n="prog_prof_title">Professional Training Programs</h3>
+            <p data-i18n="prog_prof_description">Master's and diploma programs in various fields, with opportunities to work while studying.</p>
+            <ul class="program-features">
+              <li data-i18n="prog_prof_li1">✓ International Certification</li>
+              <li data-i18n="prog_prof_li2">✓ Job Opportunity</li>
+              <li data-i18n="prog_prof_li3">✓ Guaranteed Student Visa</li>
+            </ul>
+          </div>
+          <div class="btn-more" data-i18n="prog_btn">More Information</div>
+        </div>
+        <div class="program-image">
+          <img src="img/Vocational.png" alt="Vocational Training">
+        </div>
+      </a>
+
+      <!-- 3. University -->
+      <a href="university.html" class="program-card">
+        <div class="program-info">
+          <div>
+            <div class="program-duration">⏱️ <span data-i18n="prog_univ_duration">3 to 4 years</span></div>
+            <h3 data-i18n="prog_univ_title">University Programs</h3>
+            <p data-i18n="prog_univ_description">Bachelor's and postgraduate degrees at prestigious European universities</p>
+            <ul class="program-features">
+              <li data-i18n="prog_univ_li1">✓ International Certification</li>
+              <li data-i18n="prog_univ_li2">✓ Job Opportunity</li>
+              <li data-i18n="prog_univ_li3">✓ Guaranteed Student Visa</li>
+            </ul>
+          </div>
+          <div class="btn-more" data-i18n="prog_btn">More Information</div>   
+        </div>
+        <div class="program-image">
+          <img src="img/University.png" alt="University Programs">
+        </div>
+      </a>
+
+      <!-- 4. Schools -->
+      <a href="school.html" class="program-card">
+        <div class="program-info">
+          <div>
+            <div class="program-duration">⏱️ <span data-i18n="prog_school_duration">Annual / Semi-annual</span></div>
+            <h3 data-i18n="prog_school_title">Schools (Primary, Secondary, Boarding School)</h3>
+            <p data-i18n="prog_school_description">EduNexusLingo — Elite education for those who aspire to the extraordinary.</p>
+            <ul class="program-features">
+              <li data-i18n="prog_school_li1">✓ Academic Excellence</li>
+              <li data-i18n="prog_school_li2">✓ Safe Environment</li>
+              <li data-i18n="prog_school_li3">✓ Comprehensive Development</li>
+            </ul>
+          </div>
+          <div class="btn-more" data-i18n="prog_btn">More Information</div>
+        </div>
+        <div class="program-image">
+          <img src="img/School.png" alt="Schools">
+        </div>
+      </a>
     </div>
   </section>
+
+  
 
   <!-- ═══════════════════════════════════════
        CAROUSEL
@@ -321,18 +385,18 @@
     </div>
     <div class="carousel fade-in">
       <div class="carousel-inner" id="carouselInner">
-        <div class="carousel-item" style="background-image: url('../img/Amigos.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/NY1.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Corriendo.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Temple.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Familia.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Taxi.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Empedrado.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Saltando.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Bandera.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Pareja.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/NY2.jpg')"></div>
-        <div class="carousel-item" style="background-image: url('../img/Arco.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Amigos.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/NY1.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Corriendo.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Temple.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Familia.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Taxi.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Empedrado.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Saltando.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Bandera.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Pareja.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/NY2.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('img/Arco.jpg')"></div>
       </div>
       <button class="carousel-button prev" onclick="prevSlide()" aria-label="Previous">&#10094;</button>
       <button class="carousel-button next" onclick="nextSlide()" aria-label="Next">&#10095;</button>
@@ -348,43 +412,43 @@
       <h2 class="section-eyebrow" style="font-size: 1rem;" data-i18n="school_h3">Our Trusted Suppliers</h2>
     </div>
     <div class="school-icons-carousel" id="schoolIconsCarousel">
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
       <!-- Duplicate for infinite scroll -->
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
-	  <div class="school-icon-item"><img src="../img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
-      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
+	  <div class="school-icon-item"><img src="img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
+      <div class="school-icon-item"><img src="img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
     </div>
   </section>
 
@@ -482,7 +546,7 @@
           <article class="qr-card wechat-qr">
             <p class="qr-title" data-i18n="wechat_scan">WeChat</p>
             <p class="qr-description">Scan to chat on WeChat</p>
-            <img src="../img/wechat-qr.png" alt="Código QR de WeChat" loading="lazy">
+            <img src="img/wechat-qr.png" alt="Código QR de WeChat" loading="lazy">
           </article>
           <article class="qr-card whatsapp-qr">
             <p class="qr-title">WhatsApp</p>
@@ -534,10 +598,10 @@
   </div>
 
   <!-- Scripts -->
-  <script src="../js/translations.js"></script>
-  <script src="../js/main.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
   <!-- Botón flotante LingoPOK -->
-    <script src="../js/floating-pok.js"></script>
+    <script src="js/floating-pok.js"></script>
   <!-- Garantiza que #contacto se posiciona correctamente tras cargar imágenes y scripts. -->
   <script>
     (function () {
