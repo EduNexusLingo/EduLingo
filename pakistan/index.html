@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduNexusLingo — Elite Education · Global Experiences</title>
+  <meta name="description" content="EduNexusLingo — Elite education for those who aspire to the extraordinary. Learn English in Malta, Ireland, London, Edinburgh, and more.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
+  <link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+
+  <!-- Google Fonts: Playfair Display + Lato -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="css/paquistan.css">
+
+<style>
+/* Estilos para la nueva sección de programas */
+.programs-section {
+    padding: 6rem 5%;
+    background: #fdfcf9;
+}
+.programs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.program-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(201,168,76,0.1);
+}
+.program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(201,168,76,0.15);
+}
+.program-info {
+    padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.program-duration {
+    font-size: 0.85rem;
+    color: #C9A84C;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.program-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #0B1120;
+}
+.program-info p {
+    font-size: 0.95rem;
+    color: #4A4A6A;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+.program-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+}
+.program-features li {
+    font-size: 0.9rem;
+    color: #4A4A6A;
+    margin-bottom: 0.5rem;
+}
+.btn-more {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: #C9A84C;
+    color: white;
+    border-radius: 4px;
+    font-weight: 700;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+.program-card:hover .btn-more {
+    background: #9A6F2E;
+}
+.program-image {
+    height: 250px;
+    overflow: hidden;
+}
+.program-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.program-card:hover .program-image img {
+    transform: scale(1.1);
+}
+@media (max-width: 768px) {
+    .programs-container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+  <!-- Sparkles Background -->
+  <div class="sparkles" id="sparkles"></div>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ═══════════════════════════════════════ -->
+ <header>
+ 
+<div class="logo-group">
+  <a href="#" class="logo">
+    <img src="../img/EduLingo-1.jpg" alt="EduNexusLingo Logo">
+  </a>
+  <a href="https://www.Edunexuslingo.com/LingoPok/index.html" class="logo">
+    <img src="../img/pok.png" alt="POK">
+  </a>
+</div>
+
+    <!-- Mobile Toggle -->
+    <div class="menu-toggle" id="menuToggle" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav id="mainNav">
+      <!-- Language Flags -->
+      <div class="lang-selector">
+        <img src="https://flagcdn.com/w40/br.png" class="lang-flag" data-lang="pt" onclick="changeLanguage('pt')" alt="Português" title="Português">
+        <img src="https://flagcdn.com/w40/es.png" class="lang-flag" data-lang="es" onclick="changeLanguage('es')" alt="Español" title="Español">
+        <img src="https://flagcdn.com/w40/gb.png" class="lang-flag active" data-lang="en" onclick="changeLanguage('en')" alt="English" title="English">
+        <img src="https://flagcdn.com/w40/fr.png" class="lang-flag" data-lang="fr" onclick="changeLanguage('fr')" alt="Français" title="Français">
+        <img src="https://flagcdn.com/w40/cn.png" class="lang-flag" data-lang="zh" onclick="changeLanguage('zh')" alt="中文" title="中文">
+        <img src="https://flagcdn.com/w40/gr.png" class="lang-flag" data-lang="el" onclick="changeLanguage('el')" alt="Ελληνικά" title="Ελληνικά">
+        <img src="https://flagcdn.com/w40/ua.png" class="lang-flag" data-lang="uk" onclick="changeLanguage('uk')" alt="Українська" title="Українська">
+        <img src="https://flagcdn.com/w40/mn.png" class="lang-flag" data-lang="mn" onclick="changeLanguage('mn')" alt="Монгол" title="Монгол">
+        <img src="https://flagcdn.com/w40/jp.png" class="lang-flag" data-lang="ja" onclick="changeLanguage('ja')" alt="日本語" title="日本語">
+      </div>
+
+      <a href="#metodo" data-i18n="nav_method">The Method</a>
+      <a href="#destinos" data-i18n="nav_destinations">Destinations</a>
+      <a href="#testimonios" data-i18n="nav_testimonials">Testimonials</a>
+      <a href="#programas">Resources</a>
+      <a href="#contacto" class="btn-contact" data-i18n="nav_contact">Contact</a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/353831036031" class="whatsapp-header" target="_blank" rel="noopener">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        <span>WhatsApp</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <span class="hero-eyebrow" data-i18n="hero_eyebrow">Elite Education · Global Experiences</span>
+      <h1 data-i18n="hero_h1">Build a Life Worth Telling About</h1>
+      <p data-i18n="hero_p">Learn English, have unforgettable experiences, and connect with the world. Your adventure begins here.</p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'})" data-i18n="hero_btn_start">Get Started Now</button>
+        <button class="btn btn-secondary" onclick="document.getElementById('destinos').scrollIntoView({behavior:'smooth'})" data-i18n="hero_btn_info">More Information</button>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="scroll-mouse"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       DESTINOS DESTACADOS (6 DESTINOS)
+  ═══════════════════════════════════════ -->
+  <section id="destinos" style="padding: 6rem 5%; background: var(--ivory);">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="destinos_eyebrow">Exclusive Destinations</span>
+      <h2 data-i18n="destinos_h2">Our Destinations</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="destinos-grid-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+      <!-- Irlanda -->
+      <div class="destino-item fade-in">
+        <img src="../img/ireland-pubs-exg6C2oexUAKjvK6kmYnQ3.webp" alt="Irlanda" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_ireland">Emerald Island</span>
+          <h3 data-i18n="dest_ireland_h3">Irland</h3>
+          <p data-i18n="ireland_p">Feel the magic of the Emerald Isle; its hospitality, landscapes, cozy pubs, and the warmth of the Irish people await you.</p>
+        </div>
+      </div>
+      <!-- Inglaterra -->
+      <div class="destino-item fade-in">
+        <img src="../img/london-success-HGUcQo6Qdw6Pi3VwciHoGw.webp" alt="Inglaterra" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_london">United Kingdom</span>
+          <h3 data-i18n="dest_england_h3">England</h3>
+          <p data-i18n="england_p">Discover British elegance and academic excellence in the heart of England.</p>
+        </div>
+      </div>
+      <!-- Estados Unidos -->
+      <div class="destino-item fade-in">
+        <img src="../img/NY1.jpg" alt="Estados Unidos" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_usa">North America</span>
+          <h3 data-i18n="dest_usa_h3">USA</h3>
+          <p data-i18n="usa_p">Limitless opportunities in the land of opportunity, from New York to California.</p>
+        </div>
+      </div>
+      <!-- España -->
+      <div class="destino-item fade-in">
+        <img src="../img/malta-experience-bzTgddDa5z9JB8RhwkDAfs.webp" alt="España" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_spain">Europe</span>
+          <h3 data-i18n="dest_spain_h3">Spain</h3>
+          <p data-i18n="spain_p">Pursue Vocational Training (FP), obtain your study and work visa, and experience the Spanish sun and culture.</p>
+        </div>
+      </div>
+      <!-- Malta -->
+      <div class="destino-item fade-in">
+        <img src="../img/malta1.jpg" alt="Malta" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_malta">Mediterranean</span>
+          <h3 data-i18n="dest_malta_h3">Malta</h3>
+          <p data-i18n="malta_p">Experience the sun and history in the heart of the Mediterranean, crystalline beaches and an international community.</p>
+        </div>
+      </div>
+      <!-- Chipre -->
+      <div class="destino-item fade-in">
+        <img src="../img/chipre1.jpg" alt="Chipre" loading="lazy">
+        <div class="destino-overlay">
+          <span class="dest-badge" data-i18n="dest_badge_cyprus">Mediterranean</span>
+          <h3 data-i18n="dest_cyprus_h3">Chipre</h3>
+          <p data-i18n="cyprus_p">Academic excellence at competitive prices, native English style on a paradise island.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Materiales específicos para visitantes de Pakistán -->
+  <section id="programas" class="pakistan-resources" aria-labelledby="pakistan-resources-title">
+    <div class="section-header">
+      <span class="section-eyebrow">Discover and share</span>
+      <h2 id="pakistan-resources-title">Explore Edu Lingo</h2>
+      <div class="gold-divider"></div>
+      <p>Discover our international education opportunities and share these resources.</p>
+    </div>
+    <div class="pakistan-grid">
+      <article class="pakistan-card">
+        <a class="pakistan-card-link" href="recursos/video-universidades.mp4" download="EduLingo-International-Colleges-and-Universities.mp4">
+          <span class="pakistan-card-image"><img src="imagenes/video.jpeg" alt="Bachelor's and master's degrees with Edu Lingo"></span>
+          <span class="pakistan-card-copy">
+            <p>Discover the endless possibilities of the world of Edu Lingo! See the details of some of our favourite European Universities in this video.</p>
+            <span class="pakistan-card-action">Download video (MP4)</span>
+          </span>
+        </a>
+        <details class="pakistan-video-preview">
+          <summary>Watch the video online</summary>
+          <video controls preload="none" playsinline poster="imagenes/video.jpeg">
+            <source src="recursos/video-universidades.mp4" type="video/mp4">
+            Your browser cannot play this video. Use the download link above.
+          </video>
+        </details>
+      </article>
+      <article class="pakistan-card">
+        <a class="pakistan-card-link" href="recursos/folleto-a5.pdf" download="EduLingo-Pakistan-A5-Leaflet.pdf">
+          <span class="pakistan-card-image"><img src="imagenes/folleto.jpeg" alt="Study abroad A5 leaflet"></span>
+          <span class="pakistan-card-copy">
+            <p>Download, print as A5 leaflet and share the global possibilities of Edu Lingo.</p>
+            <span class="pakistan-card-action">Download leaflet (PDF)</span>
+          </span>
+        </a>
+      </article>
+      <article class="pakistan-card">
+        <a class="pakistan-card-link" href="recursos/cartel.pdf" download="EduLingo-Pakistan-Poster.pdf">
+          <span class="pakistan-card-image"><img src="imagenes/cartel.jpeg" alt="Your future starts here: study abroad poster"></span>
+          <span class="pakistan-card-copy">
+            <p>A4 or A3, download and share the possibilities of Edu Lingo in your school.</p>
+            <span class="pakistan-card-action">Download poster (PDF)</span>
+          </span>
+        </a>
+      </article>
+      <article class="pakistan-card">
+        <a class="pakistan-card-link" href="recursos/presentacion-digital.pdf" download="EduLingo-Pakistan-Digital-Presentation.pdf">
+          <span class="pakistan-card-image"><img src="imagenes/presentacion.jpeg" alt="Edu Lingo digital slideshow"></span>
+          <span class="pakistan-card-copy">
+            <p>Share our Edu Lingo slideshow on your digital devices.</p>
+            <span class="pakistan-card-action">Download presentation (PDF)</span>
+          </span>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CAROUSEL
+  ═══════════════════════════════════════ -->
+  <section id="carousel" class="carousel-section">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="carousel_eyebrow">Gallery of Experiences</span>
+      <h2 data-i18n="carousel_h2">Live Incredible Experiences</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="carousel fade-in">
+      <div class="carousel-inner" id="carouselInner">
+        <div class="carousel-item" style="background-image: url('../img/Amigos.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/NY1.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Corriendo.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Temple.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Familia.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Taxi.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Empedrado.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Saltando.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Bandera.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Pareja.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/NY2.jpg')"></div>
+        <div class="carousel-item" style="background-image: url('../img/Arco.jpg')"></div>
+      </div>
+      <button class="carousel-button prev" onclick="prevSlide()" aria-label="Previous">&#10094;</button>
+      <button class="carousel-button next" onclick="nextSlide()" aria-label="Next">&#10095;</button>
+      <div class="carousel-controls" id="carouselControls"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       SCHOOL ICONS CAROUSEL (Proveedores)
+  ═══════════════════════════════════════ -->
+  <section class="school-icons-section">
+    <div class="section-header fade-in">
+      <h2 class="section-eyebrow" style="font-size: 1rem;" data-i18n="school_h3">Our Trusted Suppliers</h2>
+    </div>
+    <div class="school-icons-carousel" id="schoolIconsCarousel">
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
+      <!-- Duplicate for infinite scroll -->
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq1.png" alt="Provider 1"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq2.png" alt="Provider 2"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq3.png" alt="Provider 3"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq4.png" alt="Provider 4"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq5.png" alt="Provider 5"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq6.png" alt="Provider 6"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq7.png" alt="Provider 7"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq8.png" alt="Provider 8"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq9.png" alt="Provider 9"></div>
+	  <div class="school-icon-item"><img src="../img/Prov-Icons/Esq10.png" alt="Provider 10"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq11.png" alt="Provider 11"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq12.png" alt="Provider 12"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq13.png" alt="Provider 13"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq14.png" alt="Provider 14"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq15.png" alt="Provider 15"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq16.png" alt="Provider 16"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq17.png" alt="Provider 17"></div>
+      <div class="school-icon-item"><img src="../img/Prov-Icons/Esq18.png" alt="Provider 18"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       CONTACTO (RESTAURADO)
+
+  <section class="contacto contacto-legacy">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="contact_eyebrow">Contáctanos</span>
+      <h2 class="light" data-i18n="contact_h2">Empieza tu Aventura Hoy</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="form-container fade-in">
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="nombre" data-i18n="form_name">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="email" data-i18n="form_email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono" data-i18n="form_phone">Teléfono</label>
+          <input type="tel" id="telefono" name="telefono" required>
+        </div>
+        <div class="form-group">
+          <label for="interes" data-i18n="form_interest">¿Qué te gustaría saber?</label>
+          <select id="interes" name="interes" required>
+            <option value="" data-i18n="form_select">Selecciona una opción</option>
+            <option value="ingles" data-i18n="prog_eng_title">Cursos de Inglés en Londres</option>
+            <option value="profesional" data-i18n="prog_prof_title">Formaciones Profesionales</option>
+            <option value="universitario" data-i18n="prog_univ_title">Programas Universitarios</option>
+            <option value="otro" data-i18n="form_opt7">Otro</option>
+          </select>
+        </div>
+        <button type="submit" class="form-submit" data-i18n="form_submit">Enviar Consulta →</button>
+      </form>
+    </div>
+  </section>   
+  -->
+  
+  
+  <!-- ═══════════════════════════════════════
+       CONTACTO (FORMSUBMIT)
+  ═══════════════════════════════════════ -->
+  <section id="contacto" class="contacto">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow" data-i18n="contact_badge">Contact</span>
+      <h2 class="light" data-i18n="contact_h2">Get in Touch</h2>
+      <div class="gold-divider"></div>
+    </div>
+    <div class="form-container fade-in">
+      <p class="form-intro">Tell us what you need, and the EduNexusLingo team will reply to your email.</p>
+      <form id="contactForm" action="https://api.web3forms.com/submit" method="POST" accept-charset="UTF-8">
+        <input type="hidden" name="access_key" value="79976520-35c3-4ef2-abcc-a0ff85ea182f">
+        <input type="hidden" name="subject" value="New inquiry from EduNexusLingo">
+        <input type="hidden" name="from_name" value="Web EduNexusLingo">
+        <input type="checkbox" name="botcheck" class="form-honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-group">
+          <label for="name" data-i18n="form_name">Full name *</label>
+          <input type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email" data-i18n="form_email">Email *</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone" data-i18n="form_phone">Phone (Optional)</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="message" data-i18n="form_message">Message *</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Program, destination or question that you would like to consult"></textarea>
+        </div>
+        <button type="submit" class="form-submit" data-i18n="form_submit">Send Message</button>
+      </form>
+      
+      <div class="contact-email">
+          <p data-i18n="contact_email_text">Would you prefer to write to us directly?</p>
+          <a href="mailto:info@edunexuslingo.com">info@edunexuslingo.com</a>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-top">
+        <!-- Columna Izquierda: Códigos QR de contacto -->
+        <div class="qr-contacts">
+          <article class="qr-card wechat-qr">
+            <p class="qr-title" data-i18n="wechat_scan">WeChat</p>
+            <p class="qr-description">Scan to chat on WeChat</p>
+            <img src="../img/wechat-qr.png" alt="Código QR de WeChat" loading="lazy">
+          </article>
+          <article class="qr-card whatsapp-qr">
+            <p class="qr-title">WhatsApp</p>
+            <p class="qr-description">Scan to start a conversation</p>
+            <a href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener" aria-label="Escribir a EduNexusLingo por WhatsApp">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;format=png&amp;margin=10&amp;data=https%3A%2F%2Fapi.whatsapp.com%2Fsend%2F%3Fphone%3D353831036031%26text%3D%26type%3Dphone_number%26app_absent%3D0" alt="Código QR para WhatsApp de EduNexusLingo" loading="lazy">
+            </a>
+            <a class="qr-number" href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">+353 83 103 6031</a>
+          </article>
+        </div>
+
+        <!-- Columna Central: Contactos y Marca -->
+        <div class="footer-brand">
+          <div class="footer-contact">
+            <a href="https://api.whatsapp.com/send/?phone=353831036031&amp;text=&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="22" alt="WhatsApp"> WhatsApp
+            </a>
+            <a href="mailto:info@edunexuslingo.com">✉ info@edunexuslingo.com</a>
+            <a href="https://www.edunexuslingo.eu">🌐 edunexuslingo.eu</a>
+          </div>
+          <span class="logo-text">EduNexusLingo</span>
+          <div class="gold-divider"></div>
+        </div>
+
+        <!-- Columna Derecha: Tagline -->
+        <div class="footer-tagline-container">
+          <p data-i18n="footer_tagline">Elite education for those who aspire to the extraordinary.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer_rights">© 2026 EduNexusLingo. All rights reserved.</p>
+        <p class="footer-locations" data-i18n="footer_locations">Available in Spain, Malta, Ireland, England, Cyprus, USA.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <div class="chat-popup" id="chatPopup">
+      <div class="chat-header" data-i18n="chat_header">💬 EduNexusLingo Assistant</div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-area">
+        <input type="text" class="chat-input" id="chatInput" data-i18n-placeholder="chat_placeholder" placeholder="Write your message...">
+        <button class="chat-send" id="chatSend" data-i18n="chat_send">Send</button>
+      </div>
+    </div>
+    <button class="chat-button" id="chatButton" aria-label="Chat">💬</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../js/translations.js"></script>
+  <script src="../js/main.js"></script>
+  <!-- Botón flotante LingoPOK -->
+    <script src="../js/floating-pok.js"></script>
+  <!-- Garantiza que #contacto se posiciona correctamente tras cargar imágenes y scripts. -->
+  <script>
+    (function () {
+      function jumpToContact() {
+        if (window.location.hash !== '#contacto') return;
+        var target = document.getElementById('contacto');
+        if (!target) return;
+        var header = document.querySelector('header');
+        var offset = header ? header.getBoundingClientRect().height + 12 : 12;
+        var top = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - offset);
+        var root = document.documentElement;
+        var previousBehavior = root.style.scrollBehavior;
+        root.style.scrollBehavior = 'auto';
+        window.scrollTo(0, top);
+        root.style.scrollBehavior = previousBehavior;
+      }
+
+      jumpToContact();
+      document.addEventListener('DOMContentLoaded', function () {
+        jumpToContact();
+        window.setTimeout(jumpToContact, 150);
+      });
+      window.addEventListener('load', function () {
+        window.setTimeout(jumpToContact, 50);
+      });
+      document.addEventListener('click', function (event) {
+        var link = event.target.closest('a[href="#contacto"]');
+        if (!link) return;
+        event.preventDefault();
+        history.replaceState(null, '', '#contacto');
+        jumpToContact();
+      });
+    }());
+  </script>
+
+    <!-- Web3Forms AJAX submit -->
+    <script>
+      (function () {
+        var form = document.getElementById('contactForm');
+        if (!form || form.action.indexOf('web3forms') === -1) return;
+        var submitBtn = form.querySelector('button[type="submit"]');
+        var note = document.createElement('p');
+        note.className = 'form-note';
+        note.setAttribute('role', 'status');
+        note.setAttribute('aria-live', 'polite');
+        note.style.marginTop = '14px';
+        form.appendChild(note);
+
+        function isEnglish() {
+          var l = (document.documentElement.lang || '').toLowerCase();
+          return l.indexOf('en') === 0;
+        }
+        function msg(en, es) { return isEnglish() ? en : es; }
+
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          if (submitBtn) submitBtn.disabled = true;
+          note.style.color = '';
+          note.textContent = msg('Sending message…', 'Enviando mensaje…');
+          var data = new FormData(form);
+          data.set('replyto', data.get('email') || '');
+          try {
+            var res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
+            var out = await res.json().catch(function () { return {}; });
+            var failed = out.success === false || String(out.success).toLowerCase() === 'false';
+            if (!res.ok || failed) throw new Error('fail');
+            form.reset();
+            note.style.color = '#1a7f37';
+            note.textContent = msg('Message sent successfully. We will reply soon.', 'Mensaje enviado correctamente. Te responderemos pronto.');
+          } catch (err) {
+            note.style.color = '#c0392b';
+            note.textContent = msg('Could not send now. Please email info@edunexuslingo.com', 'No se pudo enviar ahora. Escríbenos a info@edunexuslingo.com');
+          } finally {
+            if (submitBtn) submitBtn.disabled = false;
+          }
+        });
+      })();
+    </script>
+</body>
+</html>
