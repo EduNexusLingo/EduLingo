@@ -116,6 +116,31 @@
     }
 }
 </style>
+  <!-- Redirección por país: solo la portada principal consulta la ubicación. -->
+  <script>
+    (function () {
+      var controller = new AbortController();
+      var timeout = window.setTimeout(function () { controller.abort(); }, 5000);
+      fetch('https://free.freeipapi.com/api/v1/json', {
+        signal: controller.signal,
+        credentials: 'omit',
+        cache: 'no-store'
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error('Geolocation unavailable');
+          return response.json();
+        })
+        .then(function (data) {
+          if (data && data.countryCode === 'PK') {
+            window.location.replace('/paquistan/index.html' + window.location.search + window.location.hash);
+          }
+        })
+        .catch(function () {
+          // Si no se puede determinar el país, se mantiene la página original.
+        })
+        .finally(function () { window.clearTimeout(timeout); });
+    }());
+  </script>
 </head>
 <body>
 
