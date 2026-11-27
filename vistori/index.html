@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Live AI Canvas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE everyday classroom tool: calm, legible, built for presenters working with mixed and vulnerable audiences
+   IDEA a storyteller's picture board: the audience screen is a sheet of paper that fills with bold ink pictograms as the story is told
+   PICTURE the live audience frame itself, large, a coloured disc behind each pictogram, its word in the audience's language, the caption under it
+   COLOUR white ground, ink #14171f, cobalt #2338d6 control bar, tomato #ff5a36 for the live microphone, sunflower #ffc93c, leaf #22a35a for nature only
+   TYPE Atkinson Hyperlegible, with Noto Sans supplying Greek and Cyrillic glyphs
+   LAYOUT laptop: cobalt bar, live frame left (60%), suggestions and transcript right, storyboard strip and icon library below; phone: stacked in that order */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#11131a);--ink:light-dark(#14171f,#f1f1ec);--mute:light-dark(#555a6a,#a6abba);--panel:light-dark(#f3f4fa,#1a1d27);--line:light-dark(#d8dbe8,#2e3244);--cob:#2338d6;--focus:light-dark(#2338d6,#9aa6ff);--y:#ffc93c;--r:#ff5a36;--b:#2338d6;--g:#22a35a}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Atkinson Hyperlegible","Noto Sans",system-ui,sans-serif;overflow-x:clip}
+h2{font-size:19px;line-height:1.2;margin:0 0 10px;display:flex;gap:8px;align-items:baseline}
+h2 small{font-size:14px;color:var(--mute);font-weight:400}
+.btn{min-height:44px;padding:0 16px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:700 16px/1 inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.btn:hover{border-color:var(--ink)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.sm{min-height:44px;padding:0 12px;font-size:15px}
+.btn.pri{background:var(--cob);border-color:var(--cob);color:#fff}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.inp,select{font:16px inherit;min-height:44px;padding:0 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.small{font-size:14px;color:var(--mute);margin:8px 0 0}
+.bar{background:var(--cob);color:#fff;display:flex;flex-wrap:wrap;gap:10px 12px;align-items:center;padding:12px max(3vw,16px)}
+.bar h1{font-size:24px;line-height:1.05;margin:0 auto 0 0;letter-spacing:-.01em}
+.bar h1 span{display:block;font-size:14px;font-weight:400;opacity:.85;letter-spacing:0}
+.bar .btn{background:#fff;color:#14171f;border-color:#fff}
+.bar .btn.live{background:var(--r);border-color:var(--r);color:#fff}
+.bar select{width:auto;background:#fff;color:#14171f;border-color:#fff}
+.bar label{display:flex;align-items:center;gap:8px;font-size:15px}
+.dot{width:10px;height:10px;border-radius:50%;background:currentColor;display:inline-block}
+.live .dot{animation:pulse 1.4s ease-in-out infinite}
+.stat{margin:0;padding:8px max(3vw,16px);font-size:15px;background:var(--panel);border-bottom:1px solid var(--line)}
+.work{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:20px;padding:20px max(3vw,16px) 8px;max-width:1440px;margin:0 auto}
+.pan{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.side{display:grid;gap:16px;align-content:start}
+.fnav{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:12px 0}
+.fnav b{min-width:9em;text-align:center}
+.capl{display:block;font-weight:700;margin-bottom:6px}
+.sg{display:grid;grid-template-columns:48px minmax(0,1fr) auto auto;gap:4px 10px;align-items:center;padding:8px 0;border-top:1px solid var(--line);position:relative}
+.sg:first-child{border-top:0}
+.sgt b{display:block;font-size:17px}
+.sgt small{color:var(--mute);font-size:14px;overflow-wrap:anywhere}
+.bar2{grid-column:1/-1;height:4px;border-radius:2px;background:var(--line);overflow:hidden;display:none}
+.timed .bar2{display:block}
+.bar2 i{display:block;height:100%;width:0;background:var(--y)}
+.mini{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 40%,transparent);color:var(--ink)}
+.mini svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.mini svg .f{fill:currentColor;stroke:none}
+#log{margin:0;padding-left:22px;max-height:200px;overflow:auto;font-size:15px}
+#log li{margin:2px 0}
+.interim{min-height:1.5em;color:var(--mute);font-style:italic;margin:6px 0}
+.tf{display:flex;gap:8px}
+.band2{padding:12px max(3vw,16px);max-width:1440px;margin:0 auto}
+.strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.th{position:relative;padding:0;border:2px solid var(--line);border-radius:12px;background:none;cursor:pointer;overflow:hidden;color:inherit;font:inherit}
+.th.cur{border-color:var(--cob);box-shadow:0 0 0 2px var(--cob)}
+.th>span{position:absolute;left:6px;top:6px;background:var(--cob);color:#fff;font-weight:700;font-size:13px;border-radius:6px;padding:1px 7px}
+.addf{border:2px dashed var(--line);border-radius:12px;background:none;color:var(--mute);font:700 16px inherit;aspect-ratio:16/9;cursor:pointer}
+.lower{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:20px;padding-bottom:20px}
+.libh{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:10px}
+.libh h2{margin:0}
+.libh .inp{max-width:300px}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:6px;max-height:330px;overflow:auto;padding:2px}
+.lb{display:grid;justify-items:center;gap:4px;padding:8px 4px;border:1.5px solid transparent;border-radius:10px;background:none;color:inherit;font:14px/1.2 inherit;cursor:pointer;text-align:center}
+.lb:hover{border-color:var(--line);background:var(--bg)}
+.set{display:grid;gap:12px;align-content:start}
+.set label{display:grid;gap:4px;font-weight:700;font-size:15px}
+.set h2{margin:6px 0 0}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.foot{padding:4px max(3vw,16px) 28px;max-width:1440px;margin:0 auto;color:var(--mute);font-size:14px;display:grid;gap:6px}
+.foot p{margin:0}
+kbd{font:700 13px inherit;border:1px solid var(--line);border-radius:5px;padding:0 5px;background:var(--panel);color:var(--ink)}
+/* the stage: the audience's sheet of paper, sized by container units so one design serves preview, thumbnails, full screen and print */
+.stage{container-type:size;aspect-ratio:16/9;width:100%;background:#fff;color:#14171f;border-radius:14px;overflow:hidden;position:relative;border:1px solid #d8dbe8}
+.stage.night{background:#0d0f16;color:#f4f4ef;border-color:#2e3244}
+.st-in{display:grid;grid-template-rows:auto minmax(0,1fr) auto;height:100%}
+.blank .st-in{visibility:hidden}
+.st-top{display:flex;justify-content:space-between;align-items:center;padding:3cqh 3.5cqw 0;font-weight:700;font-size:max(9px,3.4cqh);opacity:.55}
+.dots{display:flex;gap:1.2cqw}
+.dots i{width:2.2cqh;height:2.2cqh;border-radius:50%;border:max(1px,.4cqh) solid currentColor}
+.dots i.on{background:currentColor}
+.icons{display:flex;flex-wrap:wrap;justify-content:center;align-content:center;gap:2cqh 4cqw;padding:0 4cqw;--s:min(25cqw,44cqh)}
+.icons.n4{--s:min(18cqw,42cqh)}
+.icons.n5,.icons.n6{--s:min(17cqw,24cqh);gap:1.5cqh 6cqw;padding:0 12cqw}
+.it{margin:0;display:grid;justify-items:center;gap:1.2cqh}
+.it.new{animation:pop .55s cubic-bezier(.2,.9,.3,1.3)}
+.disc{width:var(--s);height:var(--s);border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--c) 42%,transparent);position:relative}
+.night .disc{background:color-mix(in srgb,var(--c) 58%,transparent)}
+.disc svg{width:66%;height:66%;fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.disc svg .f{fill:currentColor;stroke:none}
+.it figcaption{font-size:max(10px,4.6cqh);font-weight:700;line-height:1.1}
+.x{position:absolute;top:-2px;right:-2px;width:clamp(24px,8cqh,32px);height:clamp(24px,8cqh,32px);border-radius:50%;border:2px solid #fff;background:#14171f;color:#fff;font:700 18px/1 inherit;cursor:pointer;display:grid;place-items:center}
+.empty{margin:0;font-size:max(11px,5cqh);opacity:.4}
+.cap{margin:0;padding:1.5cqh 6cqw 4.5cqh;font-size:max(9px,6.4cqh);font-weight:700;line-height:1.15;text-align:center;text-wrap:balance;min-height:1em}
+#aud{display:none;position:fixed;inset:0;background:#000}
+body.aud #aud{display:block}
+body.aud .pres{display:none}
+#aud .stage{aspect-ratio:auto;height:100%;border-radius:0;border:0}
+.fs{position:fixed;right:14px;bottom:14px;width:44px;height:44px;border-radius:10px;border:0;background:rgba(128,128,128,.25);color:#888;font-size:22px;cursor:pointer}
+.esc{position:fixed;left:14px;bottom:14px;margin:0;font-size:14px;color:#888}
+#print{display:none}
+@keyframes pop{from{opacity:0;transform:scale(.8) translateY(4cqh)}}
+@keyframes pulse{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.it.new,.live .dot{animation:none}}
+@media(max-width:860px){.work,.lower{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.bar h1{flex-basis:100%}.fnav b{min-width:0}.libh .inp{max-width:none}}
+@media print{
+  @page{size:A4 landscape;margin:12mm}
+  body>*{display:none!important}
+  #print{display:grid!important;grid-template-columns:1fr 1fr;gap:8mm}
+  .ph{grid-column:1/-1;margin:0;font-size:20px}
+  .pf{break-inside:avoid;margin:0}
+  .pf p{margin:2mm 0 0;font-size:12px}
+  #print .stage,#print .stage.night{background:#fff;color:#14171f;border:1px solid #999}
+  #print .disc{background:color-mix(in srgb,var(--c) 42%,transparent)}
+}
+</style>
+</head>
+<body>
+<div class="pres">
+  <header class="bar">
+    <h1>Live AI Canvas<span>VISTORI prototype, Edu Nexus</span></h1>
+    <label for="lang">Speech
+      <select id="lang"><option value="en">English</option><option value="el">Ελληνικά</option><option value="sr">Srpski</option></select>
+    </label>
+    <button id="go" class="btn"><span class="dot"></span><span id="goT">Start listening</span></button>
+    <button id="openAud" class="btn">Open audience screen</button>
+    <button id="pdf" class="btn">Export PDF</button>
+  </header>
+  <p id="stat" class="stat" role="status"></p>
+
+  <main class="work">
+    <section aria-label="Current frame">
+      <div id="pv"></div>
+      <div class="fnav">
+        <button id="prev" class="btn sm" aria-label="Previous frame">‹</button>
+        <b id="fpos"></b>
+        <button id="next" class="btn sm" aria-label="Next frame">›</button>
+        <button id="newf" class="btn sm">New frame</button>
+        <button id="delf" class="btn sm">Delete frame</button>
+        <button id="blank" class="btn sm" aria-pressed="false">Blank screen</button>
+        <button id="undo" class="btn sm">Undo</button>
+      </div>
+      <label class="capl" for="cap">Caption for this frame</label>
+      <input id="cap" class="inp" maxlength="120" autocomplete="off">
+      <p id="samp" class="small"></p>
+    </section>
+    <aside class="side">
+      <div class="pan"><h2>Suggestions <small id="sgc"></small></h2><div id="sg"></div></div>
+      <div class="pan">
+        <h2>Transcript</h2>
+        <ol id="log"></ol>
+        <p id="interim" class="interim" aria-live="polite"></p>
+        <form id="tf" class="tf"><input id="tx" class="inp" placeholder="Type or paste a sentence" autocomplete="off" aria-label="Type a sentence"><button class="btn sm pri">Send</button></form>
+      </div>
+    </aside>
+  </main>
+
+  <section class="band2" aria-label="Storyboard"><h2>Storyboard <small>3 to 6 frames</small></h2><div id="strip" class="strip"></div></section>
+
+  <section class="band2 lower">
+    <div class="pan">
+      <div class="libh"><h2>Icon library</h2><input id="q" class="inp" type="search" placeholder="Search in any language" aria-label="Search icons"></div>
+      <div id="lib" class="lib"></div>
+    </div>
+    <div class="pan set">
+      <h2>Pace and display</h2>
+      <label>Auto-place suggestions
+        <select id="auto"><option value="0">Off: I approve each one</option><option value="2">After 2 seconds</option><option value="4">After 4 seconds</option><option value="8">After 8 seconds</option></select></label>
+      <label>Icons per frame
+        <select id="max"><option>3</option><option>4</option><option>5</option><option>6</option></select></label>
+      <label>Audience screen
+        <select id="night"><option value="0">Paper (light)</option><option value="1">Night (dark)</option></select></label>
+      <label id="cyrl">Serbian labels
+        <select id="cyr"><option value="0">Latinica</option><option value="1">Ćirilica</option></select></label>
+      <h2>Scenario</h2>
+      <div class="row">
+        <button id="scn" class="btn sm">Load sample scenario</button>
+        <label class="btn sm" for="file">Load scenario file</label><input id="file" type="file" accept=".json,application/json" hidden>
+        <button id="copy" class="btn sm">Copy as JSON</button>
+        <button id="clear" class="btn sm">Clear all</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Keys: <kbd>Space</kbd> start or pause, <kbd>Enter</kbd> place the first suggestion, <kbd>Delete</kbd> dismiss it, <kbd>←</kbd> <kbd>→</kbd> change frame, <kbd>N</kbd> new frame, <kbd>B</kbd> blank screen, <kbd>A</kbd> audience view in this window, <kbd>Esc</kbd> back, <kbd>Ctrl</kbd>+<kbd>Z</kbd> undo.</p>
+    <p>Prototype note: live speech uses the browser's own recognition (in Chrome, audio goes to Google's speech service). The pilot version is planned to use Azure AI Speech in an EU region, with audio processed in real time and never stored. Nothing here is uploaded; the storyboard stays in this browser.</p>
+  </footer>
+</div>
+<div id="aud"></div>
+<div id="print"></div>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const framed=(()=>{try{return self!==top}catch(e){return true}})();
+const isAud=location.hash==='#audience';
+
+/* Serbian script conversion and text normalisation (Greek accents, final sigma, Latin diacritics) */
+const CY={'а':'a','б':'b','в':'v','г':'g','д':'d','ђ':'dj','е':'e','ж':'z','з':'z','и':'i','ј':'j','к':'k','л':'l','љ':'lj','м':'m','н':'n','њ':'nj','о':'o','п':'p','р':'r','с':'s','т':'t','ћ':'c','у':'u','ф':'f','х':'h','ц':'c','ч':'c','џ':'dz','ш':'s'};
+const LC={'a':'а','b':'б','v':'в','g':'г','d':'д','đ':'ђ','e':'е','ž':'ж','z':'з','i':'и','j':'ј','k':'к','l':'л','m':'м','n':'н','o':'о','p':'п','r':'р','s':'с','t':'т','ć':'ћ','u':'у','f':'ф','h':'х','c':'ц','č':'ч','š':'ш'};
+const c2l=s=>s.replace(/[а-џ]/g,ch=>CY[ch]??ch);
+const l2c=s=>s.replace(/dž|lj|nj|[a-zčćšžđ]/gi,m=>{const lo=m.toLowerCase(),r={'dž':'џ','lj':'љ','nj':'њ'}[lo]||LC[lo]||m;return m[0]!==lo[0]?r.toUpperCase():r});
+const norm=s=>c2l(String(s).toLowerCase()).replace(/đ/g,'dj').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/ς/g,'σ');
+
+/* Icon library: original line pictograms on a 48 grid, with labels and spoken word stems per language */
+const P=d=>`<path d="${d}"/>`,C=(x,y,r)=>`<circle cx="${x}" cy="${y}" r="${r}"/>`,D=(x,y)=>`<circle class="f" cx="${x}" cy="${y}" r="1.8"/>`;
+const RAW=[
+['sun','y','sun','ήλιος','sunce',C(24,24,8)+P('M24 6v5M24 37v5M6 24h5M37 24h5M11.3 11.3l3.5 3.5M33.2 33.2l3.5 3.5M11.3 36.7l3.5-3.5M33.2 14.8l3.5-3.5'),'sun,sunny,sunshine','ηλιο,ηλιε,λιακαδ','sunc'],
+['moon','b','moon','φεγγάρι','mesec',P('M31 7a17 17 0 1 0 10 27A14 14 0 0 1 31 7z'),'moon','φεγγαρ,σεληνη','mesec,mjesec'],
+['cloud','b','cloud','σύννεφο','oblak',P('M14 36h22a8 8 0 0 0 0-16 11 11 0 0 0-21-2 9 9 0 0 0-1 18z'),'cloud,cloudy','συννεφ','oblak'],
+['rain','b','rain','βροχή','kiša',P('M14 27h20a7 7 0 0 0 0-14 10 10 0 0 0-19-1 7.5 7.5 0 0 0-1 15zM17 33l-2 6M25 33l-2 6M33 33l-2 6'),'rain,rainy','βροχ,βρεχ','kis'],
+['snow','b','snow','χιόνι','sneg',P('M24 6v36M8.4 15l31.2 18M8.4 33l31.2-18M20 9l4 4 4-4M20 39l4-4 4 4'),'snow,snowy','χιον','sneg,snijeg,snije'],
+['wind','b','wind','άνεμος','vetar',P('M6 18h24a5 5 0 1 0-5-5M6 26h32a5 5 0 1 1-5 5M6 34h16'),'wind,windy','ανεμ,αερα','vetar,vetr,vjetar,vjetr'],
+['tree','g','tree','δέντρο','drvo',P('M24 43V28M24 28c-10 0-14-6-11-12 1-5 6-8 11-8s10 3 11 8c3 6-1 12-11 12zM18 43h12'),'tree,forest,wood,woods','δεντρ,δασοσ,δαση,δασουσ','drvo,drvec,drve,suma,sume,sumu'],
+['flower','g','flower','λουλούδι','cvet',C(24,8,4)+C(31,15,4)+C(24,22,4)+C(17,15,4)+P('M24 26v16M24 36c-5 0-8-3-8-6 4 0 8 2 8 6z'),'flower,garden','λουλουδ,κηπ','cvet,cvijet,bast'],
+['house','r','house','σπίτι','kuća',P('M7 23L24 9l17 14M12 19v22h24V19M21 41V30h6v11'),'house,home','σπιτ','kuc,dom'],
+['school','r','school','σχολείο','škola',P('M5 19L24 9l19 10M9 21v20h30V21M20 41v-8h8v8M15 26h4M29 26h4M24 9V4h6'),'school,class,classroom,lesson','σχολ,ταξη,μαθημ','skol,ucion,cas'],
+['water','b','water','νερό','voda',P('M24 6c-8 11-12 17-12 23a12 12 0 0 0 24 0c0-6-4-12-12-23zM18 30a6 6 0 0 0 6 6'),'water,drink,drop','νερ,πιν','voda,vode,vodu,pij'],
+['sea','b','sea','θάλασσα','more',P('M4 18c5-5 9-5 14 0s9 5 14 0 9-5 14 0M4 28c5-5 9-5 14 0s9 5 14 0 9-5 14 0M4 38c5-5 9-5 14 0s9 5 14 0 9-5 14 0'),'sea,ocean,beach,wave,waves','θαλασσ,παραλι,κυμα','more,mora,moru,plaz,talas'],
+['mountain','g','mountain','βουνό','planina',P('M3 41L18 15l8 13 5-8 14 21zM13 24l5 3 4-4'),'mountain,mountains,hill','βουν,λοφ','planin,brd'],
+['fire','r','fire','φωτιά','vatra',P('M24 43c-8 0-13-6-13-13 0-8 7-11 8-20 5 4 6 8 6 11 2-2 3-4 3-6 5 5 9 9 9 15 0 7-5 13-13 13z'),'fire,hot,warm','φωτι,ζεστ','vatr,topl,vruc'],
+['person','y','person','άνθρωπος','osoba',C(24,12,6)+P('M12 42c0-9 5-16 12-16s12 7 12 16'),'man,woman,person,teacher,lady','ανθρωπ,αντρ,γυναικ,δασκαλ','osob,covek,zena,zene,nastavni,ucitelj'],
+['people','y','friends','φίλοι','prijatelji',C(16,14,5)+C(32,14,5)+P('M5 41c0-8 4-14 11-14s11 6 11 14M21 41c0-8 4-14 11-14s11 6 11 14'),'friend,friends,people,together,group','φιλ,μαζι,παρεα','prijatelj,drug,zajedno,ljudi'],
+['family','r','family','οικογένεια','porodica',C(13,12,4.5)+C(35,12,4.5)+C(24,24,3.5)+P('M4 42c0-9 4-15 9-15s9 6 9 15M26 42c0-9 4-15 9-15s9 6 9 15M19 42c0-6 2-9 5-9s5 3 5 9'),'family,mother,father,mum,mom,dad,parents,grandma,grandpa','οικογεν,μαμα,μητερ,μπαμπα,πατερ,γονει,γιαγια,παππου','porodic,mama,majk,tata,otac,oca,roditelj,baka,deda'],
+['child','y','child','παιδί','dete',C(24,12,6)+P('M24 18v12M15 23l9 3 9-3M24 30l-6 12M24 30l6 12'),'child,children,kid,kids,baby,boy,girl','παιδ,μωρ,αγορ,κοριτσ','dete,deca,dec,dijete,djec,beb,decak,devojc,devojk'],
+['dog','r','dog','σκύλος','pas',P('M12 22V11l7 6h10l7-6v11c0 10-5 16-12 16s-12-6-12-16zM22 31h4l-2 2.5z')+D(19,24)+D(29,24),'dog,puppy','σκυλ,κουταβ','pas,psa,psom,psu,psi'],
+['cat','y','cat','γάτα','mačka',P('M12 25V9l8 7h8l8-7v16c0 9-5 15-12 15s-12-6-12-15zM5 30h8M35 30h8M22 32h4')+D(19,26)+D(29,26),'cat,kitten','γατ','mack,mace,maca,mac'],
+['bird','b','bird','πουλί','ptica',P('M8 30c0-9 7-15 16-15 5 0 8 2 10 6l7 1-7 4c-1 8-7 13-16 13-5 0-9-2-11-4l5-2c-3-1-4-2-4-3zM15 29c5 4 11 4 16-2M21 41l-1 4M27 41l1 4')+D(30,20),'bird,birds','πουλ','ptic'],
+['fish','b','fish','ψάρι','riba',P('M5 24c8-10 22-10 30 0-8 10-22 10-30 0zM35 24l8-7v14zM22 18c2 4 2 8 0 12')+D(13,22),'fish','ψαρ','rib'],
+['car','r','car','αυτοκίνητο','auto',P('M10 34H4v-9l6-9h24l8 9h2v9h-4M18 34h12M10 25h32')+C(14,34,4)+C(34,34,4),'car,cars,drive','αυτοκινητ,αμαξ,οδηγ','auto,automobil,kola,vozi'],
+['bus','y','bus','λεωφορείο','autobus',P('M10 6h28a4 4 0 0 1 4 4v28H6V10a4 4 0 0 1 4-4zM6 23h36M6 14h36M13 38v4M35 38v4')+D(13,31)+D(35,31),'bus','λεωφορει','autobus,bus'],
+['bike','g','bike','ποδήλατο','bicikl',C(12,32,7)+C(36,32,7)+P('M12 32l8-14h13l3 14M20 18l6 14H12M17 13h6M33 18l-2-5h-3'),'bike,bicycle,cycling','ποδηλατ','bicikl'],
+['boat','b','boat','βάρκα','čamac',P('M5 32h38l-6 9H11zM24 32V6l13 22H24'),'boat,ship,sail','βαρκ,πλοι,καραβ','camac,camc,brod'],
+['plane','b','plane','αεροπλάνο','avion',P('M24 4c2 0 3 2 3 5v10l15 9v4l-15-4v9l5 4v3l-8-2-8 2v-3l5-4v-9L6 32v-4l15-9V9c0-3 1-5 3-5z'),'plane,airplane,aeroplane,fly,flight,airport','αεροπλαν,αεροδρομ,πτησ,πετα','avion,aerodrom,leti'],
+['book','r','book','βιβλίο','knjiga',P('M24 12c-5-4-12-4-18-2v28c6-2 13-2 18 2 5-4 12-4 18-2V10c-6-2-13-2-18 2zM24 12v28'),'book,books,read,reading,story','βιβλι,διαβαζ,ιστορι,παραμυθ','knjig,cita,pric,bajk'],
+['heart','r','love','αγάπη','ljubav',P('M24 40S6 29 6 17a9 9 0 0 1 18-3 9 9 0 0 1 18 3c0 12-18 23-18 23z'),'love,heart,loves','αγαπ,καρδι','ljubav,srce,srca,voli'],
+['happy','y','happy','χαρά','sreća',C(24,24,18)+P('M18 19v3M30 19v3M15 29c4 7 14 7 18 0'),'happy,joy,smile,laugh,fun','χαρ,χαμογελ,γελ','srec,radost,osmeh,smej,vesel,veseo'],
+['sad','b','sad','λύπη','tuga',C(24,24,18)+P('M18 19v3M30 19v3M16 35c4-6 12-6 16 0'),'sad,cry,crying,unhappy','λυπ,κλαι,στενοχωρ','tuzn,tuga,tuge,plac,plak'],
+['food','g','apple','μήλο','jabuka',P('M24 15c-6-4-16-2-16 10 0 10 7 18 12 18 2 0 3-1 4-1s2 1 4 1c5 0 12-8 12-18 0-12-10-14-16-10zM24 15c0-4 2-7 5-9'),'food,eat,eating,apple,fruit,lunch,breakfast,dinner','φαγητ,τρω,μηλ,φρουτ,πρωινο','hran,jesti,jede,jedem,jabuk,voce,dorucak,rucak,vecer'],
+['bread','y','bread','ψωμί','hleb',P('M8 22c0-8 8-12 16-12s16 4 16 12c0 2-2 3-3 3v15H11V25c-1 0-3-1-3-3zM18 20l-2 5M26 20l-2 5M34 20l-2 5'),'bread,bakery,cake','ψωμ,φουρν,κεικ,τουρτ','hleb,hljeb,pekar,kolac,torta'],
+['money','y','money','χρήματα','novac',C(24,24,17)+P('M29 17c-2-2-10-2-10 2 0 5 10 3 10 8 0 4-7 4-10 2M24 12v4M24 32v4'),'money,coin,pay,buy,price,euro','λεφτ,χρημα,πληρων,αγοραζ,ευρω','novac,novc,para,plat,kup,evr'],
+['phone','b','phone','τηλέφωνο','telefon',P('M18 4h12a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H18a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4zM21 38h6'),'phone,call,message','τηλεφων,κινητ,μηνυμ','telefon,mobil,poziv,poruk'],
+['health','r','doctor','γιατρός','lekar',P('M19 8h10v11h11v10H29v11H19V29H8V19h11z'),'doctor,hospital,sick,ill,medicine,health','γιατρ,νοσοκομ,αρρωστ,φαρμακ,υγει','lekar,ljekar,doktor,bolnic,bolest,bolesn,lek,zdrav'],
+['shop','r','shop','μαγαζί','prodavnica',P('M6 18l4-10h28l4 10M6 18c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6c0 4 3 6 6 6s6-2 6-6M9 24v18h30V24M20 42V32h8v10'),'shop,market,store,supermarket','μαγαζ,αγορα,καταστημ,σουπερ','prodavn,radnj,pijac,market'],
+['city','b','city','πόλη','grad',P('M4 42h40M8 42V18h12v24M20 42V8h12v34M32 42V22h10v20M12 24h4M12 31h4M24 14h4M24 21h4M24 28h4M36 28h2M36 34h2'),'city,town,street','πολη,πολει','grad,ulic,varos'],
+['road','g','journey','ταξίδι','put',P('M16 44L20 4M32 44L28 4M24 8v4M24 18v5M24 30v6'),'road,way,walk,walks,walking,travel,trip,journey','δρομ,ταξιδ,περπατ','put,puta,putuj,putov,seta,setn'],
+['clock','b','time','ώρα','vreme',C(24,24,18)+P('M24 13v11l8 5'),'time,clock,hour,morning,late,early','ωρα,ρολοι,πρωι','sat,sati,vreme,vrijeme,jutr,kasn,rano'],
+['music','r','music','μουσική','muzika',P('M18 36V10l20-4v26')+C(13,36,5)+C(33,32,5),'music,song,sing,singing','μουσικ,τραγουδ','muzik,pesm,pjesm,peva,pjeva'],
+['star','y','star','αστέρι','zvezda',P('M24 5l5.6 12 13 1.5-9.7 8.8 2.7 12.8L24 33.5 12.4 40l2.7-12.8-9.7-8.7 13-1.5z'),'star,stars,night','αστερ,αστρ,νυχτ','zvezd,zvijezd,noc'],
+['gift','r','gift','δώρο','poklon',P('M6 18h36v8H6zM9 26h30v16H9zM24 18v24M24 18c-4-8-12-8-12-3s8 3 12 3c4 0 12 2 12-3s-8-5-12 3'),'gift,present,birthday,party','δωρ,γενεθλ,παρτ','poklon,rodjendan,rodend,zurk'],
+['ball','g','play','παιχνίδι','igra',C(24,24,17)+P('M8 18c8 4 24 4 32 0M8 30c8-4 24-4 32 0M24 7c-6 10-6 24 0 34'),'ball,play,playing,game,football','μπαλ,παιζ,παιχνιδ','lopt,igr,fudbal'],
+['talk','b','talk','κουβέντα','razgovor',P('M8 9h32v22H21l-9 8v-8H8zM15 17h18M15 23h12'),'talk,say,says,speak,tell','μιλ,λεει,λεω,ειπ','razgovor,govor,kaze,kazem'],
+['work','y','work','δουλειά','posao',P('M10 14h28a3 3 0 0 1 3 3v22a3 3 0 0 1-3 3H10a3 3 0 0 1-3-3V17a3 3 0 0 1 3-3zM18 14V9h12v5M7 26h34'),'work,job,office','δουλει,εργασ,γραφει','posao,posl,radi,radim,kancelarij'],
+['sleep','b','sleep','ύπνος','san',P('M4 38V12M4 30h40v8M4 24h14v6M18 22h20a6 6 0 0 1 6 6v2M30 8h6l-6 6h6')+C(11,19,3),'sleep,bed,tired,sleeping','υπν,κρεβατ,κουρασ,κοιμ','spav,krevet,umor'],
+['question','b','question','ερώτηση','pitanje',C(24,24,18)+P('M18 19a6 6 0 1 1 8.5 5.5c-1.6.8-2.5 2-2.5 3.5v1M24 34v.5'),'why,question,wonder','γιατι,ερωτησ','zasto,pitanj']
+];
+const ICONS={},IDX={en:[],el:[],sr:[]};
+RAW.forEach(r=>{const I={id:r[0],c:r[1],en:r[2],el:r[3],sr:r[4],svg:r[5],v:{en:r[6].split(','),el:r[7].split(','),sr:r[8].split(',')}};ICONS[I.id]=I;['en','el','sr'].forEach(l=>I.v[l].forEach(s=>IDX[l].push({s:norm(s),id:I.id})))});
+const LN={en:'English',el:'Greek',sr:'Serbian'},CODES={en:'en-GB',el:'el-GR',sr:'sr-RS'};
+
+/* Keyword spotting: the longest matching stem in the active language wins; English needs whole words or simple endings */
+function match(text,lang){
+  const out=[];
+  for(const raw of String(text).split(/[^\p{L}]+/u)){
+    if(!raw)continue;const t=norm(raw);let best=null;
+    for(const e of IDX[lang]){const s=e.s;
+      const ok=lang==='en'?(t===s||t===s+'s'||t===s+'es'||t===s+'ing'||t===s+'ed'||(s.length>=6&&t.startsWith(s))):(t.startsWith(s)&&t.length<=s.length+(s.length<=3?2:6));
+      if(ok&&(!best||s.length>best.s.length))best=e}
+    if(best&&!out.some(o=>o.id===best.id))out.push({id:best.id,word:raw})}
+  return out}
+
+/* Sample scenario: placeholder until KROMA's scenario arrives */
+const SCN=[
+ {icons:['sun','house','child'],cap:{en:'Mila wakes up. The sun is shining.',el:'Η Μίλα ξυπνάει. Ο ήλιος λάμπει.',sr:'Mila se budi. Sunce sija.'}},
+ {icons:['road','sea','dog'],cap:{en:'She walks to the sea with her dog.',el:'Περπατά ως τη θάλασσα με τον σκύλο της.',sr:'Šeta do mora sa svojim psom.'}},
+ {icons:['boat','fish','bird'],cap:{en:'They see a boat and many fish.',el:'Βλέπουν μια βάρκα και πολλά ψάρια.',sr:'Vide čamac i mnogo riba.'}},
+ {icons:['rain','house','happy'],cap:{en:'It starts to rain! They run home.',el:'Αρχίζει να βρέχει! Τρέχουν στο σπίτι.',sr:'Počinje kiša! Trče kući.'}}];
+const capOf=(c,l)=>typeof c==='string'?c:(c&&(c[l]||c.en))||'';
+const cleanFrames=a=>(Array.isArray(a)?a:[]).slice(0,6).map(f=>({cap:String(capOf(f&&f.cap,S.lang)||'').slice(0,120),ml:f&&f.cap&&typeof f.cap==='object'?{en:String(f.cap.en||''),el:String(f.cap.el||''),sr:String(f.cap.sr||'')}:(f&&f.ml&&typeof f.ml==='object'?f.ml:undefined),icons:(Array.isArray(f&&f.icons)?f.icons:[]).filter(i=>ICONS[i]).filter((v,i,a)=>a.indexOf(v)===i).slice(0,6)}));
+
+function sample(){const t=Date.now();return{lang:'en',cyr:false,night:false,blank:false,auto:0,max:4,hold:false,sample:true,cur:1,
+  frames:SCN.slice(0,2).map(f=>({cap:f.cap.en,ml:f.cap,icons:f.icons.slice()})),
+  log:SCN.slice(0,3).map(f=>f.cap.en),
+  sugg:[{id:'boat',word:'boat',sent:SCN[2].cap.en,at:t},{id:'fish',word:'fish',sent:SCN[2].cap.en,at:t}]}}
+let S=sample();
+try{const o=JSON.parse(localStorage.getItem('vistori-canvas')||'null');if(o&&Array.isArray(o.frames)&&o.frames.length){
+  Object.assign(S,{lang:IDX[o.lang]?o.lang:'en',cyr:!!o.cyr,night:!!o.night,auto:[0,2,4,8].includes(+o.auto)?+o.auto:0,max:[3,4,5,6].includes(+o.max)?+o.max:4,sample:false,sugg:[],log:Array.isArray(o.log)?o.log.map(String).slice(-30):[]});
+  S.frames=cleanFrames(o.frames);S.cur=Math.min(+o.cur||0,S.frames.length-1)}}catch(e){}
+function save(){if(isAud)return;try{localStorage.setItem('vistori-canvas',JSON.stringify({frames:S.frames,cur:S.cur,lang:S.lang,cyr:S.cyr,night:S.night,auto:S.auto,max:S.max,log:S.log}))}catch(e){}}
+
+let hist=[];
+const commit=()=>{hist.push(JSON.stringify({f:S.frames,c:S.cur}));if(hist.length>60)hist.shift()};
+function undo(){const h=hist.pop();if(!h)return;const o=JSON.parse(h);S.frames=o.f;S.cur=o.c;render()}
+function cf(){if(!S.frames.length)S.frames.push({cap:'',icons:[]});S.cur=Math.min(Math.max(S.cur,0),S.frames.length-1);return S.frames[S.cur]}
+const label=id=>{const i=ICONS[id];return S.lang==='el'?i.el:S.lang==='sr'?(S.cyr?l2c(i.sr):i.sr):i.en};
+const svg=id=>`<svg viewBox="0 0 48 48" aria-hidden="true">${ICONS[id].svg}</svg>`;
+
+/* One stage renderer serves the preview, the thumbnails, the audience screen and print */
+const seenPv=new Set(),seenAud=new Set();
+function stage(f,i,n,o={}){
+  const ic=(f?f.icons:[]).filter(id=>ICONS[id]);
+  const dots=Array.from({length:n},(_,k)=>`<i class="${k===i?'on':''}"></i>`).join('');
+  const items=ic.map((id,k)=>{const key=i+':'+id,nw=o.seen&&!o.seen.has(key);if(o.seen)o.seen.add(key);
+    return `<figure class="it${nw?' new':''}" style="--c:var(--${ICONS[id].c})"><div class="disc">${svg(id)}${o.edit?`<button class="x" data-rm="${k}" aria-label="Remove ${esc(label(id))}">×</button>`:''}</div><figcaption>${esc(label(id))}</figcaption></figure>`}).join('');
+  return `<div class="stage${S.night?' night':''}${o.blank?' blank':''}"><div class="st-in"><div class="st-top"><span>VISTORI</span><span class="dots">${dots}</span></div><div class="icons n${ic.length}">${items||(o.thumb?'':'<p class="empty">Waiting for the story…</p>')}</div><p class="cap">${esc(f?(S.lang==='sr'&&S.cyr?l2c(f.cap):f.cap):'')}</p></div></div>`}
+
+let msg='',msgT=0,listening=false,sameAud=false,audWin=null;
+function note(t){msg=t;clearTimeout(msgT);msgT=setTimeout(()=>{msg='';paint()},7000);paint()}
+function paint(){if(isAud)return;
+  $('#go').classList.toggle('live',listening);$('#goT').textContent=listening?'Pause':'Start listening';
+  $('#stat').textContent=msg||(listening?`Listening in ${LN[S.lang]}. Speak naturally; suggested pictures appear on the right.`:S.hold?'On hold: listening and auto-place are paused. The audience screen stays as it is.':'Microphone off. Start listening, type a sentence, or play a scenario.')}
+
+function render(){
+  cf();save();
+  if(!isAud){
+    $('#pv').innerHTML=stage(cf(),S.cur,S.frames.length,{edit:1,seen:seenPv,blank:S.blank});
+    $('#fpos').textContent=`Frame ${S.cur+1} of ${S.frames.length}`;
+    const cap=$('#cap');if(document.activeElement!==cap)cap.value=cf().cap;
+    $('#blank').textContent=S.blank?'Show screen':'Blank screen';$('#blank').setAttribute('aria-pressed',S.blank);
+    $('#newf').disabled=S.frames.length>=6;$('#prev').disabled=S.cur===0;$('#next').disabled=S.cur>=S.frames.length-1;$('#undo').disabled=!hist.length;
+    $('#samp').textContent=S.sample?'Sample story loaded (Mila’s day by the sea). Use Clear all to start fresh.':'';
+    $('#sgc').textContent=S.sugg.length?`${S.sugg.length} waiting`:'';
+    $('#sg').innerHTML=S.sugg.length?S.sugg.map((x,i)=>`<div class="sg${S.auto?' timed':''}" data-i="${i}"><span class="mini" style="--c:var(--${ICONS[x.id].c})">${svg(x.id)}</span><span class="sgt"><b>${esc(label(x.id))}</b><small>heard “${esc(x.word)}”</small></span><button class="btn sm pri" data-ok="${i}">Place</button><button class="btn sm" data-no="${i}" aria-label="Dismiss ${esc(label(x.id))}">✕</button><span class="bar2"><i></i></span></div>`).join(''):'<p class="small">Pictures suggested from speech appear here. Place them on the screen or dismiss them.</p>';
+    $('#log').innerHTML=S.log.slice(-8).map(l=>`<li>${esc(l)}</li>`).join('');$('#log').scrollTop=1e5;
+    $('#strip').innerHTML=S.frames.map((f,i)=>`<button class="th${i===S.cur?' cur':''}" data-f="${i}" aria-label="Frame ${i+1}">${stage(f,i,S.frames.length,{thumb:1})}<span>${i+1}</span></button>`).join('')+(S.frames.length<6?'<button class="addf" id="addf">+ New frame</button>':'');
+    renderLib();
+    $('#lang').value=S.lang;$('#auto').value=S.auto;$('#max').value=S.max;$('#night').value=S.night?1:0;$('#cyr').value=S.cyr?1:0;$('#cyrl').hidden=S.lang!=='sr';
+    paint();pub()}
+  if(isAud||sameAud)renderAud()}
+function renderLib(){const q=norm(c2l($('#q').value.trim()));
+  $('#lib').innerHTML=Object.values(ICONS).filter(I=>!q||[I.en,I.el,I.sr,...I.v.en,...I.v.el,...I.v.sr].some(w=>norm(w).includes(q))).map(I=>`<button class="lb" data-add="${I.id}" style="--c:var(--${I.c})"><span class="mini">${svg(I.id)}</span><span>${esc(label(I.id))}</span></button>`).join('')||'<p class="small">No icon matches. Try another word.</p>'}
+function renderAud(){$('#aud').innerHTML=stage(cf(),S.cur,S.frames.length,{seen:seenAud,blank:S.blank})+(sameAud?'<p class="esc">Esc to return</p>':'')+'<button class="fs" id="fs" aria-label="Full screen">⤢</button>'}
+
+/* Story actions */
+function addIcon(id,sent){let f=cf();if(f.icons.includes(id)){render();return}commit();
+  if(f.icons.length>=S.max){if(S.frames.length<6){S.frames.push({cap:'',icons:[]});S.cur=S.frames.length-1;f=cf()}else{hist.pop();note('The storyboard is full: 6 frames. Remove an icon or a frame first.');render();return}}
+  f.icons.push(id);if(!f.cap&&sent){const s=sent.charAt(0).toUpperCase()+sent.slice(1);f.cap=s.length>100?s.slice(0,98)+'…':s}
+  S.sample=false;render()}
+function approve(i){const x=S.sugg.splice(i,1)[0];if(x)addIcon(x.id,x.sent);else render()}
+function process(text){text=String(text).trim();if(!text)return;S.log.push(text);if(S.log.length>30)S.log.shift();
+  const now=cf().icons;for(const m of match(text,S.lang))if(!now.includes(m.id)&&!S.sugg.some(s=>s.id===m.id))S.sugg.push({id:m.id,word:m.word,sent:text,at:Date.now()});
+  if(S.sugg.length>8)S.sugg=S.sugg.slice(-8);render()}
+function newFrame(){if(S.frames.length>=6)return;commit();S.frames.splice(S.cur+1,0,{cap:'',icons:[]});S.cur++;render()}
+function go(d){S.cur=Math.min(Math.max(S.cur+d,0),S.frames.length-1);render()}
+function loadScn(arr){const fr=cleanFrames(arr);if(!fr.length){note('That file has no frames VISTORI can read.');return}commit();S.frames=fr;S.cur=0;S.sugg=[];S.sample=false;render()}
+
+/* Speech: browser recognition for the prototype */
+const SRc=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null;
+function startMic(){
+  if(!SRc){note('Live speech needs Chrome or Edge. You can still type sentences or play a scenario.');return}
+  try{rec=new SRc();rec.lang=CODES[S.lang];rec.continuous=true;rec.interimResults=true;
+    rec.onresult=e=>{let im='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)process(r[0].transcript);else im+=r[0].transcript}$('#interim').textContent=im};
+    rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){listening=false;note(framed?'The microphone is blocked inside this preview. Open the HTML file in Chrome to use live speech.':'Microphone permission was refused. Allow it in the browser’s address bar and try again.')}};
+    rec.onend=()=>{if(listening){try{rec.start()}catch(e){}}else $('#interim').textContent=''};
+    rec.start();listening=true;S.hold=false;S.sugg.forEach(s=>s.at=Date.now())}catch(e){listening=false;note('Speech could not start in this browser.')}
+  paint()}
+function stopMic(){listening=false;try{rec&&rec.stop()}catch(e){}paint()}
+function toggle(){if(listening){stopMic();S.hold=true;paint()}else{S.hold=false;startMic()}}
+
+/* Pace: auto-place timer, held while paused */
+setInterval(()=>{if(isAud)return;const now=Date.now();
+  if(S.auto&&!S.hold&&S.sugg.length){const i=S.sugg.findIndex(x=>now-x.at>=S.auto*1000);if(i>=0){approve(i);return}}
+  document.querySelectorAll('.sg.timed').forEach(el=>{const x=S.sugg[+el.dataset.i];if(x)el.querySelector('.bar2 i').style.width=Math.min(100,(now-x.at)/(S.auto*10))+'%'})},200);
+
+/* Second screen: BroadcastChannel when served from a site, postMessage between windows otherwise */
+let bc=null;try{bc=new BroadcastChannel('vistori-canvas')}catch(e){}
+const audState=()=>({frames:S.frames,cur:S.cur,lang:S.lang,cyr:S.cyr,night:S.night,blank:S.blank});
+function pub(){const d={t:'vistori-state',d:audState()};try{bc&&bc.postMessage(d)}catch(e){}try{audWin&&!audWin.closed&&audWin.postMessage(d,'*')}catch(e){}}
+function applyState(d){if(!d||!Array.isArray(d.frames))return;S.frames=cleanFrames(d.frames.map(f=>({cap:f&&f.cap,icons:f&&f.icons})));S.cur=Math.min(+d.cur||0,Math.max(S.frames.length-1,0));S.lang=IDX[d.lang]?d.lang:'en';S.cyr=!!d.cyr;S.night=!!d.night;S.blank=!!d.blank;renderAud()}
+function onMsg(m){if(!m||typeof m!=='object')return;if(isAud&&m.t==='vistori-state')applyState(m.d);if(!isAud&&m.t==='vistori-hello')pub()}
+if(bc)bc.onmessage=e=>onMsg(e.data);
+window.addEventListener('message',e=>{if(!isAud&&e.data&&e.data.t==='vistori-hello'&&e.source)audWin=e.source;onMsg(e.data)});
+function enterSame(){sameAud=true;document.body.classList.add('aud');renderAud()}
+function exitSame(){sameAud=false;document.body.classList.remove('aud');render()}
+function openAud(){
+  if(framed){enterSame();note('This preview cannot open a second window, so the audience view opened here. Press Esc to return.');return}
+  try{audWin=window.open(location.href.split('#')[0]+'#audience','vistori-audience','popup,width=1280,height=720')}catch(e){audWin=null}
+  if(!audWin){enterSame();note('The browser blocked a new window, so the audience view opened here. Press Esc to return.');return}
+  setTimeout(pub,700);setTimeout(pub,2000)}
+function fs(){const el=document.documentElement;try{const p=document.fullscreenElement?document.exitFullscreen():el.requestFullscreen();p&&p.catch&&p.catch(()=>{})}catch(e){}}
+
+/* Events */
+document.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if(t.id==='fs')return fs();
+  if(d.ok!==undefined)return approve(+d.ok);
+  if(d.no!==undefined){S.sugg.splice(+d.no,1);return render()}
+  if(d.rm!==undefined){commit();cf().icons.splice(+d.rm,1);return render()}
+  if(d.f!==undefined){S.cur=+d.f;return render()}
+  if(d.add!==undefined)return addIcon(d.add,'');
+  if(t.id==='addf')return newFrame()});
+if(!isAud){
+  $('#go').onclick=toggle;$('#openAud').onclick=openAud;
+  $('#prev').onclick=()=>go(-1);$('#next').onclick=()=>go(1);$('#newf').onclick=newFrame;$('#undo').onclick=undo;
+  $('#delf').onclick=()=>{commit();S.frames.splice(S.cur,1);if(!S.frames.length)S.frames.push({cap:'',icons:[]});S.cur=Math.min(S.cur,S.frames.length-1);render()};
+  $('#blank').onclick=()=>{S.blank=!S.blank;render()};
+  $('#cap').onfocus=commit;$('#cap').oninput=e=>{cf().cap=e.target.value;delete cf().ml;S.sample=false;render()};
+  $('#tf').onsubmit=e=>{e.preventDefault();process($('#tx').value);$('#tx').value=''};
+  $('#q').oninput=renderLib;
+  $('#lang').onchange=e=>{S.lang=e.target.value;S.frames.forEach(f=>{if(f.ml&&f.ml[S.lang])f.cap=f.ml[S.lang]});if(listening){stopMic();startMic()}render()};
+  $('#auto').onchange=e=>{S.auto=+e.target.value;S.sugg.forEach(s=>s.at=Date.now());render()};
+  $('#max').onchange=e=>{S.max=+e.target.value;render()};
+  $('#night').onchange=e=>{S.night=e.target.value==='1';render()};
+  $('#cyr').onchange=e=>{S.cyr=e.target.value==='1';render()};
+  $('#scn').onclick=()=>loadScn(SCN);
+  $('#file').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);loadScn(Array.isArray(o)?o:o.frames)}catch(err){note('That file is not valid scenario JSON.')}};r.readAsText(f);e.target.value=''};
+  $('#copy').onclick=()=>{const t=JSON.stringify({vistori:1,frames:S.frames},null,1);try{navigator.clipboard.writeText(t).then(()=>note('Storyboard copied as JSON. Save it as a .json file to reuse it as a scenario.'),()=>note('Copying was blocked here.'))}catch(e){note('Copying was blocked here.')}};
+  $('#clear').onclick=()=>{commit();S.frames=[{cap:'',icons:[]}];S.cur=0;S.sugg=[];S.log=[];S.sample=false;render()};
+  $('#pdf').onclick=()=>{
+    $('#print').innerHTML='<h1 class="ph">VISTORI storyboard</h1>'+S.frames.map((f,i)=>`<figure class="pf">${stage(f,i,S.frames.length,{})}<p>Frame ${i+1}</p></figure>`).join('');
+    if(framed){note('Printing is blocked inside this preview. Open the HTML file in Chrome, press Export PDF and choose Save as PDF.');return}
+    try{window.print()}catch(e){note('Printing is not available here.')}};
+}
+document.addEventListener('keydown',e=>{
+  if(isAud){if(e.key==='f'||e.key==='F')fs();return}
+  const tg=e.target.tagName;
+  if(['INPUT','TEXTAREA','SELECT'].includes(tg)&&e.key!=='Escape')return;
+  if(tg==='BUTTON'&&(e.key===' '||e.key==='Enter'))return;
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();undo();return}
+  if(e.ctrlKey||e.metaKey||e.altKey)return;
+  switch(e.key){
+    case ' ':e.preventDefault();toggle();break;
+    case 'Enter':if(S.sugg.length){e.preventDefault();approve(0)}break;
+    case 'Delete':case 'Backspace':if(S.sugg.length){e.preventDefault();S.sugg.shift();render()}break;
+    case 'ArrowRight':go(1);break;case 'ArrowLeft':go(-1);break;
+    case 'n':case 'N':newFrame();break;
+    case 'b':case 'B':S.blank=!S.blank;render();break;
+    case 'a':case 'A':enterSame();break;
+    case 'Escape':if(sameAud)exitSame();break}});
+
+if(isAud){document.body.classList.add('aud');renderAud();
+  const hi={t:'vistori-hello'};try{bc&&bc.postMessage(hi)}catch(e){}try{window.opener&&window.opener.postMessage(hi,'*')}catch(e){}}
+else render();
+}
+</script>
+</body>
+</html>
