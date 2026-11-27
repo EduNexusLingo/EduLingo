@@ -271,16 +271,32 @@ const ICONS={},IDX={en:[],el:[],sr:[]};
 RAW.forEach(r=>{const I={id:r[0],c:r[1],en:r[2],el:r[3],sr:r[4],svg:r[5],v:{en:r[6].split(','),el:r[7].split(','),sr:r[8].split(',')}};ICONS[I.id]=I;['en','el','sr'].forEach(l=>I.v[l].forEach(s=>IDX[l].push({s:norm(s),id:I.id})))});
 const LN={en:'English',el:'Greek',sr:'Serbian'},CODES={en:'en-GB',el:'el-GR',sr:'sr-RS'};
 
+/* Sound-alikes: what the recogniser often hears when a presenter says one keyword on its own.
+   Used only for short utterances (1-2 words), so "they see a boat" never turns into "sea". Extend per language after testing. */
+const SOUND={
+ en:{sea:'see,c,cc,si,sees,seize',dog:'doll,dock,dug,dogs,doug',boat:'bout,both,vote,boot',fish:'fizz,fist',sun:'son,some',moon:'moan,noon',cat:'cut,cap,kat',bird:'bud,burt,word',road:'rode,rowed,load',journey:'gurney,journee,attorney',house:'how,mouse',school:'cool,skull',bike:'bake,like',rain:'rein,reign,ran',tree:'three,free',car:'call,cow',bus:'boss,buzz',book:'look,buck',ball:'bowl,bull',star:'stair,start',heart:'hart,hot',bread:'bred,red',plane:'plain,plan',snow:'no,know,snore',flower:'flour,flow',water:'what are,waiter'},
+ el:{},sr:{}};
+const SIDX={en:{},el:{},sr:{}};
+Object.entries(SOUND).forEach(([l,m])=>Object.entries(m).forEach(([id,w])=>{if(ICONS[id])w.split(',').forEach(x=>SIDX[l][norm(x.trim())]=id)}));
+
 /* Keyword spotting: the longest matching stem in the active language wins; English needs whole words or simple endings */
 function match(text,lang){
   const out=[];
-  for(const raw of String(text).split(/[^\p{L}]+/u)){
-    if(!raw)continue;const t=norm(raw);let best=null;
+  const words=String(text).split(/[^\p{L}]+/u).filter(Boolean);
+  const short=words.length<=2;
+  if(short){const whole=SIDX[lang][norm(words.join(' '))];if(whole)return[{id:whole,word:words.join(' ')}]}
+  for(const raw of words){
+    const t=norm(raw);let best=null;
     for(const e of IDX[lang]){const s=e.s;
       const ok=lang==='en'?(t===s||t===s+'s'||t===s+'es'||t===s+'ing'||t===s+'ed'||(s.length>=6&&t.startsWith(s))):(t.startsWith(s)&&t.length<=s.length+(s.length<=3?2:6));
       if(ok&&(!best||s.length>best.s.length))best=e}
-    if(best&&!out.some(o=>o.id===best.id))out.push({id:best.id,word:raw})}
+    let id=best&&best.id;
+    if(!id&&short)id=SIDX[lang][t];
+    if(id&&!out.some(o=>o.id===id))out.push({id,word:raw})}
   return out}
+
+/* Clean a recognised phrase: "journey journey" → "journey", "Boat Boat" → "Boat" */
+const dedupe=s=>String(s).trim().replace(/(^|\s)(\p{L}+)(?:\s+\2)+(?=\s|$)/giu,'$1$2').replace(/\s+/g,' ');
 
 /* Sample scenario: placeholder until KROMA's scenario arrives */
 const SCN=[
@@ -350,8 +366,15 @@ function addIcon(id,sent){let f=cf();if(f.icons.includes(id)){render();return}co
   f.icons.push(id);if(!f.cap&&sent){const s=sent.charAt(0).toUpperCase()+sent.slice(1);f.cap=s.length>100?s.slice(0,98)+'…':s}
   S.sample=false;render()}
 function approve(i){const x=S.sugg.splice(i,1)[0];if(x)addIcon(x.id,x.sent);else render()}
-function process(text){text=String(text).trim();if(!text)return;S.log.push(text);if(S.log.length>30)S.log.shift();
-  const now=cf().icons;for(const m of match(text,S.lang))if(!now.includes(m.id)&&!S.sugg.some(s=>s.id===m.id))S.sugg.push({id:m.id,word:m.word,sent:text,at:Date.now()});
+let lastFinal={k:'',at:0};
+function process(text,alts){text=dedupe(text);if(!text)return;
+  const k=norm(text),t0=Date.now();
+  if(k===lastFinal.k&&t0-lastFinal.at<5000)return; /* same phrase delivered twice by the recogniser */
+  lastFinal={k,at:t0};
+  S.log.push(text);if(S.log.length>30)S.log.shift();
+  let found=match(text,S.lang);
+  if(!found.length&&alts)for(const a of alts){found=match(dedupe(a),S.lang);if(found.length)break} /* try the recogniser's other guesses */
+  const now=cf().icons;for(const m of found)if(!now.includes(m.id)&&!S.sugg.some(s=>s.id===m.id))S.sugg.push({id:m.id,word:m.word,sent:text,at:Date.now()});
   if(S.sugg.length>8)S.sugg=S.sugg.slice(-8);render()}
 function newFrame(){if(S.frames.length>=6)return;commit();S.frames.splice(S.cur+1,0,{cap:'',icons:[]});S.cur++;render()}
 function go(d){S.cur=Math.min(Math.max(S.cur+d,0),S.frames.length-1);render()}
@@ -361,8 +384,13 @@ function loadScn(arr){const fr=cleanFrames(arr);if(!fr.length){note('That file h
 const SRc=window.SpeechRecognition||window.webkitSpeechRecognition;let rec=null;
 function startMic(){
   if(!SRc){note('Live speech needs Chrome or Edge. You can still type sentences or play a scenario.');return}
-  try{rec=new SRc();rec.lang=CODES[S.lang];rec.continuous=true;rec.interimResults=true;
-    rec.onresult=e=>{let im='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];if(r.isFinal)process(r[0].transcript);else im+=r[0].transcript}$('#interim').textContent=im};
+  try{rec=new SRc();rec.lang=CODES[S.lang];rec.continuous=true;rec.interimResults=true;rec.maxAlternatives=4;
+    const done=new Set(); /* each final result is processed once, even if Chrome re-sends it */
+    rec.onstart=()=>done.clear();
+    rec.onresult=e=>{let im='';for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i];
+        if(r.isFinal){if(done.has(i))continue;done.add(i);const alts=[];for(let j=1;j<r.length;j++)alts.push(r[j].transcript);process(r[0].transcript,alts)}
+        else im+=r[0].transcript}
+      $('#interim').textContent=dedupe(im)};
     rec.onerror=e=>{if(e.error==='not-allowed'||e.error==='service-not-allowed'){listening=false;note(framed?'The microphone is blocked inside this preview. Open the HTML file in Chrome to use live speech.':'Microphone permission was refused. Allow it in the browser’s address bar and try again.')}};
     rec.onend=()=>{if(listening){try{rec.start()}catch(e){}}else $('#interim').textContent=''};
     rec.start();listening=true;S.hold=false;S.sugg.forEach(s=>s.at=Date.now())}catch(e){listening=false;note('Speech could not start in this browser.')}
